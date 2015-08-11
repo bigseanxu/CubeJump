@@ -9,11 +9,11 @@ public class PillarGenerator : MonoBehaviour {
 	public float minSmallToSmall; 
 	public float minSmallToMedium;
 
-	public Transform startPillar3;
+	public Transform startPillar2;
 
 	List<Transform> pillars = new List<Transform> ();
-	Vector3 lastPillarPosition = new Vector3(1.3f, 0, -4.6f);
-	bool lastPillarLeft = false;
+	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -4.6f);
+	bool lastPillarLeft = true;
 
 	// Use this for initialization
 	void Start () {
@@ -52,8 +52,8 @@ public class PillarGenerator : MonoBehaviour {
 			lastPillar.GetComponent<Pillar> ().NextPillar = newPillar;
 			newPillar.GetComponent<Pillar> ().LastPillar = lastPillar;
 		} else {
-			startPillar3.GetComponent<Pillar>().NextPillar = newPillar;
-			newPillar.GetComponent<Pillar> ().LastPillar = startPillar3;
+			startPillar2.GetComponent<Pillar>().NextPillar = newPillar;
+			newPillar.GetComponent<Pillar> ().LastPillar = startPillar2;
 		}
 		pillars.Add (newPillar);
 
