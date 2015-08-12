@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Plant : MonoBehaviour {
+public class Fish : MonoBehaviour {
 	public float minSpeed;
 	public float maxSpeed;
 	public float distance;
+	
 	float speed;
 	// Use this for initialization
 	void Start () {
@@ -14,11 +15,12 @@ public class Plant : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
+	
 	void Move() {
 		Vector3 position = transform.position;
-		position.y += distance;
-		LeanTween.move (gameObject, position, distance / speed).setLoopPingPong ();
+		position.z += distance;
+		LeanTween.move (gameObject, position, distance / speed).setLoopClamp();
 	}
 }
