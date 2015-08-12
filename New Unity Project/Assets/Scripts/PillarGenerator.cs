@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PillarGenerator : MonoBehaviour {
 	public Transform[] pillarPrefabs;
 	public Transform pillarGroup;
+	public Transform sceneGenerator;
 
 	public float minSmallToSmall; 
 	public float minSmallToMedium;
@@ -56,6 +57,8 @@ public class PillarGenerator : MonoBehaviour {
 			newPillar.GetComponent<Pillar> ().LastPillar = startPillar2;
 		}
 		pillars.Add (newPillar);
+
+		sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
 
 	}
 }
