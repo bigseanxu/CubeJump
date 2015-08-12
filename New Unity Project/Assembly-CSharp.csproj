@@ -39,14 +39,13 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>F:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>F:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraReference.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GUIExamplesCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2dCS.cs" />
@@ -65,17 +64,25 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TutorialPresentationFinished.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\UIExampleCS.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CameraReference.cs" />
      <Compile Include="Assets\Scripts\CubeHero.cs" />
+     <Compile Include="Assets\Scripts\Diamond.cs" />
+     <Compile Include="Assets\Scripts\Fish.cs" />
+     <Compile Include="Assets\Scripts\Flow.cs" />
      <Compile Include="Assets\Scripts\Pillar.cs" />
      <Compile Include="Assets\Scripts\PillarGenerator.cs" />
-     <Compile Include="Assets\cube.cs" />
+     <Compile Include="Assets\Scripts\Plant.cs" />
+     <Compile Include="Assets\Scripts\Ripple.cs" />
+     <Compile Include="Assets\Scripts\SceneGenerator.cs" />
+     <Compile Include="Assets\Scripts\Water.cs" />
+     <Compile Include="Assets\Scripts\cube.cs" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>F:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>F:/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
