@@ -21,7 +21,7 @@ public class Ripple : MonoBehaviour {
 			int k = (int)((Time.time - startTime) / (animationDuration / (float) ripples.Length));
 			if (k <= ripples.Length - 1) {
 				mat.mainTexture = (Texture) ripples[k];
-				print (k);
+//				print (k);
 			} else {
 				isPlay = false;
 			}
