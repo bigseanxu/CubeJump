@@ -126,6 +126,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11409316, guid: db87de044684827489a31c4f00cd4ab7, type: 2}
+      propertyPath: distance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409316, guid: db87de044684827489a31c4f00cd4ab7, type: 2}
+      propertyPath: minSpeed
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409316, guid: db87de044684827489a31c4f00cd4ab7, type: 2}
+      propertyPath: maxSpeed
+      value: .300000012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db87de044684827489a31c4f00cd4ab7, type: 2}
   m_IsPrefabParent: 0
@@ -905,11 +917,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11480576, guid: 16c86e401f675bb43bfb51f19760017c, type: 2}
       propertyPath: maxSpeed
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11480576, guid: 16c86e401f675bb43bfb51f19760017c, type: 2}
       propertyPath: distance
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16c86e401f675bb43bfb51f19760017c, type: 2}
@@ -1755,7 +1767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1808093046
 Transform:
   m_ObjectHideFlags: 0
@@ -1763,7 +1775,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1808093045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1000, y: 10000, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 341647913}
@@ -2188,7 +2200,7 @@ Camera:
   m_GameObject: {fileID: 2108585101}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
