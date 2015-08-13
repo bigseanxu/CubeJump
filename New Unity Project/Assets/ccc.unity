@@ -840,6 +840,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95199b7bb88128a4e809d6adac7ad984, type: 3}
   m_IsPrefabParent: 0
+--- !u!1001 &588018500
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 173.113235
+      objectReference: {fileID: 0}
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -39.8012695
+      objectReference: {fileID: 0}
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 112.796875
+      objectReference: {fileID: 0}
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 497052, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 27d2e6080e56a55478ade5949a278f84, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &646548416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,7 +2973,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
