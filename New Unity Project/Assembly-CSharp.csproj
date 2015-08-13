@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Ripple.cs" />
      <Compile Include="Assets\Scripts\SceneGenerator.cs" />
      <Compile Include="Assets\Scripts\Shop.cs" />
+     <Compile Include="Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Scripts\Water.cs" />
      <Compile Include="Assets\Scripts\cube.cs" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />

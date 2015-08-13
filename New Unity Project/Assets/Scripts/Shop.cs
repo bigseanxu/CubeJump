@@ -1,33 +1,30 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Shop : MonoBehaviour {
-	public Transform[] cubes=new Transform[6];//预制物体
-	public bool[] isBought = new bool[6];//是否购买了
-	public int[] price = new int[6];
+
+	public Transform[] cubes;//预制物体
+	public Transform name;
 	public Transform shop;
 	public Transform Buy;
 	public Transform Play;
 	public float itemDistance=13f;
 	public float movingTime=0.5f;
 	
-	Transform[] cube=new Transform[6];//使用预制物体创建的副本
+	Transform[] cube;//使用预制物体创建的副本
 	int itemID=0;//当前选中物品的ID
-	int temp=0;//暂时没有什么用
 	bool canTweening=true;//是否已经完成上一次移动
 
-	Vector3 mVec=new Vector3(40,40,40);
-	Vector3 mVec2=new Vector3(60,60,60);
-	Vector3 mVec3=new Vector3(120,120,120);
+	//缩放尺寸
+	Vector3 mVec=new Vector3(40,40,40);//小
+	Vector3 mVec2=new Vector3(60,60,60);//中
+	Vector3 mVec3=new Vector3(120,120,120);//最大
 
 
 	void Start () {
-		price [0] = 10;
-		price [1] = 20;
-		price [2] = 30;
-		price [3] = 0;
-		price [4] = 0;
-		price [5] = 60;
+		itemID = 0;
+		cube = new Transform[cubes.Length];
 		//初始化商品
 		Vector3 vec = transform.position;
 
@@ -47,14 +44,7 @@ public class Shop : MonoBehaviour {
 				LeanTween.scale(cube[1].gameObject,mVec2,movingTime);
 
 			}
-			//判断是否购买
-			if(isBought[0]){
-				Buy.gameObject.SetActive(false);
-				Play.gameObject.SetActive(true);
-			}else{
-				Buy.gameObject.SetActive(true);
-				Play.gameObject.SetActive(false);
-			}
+			ResetCanTweening();
 		}
 	}
 	
@@ -98,7 +88,7 @@ public class Shop : MonoBehaviour {
 
 				}
 			}
-			//切换商品后,要做到所有商品移动.
+			//切换商品后,要做到所有商品移动.这里是异步执行
 			for(int i=0;i<cube.Length;i++){
 				Vector3 vec=cube[i].position;
 				vec.x-=itemDistance;
@@ -158,31 +148,32 @@ public class Shop : MonoBehaviour {
 
 
 	}
+
+
 	void ResetCanTweening(){
-		if(isBought[itemID]){
+		bool flag = cube [itemID].GetComponent<ShopItem> ().isbought;
+		if(flag){
 			Buy.gameObject.SetActive(false);
 			Play.gameObject.SetActive(true);
 		}else{
 			Buy.gameObject.SetActive(true);
 			Play.gameObject.SetActive(false);
 		}
+		name.GetComponent<Text> ().text = cube [itemID].GetComponent<ShopItem> ().name;
 		canTweening = true;
 	}
 
+	//以下代码可以放在任何类中
 	public void OnBuyBtnClick(){
 		if (canTweening) {
-			int diamonds=PlayerPrefs.GetInt("Diamonds",0);
-			if(diamonds>=price[itemID]){
-
-
-
-				PlayerPrefs.SetInt("Diamonds",diamonds-price[itemID]);
-				isBought[itemID]=true;
+			int diamonds=PlayerPrefs.GetInt("Diamonds",100);
+			int price=cube [itemID].GetComponent<ShopItem> ().price;
+			if(diamonds>=price){
+				PlayerPrefs.SetInt("Diamonds",diamonds-price);
+				cube [itemID].GetComponent<ShopItem> ().isbought=true;
 				ResetCanTweening();
 				print ("购买成功");
 			}else{
-
-
 				print ("钱不够");
 			}
 		}
