@@ -8,5 +8,7 @@ public class ShopItem : MonoBehaviour {
 	public int price;
 	public bool isbought;
 
+	void Start(){
 
+	}
 }
