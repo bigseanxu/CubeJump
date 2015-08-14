@@ -730,6 +730,14 @@ Prefab:
       propertyPath: m_Name
       value: ShopCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 11494342, guid: 59e9874fa4498344889d8b48d1798998, type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401444, guid: 59e9874fa4498344889d8b48d1798998, type: 2}
+      propertyPath: movingTime
+      value: .170000002
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59e9874fa4498344889d8b48d1798998, type: 2}
   m_IsPrefabParent: 0

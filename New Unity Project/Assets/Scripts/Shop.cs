@@ -35,13 +35,13 @@ public class Shop : MonoBehaviour {
 	}
 	//要修改输入条件
 	void Update () {
-		if (Input.GetKeyUp ("right") && canTweening) {
+		if (Input.GetKey ("right") && canTweening) {
 			if(itemID<cube.Length-1){
 				itemID++;
 				ScaleItems(false);//对商品的大小做缩放
 			}
 		}
-		if (Input.GetKeyUp ("left") && canTweening) {       
+		if (Input.GetKey ("left") && canTweening) {       
 			if(itemID>0){
 				itemID--;
 				ScaleItems(true);
