@@ -7,8 +7,16 @@ public class ShopItem : MonoBehaviour {
 	public string name;
 	public int price;
 	public bool isbought;
+	public bool isRandom;
+
+
+
 
 	void Start(){
+		name = gameObject.name;
+
+
 
 	}
+
 }

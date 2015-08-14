@@ -7,25 +7,29 @@ public class Shop : MonoBehaviour {
 	public Transform name;
 	public Transform Buy;
 	public Transform Play;
-	public float itemDistance=13f;
-	public float movingTime=0.5f;
+	public Transform camera;
+	public float itemDistance=0.3f;
+	public float movingTime=0.17f;
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
 	bool canTweening;//是否已经完成上一次移动
-	Vector3 mVec=new Vector3(40,40,40);   //小
-	Vector3 mVec2=new Vector3(60,60,60);   //中
-	Vector3 mVec3=new Vector3(120,120,120);   //最大
+	Vector3 mVec=new Vector3(2,2,2);   //小
+	Vector3 mVec2=new Vector3(3,3,3);   //中
+	Vector3 mVec3=new Vector3(6,6,6);   //最大
 	
 	void Start () {
 		itemID = 0;
 		cube = new Transform[cubes.Length];   //初始化商品
-		Vector3 vec = transform.position;
+		Vector3 vec = camera.position;
+		vec.z+= 10;vec.y-= 0.2f;//测试数据
+		Quaternion qua = new Quaternion (45,90,45,-22.5f);//这个不要改
 		for (int i=0; i<cubes.Length; i++) {
-			cube[i]=(Transform)GameObject.Instantiate(cubes[i],vec,Quaternion.identity);//还缺一个初始化角度的功能
+			cube[i]=(Transform)GameObject.Instantiate(cubes[i],vec,qua);
 			cube[i].SetParent(transform);
 			cube[i].localScale=mVec;
-			if(i<cubes.Length-1)
+			if(i<cubes.Length-1){
 				vec.x+= itemDistance;
+			}
 			if(cube[0]!=null)
 				LeanTween.scale(cube[0].gameObject,mVec3,movingTime);
 			if(cube[1]!=null)
@@ -37,12 +41,20 @@ public class Shop : MonoBehaviour {
 	void Update () {
 		if (Input.GetKey ("right") && canTweening) {
 			if(itemID<cube.Length-1){
+				cube [itemID].GetComponent<Animator> ().enabled = false;
+				Vector3 vec = camera.position;
+				vec.z+= 10;vec.y-= 0.2f;
+				cube [itemID].position=vec;
 				itemID++;
 				ScaleItems(false);//对商品的大小做缩放
 			}
 		}
 		if (Input.GetKey ("left") && canTweening) {       
 			if(itemID>0){
+				cube [itemID].GetComponent<Animator> ().enabled = false;
+				Vector3 vec = camera.position;
+				vec.z+= 10;vec.y-= 0.2f;
+				cube [itemID].position=vec;
 				itemID--;
 				ScaleItems(true);
 			}
@@ -75,10 +87,14 @@ public class Shop : MonoBehaviour {
 	//对原始方法进行修补,重设是否购买,避免在tween的时候狂按方向键的bug
 	void FixGameObject(){
 		bool flag = cube [itemID].GetComponent<ShopItem> ().isbought;
+		int price = cube [itemID].GetComponent<ShopItem> ().price;
 		Buy.gameObject.SetActive(flag?false:true);
 		Play.gameObject.SetActive(flag?true:false);
+		Buy.FindChild("Text").GetComponent<Text>().text= "Buy:$" + price.ToString ();
 		name.GetComponent<Text> ().text = cube [itemID].GetComponent<ShopItem> ().name;
 		canTweening = true;
+		cube [itemID].GetComponent<Animator> ().enabled = true;
+		cube [itemID].GetComponent<Animator> ().Rebind ();
 	}
 
 	public void OnBuyBtnClick(){
@@ -96,6 +112,9 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnPlayBtnClick(){
+		if (cube [itemID].GetComponent<ShopItem> ().isRandom) {
+			//随机抽取
+		};
 	}
 
 	public void OnCloseBtnClick(){
