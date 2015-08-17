@@ -7,7 +7,6 @@ public class Shop : MonoBehaviour {
 	public Transform name;
 	public Transform Buy;
 	public Transform Play;
-	public Transform Lock;
 	public Transform camera;
 	public float itemDistance=0.3f;
 	public float movingTime=0.17f;
@@ -22,7 +21,6 @@ public class Shop : MonoBehaviour {
 	void Start () {
 		itemID = 0;
 		cube = new Transform[cubes.Length];   //初始化商品
-		Lock.gameObject.SetActive (false);
 		Vector3 vec = camera.position;
 		vec.z+= 10;vec.y-= 0.2f;//测试数据
 		Quaternion qua = Quaternion.Euler(290,180,-45);//这个不要改
@@ -44,7 +42,7 @@ public class Shop : MonoBehaviour {
 	void Update () {
 		if (Input.GetKey ("right") && canTweening) {
 			if(itemID<cube.Length-1){
-				Lock.gameObject.SetActive(false);
+//				Lock.gameObject.SetActive(false);
 				cube [itemID].GetComponent<Animator> ().enabled = false;
 				Vector3 vec = camera.position;
 				vec.z+= 10;vec.y-= 0.2f;
@@ -55,7 +53,7 @@ public class Shop : MonoBehaviour {
 		}
 		if (Input.GetKey ("left") && canTweening) {    
 			if(itemID>0){
-				Lock.gameObject.SetActive(false);
+//				Lock.gameObject.SetActive(false);
 				cube [itemID].GetComponent<Animator> ().enabled = false;
 				Vector3 vec = camera.position;
 				vec.z+= 10;vec.y-= 0.2f;
@@ -99,7 +97,7 @@ public class Shop : MonoBehaviour {
 		itemName = cube [itemID].GetComponent<ShopItem> ().name;
 		name.GetComponent<Text> ().text = itemName;
 		PlayerPrefs.SetInt (itemName,flag ? 1 : 0);
-		Lock.gameObject.SetActive (flag ? false : true);
+		cube [itemID].GetComponent<ShopItem> ().check = true;
 		canTweening = true;
 		cube [itemID].GetComponent<Animator> ().Rebind ();
 		cube [itemID].GetComponent<Animator> ().enabled = flag;
