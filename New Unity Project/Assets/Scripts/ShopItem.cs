@@ -12,11 +12,12 @@ public class ShopItem : MonoBehaviour {
 
 
 
+
 	void Start(){
 		name = gameObject.name;
-
-
-
+		if(name.IndexOf('(')>0)
+		name = name.Substring (0,gameObject.name.Length-7);
+		isbought = PlayerPrefs.GetInt (name, 0) == 1 ? true : false;
 	}
 
 }

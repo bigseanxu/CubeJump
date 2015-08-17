@@ -50,7 +50,7 @@
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>F:/UnityProjects/Projects/Cube/New Unity Project/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>F:/UnityProjects/Projects/ccccc/New Unity Project/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

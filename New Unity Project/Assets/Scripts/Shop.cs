@@ -7,22 +7,25 @@ public class Shop : MonoBehaviour {
 	public Transform name;
 	public Transform Buy;
 	public Transform Play;
+	public Transform Lock;
 	public Transform camera;
 	public float itemDistance=0.3f;
 	public float movingTime=0.17f;
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
 	bool canTweening;//是否已经完成上一次移动
+	string itemName;
 	Vector3 mVec=new Vector3(2,2,2);   //小
-	Vector3 mVec2=new Vector3(3,3,3);   //中
-	Vector3 mVec3=new Vector3(6,6,6);   //最大
+	Vector3 mVec2=new Vector3(4,4,4);   //中
+	Vector3 mVec3=new Vector3(5.5f,5.5f,5.5f);   //最大
 	
 	void Start () {
 		itemID = 0;
 		cube = new Transform[cubes.Length];   //初始化商品
+		Lock.gameObject.SetActive (false);
 		Vector3 vec = camera.position;
 		vec.z+= 10;vec.y-= 0.2f;//测试数据
-		Quaternion qua = new Quaternion (45,90,45,-22.5f);//这个不要改
+		Quaternion qua = Quaternion.Euler(290,180,-45);//这个不要改
 		for (int i=0; i<cubes.Length; i++) {
 			cube[i]=(Transform)GameObject.Instantiate(cubes[i],vec,qua);
 			cube[i].SetParent(transform);
@@ -41,6 +44,7 @@ public class Shop : MonoBehaviour {
 	void Update () {
 		if (Input.GetKey ("right") && canTweening) {
 			if(itemID<cube.Length-1){
+				Lock.gameObject.SetActive(false);
 				cube [itemID].GetComponent<Animator> ().enabled = false;
 				Vector3 vec = camera.position;
 				vec.z+= 10;vec.y-= 0.2f;
@@ -49,8 +53,9 @@ public class Shop : MonoBehaviour {
 				ScaleItems(false);//对商品的大小做缩放
 			}
 		}
-		if (Input.GetKey ("left") && canTweening) {       
+		if (Input.GetKey ("left") && canTweening) {    
 			if(itemID>0){
+				Lock.gameObject.SetActive(false);
 				cube [itemID].GetComponent<Animator> ().enabled = false;
 				Vector3 vec = camera.position;
 				vec.z+= 10;vec.y-= 0.2f;
@@ -90,11 +95,14 @@ public class Shop : MonoBehaviour {
 		int price = cube [itemID].GetComponent<ShopItem> ().price;
 		Buy.gameObject.SetActive(flag?false:true);
 		Play.gameObject.SetActive(flag?true:false);
-		Buy.FindChild("Text").GetComponent<Text>().text= "Buy:$" + price.ToString ();
-		name.GetComponent<Text> ().text = cube [itemID].GetComponent<ShopItem> ().name;
+		Buy.FindChild("Price").GetComponent<Text>().text= price.ToString ();
+		itemName = cube [itemID].GetComponent<ShopItem> ().name;
+		name.GetComponent<Text> ().text = itemName;
+		PlayerPrefs.SetInt (itemName,flag ? 1 : 0);
+		Lock.gameObject.SetActive (flag ? false : true);
 		canTweening = true;
-		cube [itemID].GetComponent<Animator> ().enabled = true;
 		cube [itemID].GetComponent<Animator> ().Rebind ();
+		cube [itemID].GetComponent<Animator> ().enabled = flag;
 	}
 
 	public void OnBuyBtnClick(){
