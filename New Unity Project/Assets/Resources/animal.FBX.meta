@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 2c1f31ed54b5e4c419782b738a2bb4c6
+timeCreated: 1439537593
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Alpaca
+    100002: //RootNode
+    100004: Cartoon
+    100006: Chicken
+    100008: Crab
+    100010: Deer
+    100012: default015
+    100014: Dinosaur
+    100016: Dog
+    100018: Dragon
+    100020: Duck
+    100022: Elephant
+    100024: Flamingos
+    100026: Giraffe
+    100028: Lion
+    100030: Mushroom
+    100032: Penguin
+    100034: Random
+    100036: Spider
+    100038: Unicorn
+    100040: Whale
+    400000: Alpaca
+    400002: //RootNode
+    400004: Cartoon
+    400006: Chicken
+    400008: Crab
+    400010: Deer
+    400012: default015
+    400014: Dinosaur
+    400016: Dog
+    400018: Dragon
+    400020: Duck
+    400022: Elephant
+    400024: Flamingos
+    400026: Giraffe
+    400028: Lion
+    400030: Mushroom
+    400032: Penguin
+    400034: Random
+    400036: Spider
+    400038: Unicorn
+    400040: Whale
+    2300000: Alpaca
+    2300002: Cartoon
+    2300004: Chicken
+    2300006: Crab
+    2300008: Deer
+    2300010: default015
+    2300012: Dinosaur
+    2300014: Dog
+    2300016: Dragon
+    2300018: Duck
+    2300020: Elephant
+    2300022: Flamingos
+    2300024: Giraffe
+    2300026: Lion
+    2300028: Mushroom
+    2300030: Penguin
+    2300032: Random
+    2300034: Spider
+    2300036: Unicorn
+    2300038: Whale
+    3300000: Alpaca
+    3300002: Cartoon
+    3300004: Chicken
+    3300006: Crab
+    3300008: Deer
+    3300010: default015
+    3300012: Dinosaur
+    3300014: Dog
+    3300016: Dragon
+    3300018: Duck
+    3300020: Elephant
+    3300022: Flamingos
+    3300024: Giraffe
+    3300026: Lion
+    3300028: Mushroom
+    3300030: Penguin
+    3300032: Random
+    3300034: Spider
+    3300036: Unicorn
+    3300038: Whale
+    4300000: Giraffe
+    4300002: Alpaca
+    4300004: Cartoon
+    4300006: Dinosaur
+    4300008: Duck
+    4300010: Random
+    4300012: Lion
+    4300014: Unicorn
+    4300016: Flamingos
+    4300018: Mushroom
+    4300020: Penguin
+    4300022: Dragon
+    4300024: Crab
+    4300026: Spider
+    4300028: Deer
+    4300030: Chicken
+    4300032: Elephant
+    4300034: Whale
+    4300036: Dog
+    4300038: default015
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
