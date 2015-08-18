@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class CubeHero : MonoBehaviour {
 	public float size;
@@ -8,9 +9,15 @@ public class CubeHero : MonoBehaviour {
 	public Transform pillarGenerator;
 
 	public Vector3 cameraReference;
+	public float jumpDistanceBeforeGame = 3;
+	public float jumpTimeBeforeGame = 0.6f;
+	LTDescr jumpBeforeGameTween;
 	bool isFaceLeft = true;
+
+
 	enum CubeState
 	{ 
+		BeforeGame,
 		Ready,//可以跳跃
 		Jumping,//跳跃中
 		Fall,//已落地
@@ -18,15 +25,25 @@ public class CubeHero : MonoBehaviour {
 		Rotating,//旋转中
 		Dead
 	}
-	CubeState state = CubeState.Ready;
+	CubeState state = CubeState.BeforeGame;
 	// Use this for initialization
 	void Start () {
-
+		Vector3 pos = transform.position;
+		pos.y += jumpDistanceBeforeGame;
+		jumpBeforeGameTween = LeanTween.move (gameObject, pos, jumpTimeBeforeGame).setLoopPingPong(-1).setEase(LeanTweenType.easeOutQuad).setOnComplete(JumpBeforeGameCallBack).setOnCompleteOnRepeat(true);
+		GetComponent<Rigidbody> ().useGravity = false;
 		//GetComponent<Rigidbody> ().freezeRotation = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Game.state == Game.State.BeforeGame) {
+			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+				Game.state = Game.State.Gaming;
+				print("getmousebuttonup");
+			}
+		}	
+
 		if (Input.GetMouseButtonUp (0)) {
 			Jump();
 		}
@@ -72,5 +89,17 @@ public class CubeHero : MonoBehaviour {
 
 	public Transform GetCurrPillar() {
 		return currentPillar;
+	}
+
+	bool isLand = false;
+	void JumpBeforeGameCallBack() {
+		isLand = !isLand;
+		if (isLand) {
+			if (Game.state == Game.State.Gaming) {
+				state = CubeState.Ready;
+				GetComponent<Rigidbody> ().useGravity = true;
+				jumpBeforeGameTween.cancel();
+			}
+		}
 	}
 }
