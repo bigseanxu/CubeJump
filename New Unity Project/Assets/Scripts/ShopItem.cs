@@ -11,6 +11,9 @@ public class ShopItem : MonoBehaviour {
 	public Transform Lock;
 	public Transform l;
 	public bool check;
+	public Texture tLock;
+	Texture tHave;
+	Material mat;
 
 	void Start(){
 		name = gameObject.name;
@@ -28,11 +31,15 @@ public class ShopItem : MonoBehaviour {
 		l=(Transform)GameObject.Instantiate(Lock,vec,qua);
 		l.SetParent (transform);
 		l.gameObject.SetActive(isbought?false:true);
+		mat=GetComponent<MeshRenderer>().material;
+		tHave = mat.mainTexture;
+		mat.mainTexture = isbought ? tHave : tLock;
 	}
 
 	void Update(){
 		if (check) {
 			l.gameObject.SetActive(isbought?false:true);
+			mat.mainTexture = isbought ? tHave : tLock;
 			check=false;
 		}
 	}
