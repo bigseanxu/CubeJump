@@ -39,7 +39,7 @@ public class CubeHero : MonoBehaviour {
 	void Update () {
 		if (Game.state == Game.State.BeforeGame) {
 			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
-				Game.state = Game.State.Gaming;
+				Game.SetState(Game.State.Gaming);
 				print("getmousebuttonup");
 			}
 		}	

@@ -11,6 +11,7 @@ public class PillarGenerator : MonoBehaviour {
 	public float minSmallToMedium;
 
 	public Transform startPillar2;
+	public SprayParticles sprayParticles;
 	public ParticleSystem sprayParticle;
 
 	List<Transform> pillars = new List<Transform> ();
@@ -65,6 +66,7 @@ public class PillarGenerator : MonoBehaviour {
 	}
 
 	void PlaySprayParticle() {
+		sprayParticles.Stop ();
 		Transform lastPillar = pillars [pillars.Count - 1];
 		float duration = 2;
 		if (lastPillar.gameObject.name == "5x5(Clone)") {
@@ -76,9 +78,8 @@ public class PillarGenerator : MonoBehaviour {
 		} else {
 			print ("error pillar PlaySprayParticle");
 		}
-		sprayParticle.transform.position = lastPillar.transform.position;
-		//sprayParticle.duration = duration;
-		sprayParticle.time = 0;
-		sprayParticle.Play ();
+		sprayParticles.SetPositon (lastPillar.transform.position);
+		sprayParticles.Play ();
+
 	}
 }
