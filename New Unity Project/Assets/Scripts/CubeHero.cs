@@ -51,7 +51,12 @@ public class CubeHero : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.name == "ColliderBox") {
-			LandSuccess (collider.transform.parent);
+			// sometimes this will0 call twice, so add a "if" here
+			if (state == CubeState.Jumping) {
+				LandSuccess (collider.transform.parent);
+			}
+		} else if (collider.gameObject.name == "Water") {
+
 		}
 	}
 
@@ -85,6 +90,7 @@ public class CubeHero : MonoBehaviour {
 		rigid.velocity = Vector3.zero;
 		transform.rotation = Quaternion.identity;
 		state = CubeState.Ready;
+		GetScore ();
 	}
 
 	public Transform GetCurrPillar() {
@@ -101,5 +107,9 @@ public class CubeHero : MonoBehaviour {
 				jumpBeforeGameTween.cancel();
 			}
 		}
+	}
+
+	void GetScore() {
+		Game.score++;
 	}
 }

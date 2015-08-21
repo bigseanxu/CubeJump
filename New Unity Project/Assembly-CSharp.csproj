@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameDirector.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GUIExamplesCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2dCS.cs" />
@@ -64,33 +63,6 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUniqueId.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TutorialPresentationFinished.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\UIExampleCS.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundAutoRotate.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundCycleSnapshots.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundEventListener.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundInk.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundLogoExample.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundManipulatorStrength.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundRotateWithKeys.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Scene Scripts\PlaygroundScenes.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\EmitByAmountC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\EmitOnOffByDistanceC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\EmitOnOffOnClickC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\EnableDisableByDistanceC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\EnableDisableOnClickC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\ManipulatorContainsParticlesC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\PaintAtMousePositionC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\ParticleEventListenerC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\PauseCalculationByDistanceAngleC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\SpawnPrefabOnClickC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\SwitchCachedParticleSystemC.cs" />
-     <Compile Include="Assets\Particle Playground\Examples\Example Scripts\Simple Scripts\SwitchCachedWorldObjectsC.cs" />
-     <Compile Include="Assets\Particle Playground\Playground Assets\Scripts\PlaygroundSineOverflow.cs" />
-     <Compile Include="Assets\Particle Playground\Playground Assets\Scripts\PlaygroundSineRotation.cs" />
-     <Compile Include="Assets\Particle Playground\Scripts\PlaygroundC.cs" />
-     <Compile Include="Assets\Particle Playground\Scripts\PlaygroundParticlesC.cs" />
-     <Compile Include="Assets\Particle Playground\Scripts\Presets\PlaygroundBrushPresetC.cs" />
-     <Compile Include="Assets\Particle Playground\Scripts\Presets\PlaygroundPresetCircleShotC.cs" />
-     <Compile Include="Assets\Particle Playground\Scripts\Presets\PlaygroundPresetLaserC.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraReference.cs" />
      <Compile Include="Assets\Scripts\CubeHero.cs" />
@@ -98,6 +70,8 @@
      <Compile Include="Assets\Scripts\Fish.cs" />
      <Compile Include="Assets\Scripts\Flow.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
+     <Compile Include="Assets\Scripts\GameDirector.cs" />
+     <Compile Include="Assets\Scripts\ImageNumber.cs" />
      <Compile Include="Assets\Scripts\Pillar.cs" />
      <Compile Include="Assets\Scripts\PillarGenerator.cs" />
      <Compile Include="Assets\Scripts\Plant.cs" />
@@ -105,15 +79,15 @@
      <Compile Include="Assets\Scripts\SceneGenerator.cs" />
      <Compile Include="Assets\Scripts\Shop.cs" />
      <Compile Include="Assets\Scripts\ShopItem.cs" />
-     <Compile Include="Assets\Scripts\ShowNumberInCanvas.cs" />
+     <Compile Include="Assets\Scripts\SprayParticles.cs" />
      <Compile Include="Assets\Scripts\Water.cs" />
-     <Compile Include="Assets\Scripts\cube.cs" />
+     <Compile Include="Assets\Scripts\ui\GameDiamond.cs" />
+     <Compile Include="Assets\Scripts\ui\GameScore.cs" />
+     <Compile Include="Assets\Scripts\ui\ShowNumberInCanvas.cs" />
      <Compile Include="Assets\Scripts\ui\Sound.cs" />
-     <Compile Include="Assets\SprayParticles.cs" />
-     <None Include="Assets\Particle Playground\Graphics\Shaders\VertexLit Color.shader" />
+     <None Include="Assets\Materials\Particle\Translucent.shader" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
-     <None Include="Assets\Particle Playground\Graphics\Shaders\Vertex Color.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
