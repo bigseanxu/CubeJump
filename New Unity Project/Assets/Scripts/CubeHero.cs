@@ -81,7 +81,7 @@ public class CubeHero : MonoBehaviour {
 		transform.position = currentPillar.GetComponent<Pillar> ().GetCubePosition ();
 
 		pillar.GetComponent<Pillar> ().FallingDown ();
-		//pillar.GetComponent<Animator> ().Play ("rotate");
+
 		Rigidbody rigid = GetComponent<Rigidbody> ();
 		rigid.velocity = Vector3.zero;
 		transform.rotation = Quaternion.identity;

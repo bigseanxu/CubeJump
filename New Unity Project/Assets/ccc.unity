@@ -10286,7 +10286,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 9598132, guid: 84d537082b2771a439485aaeef97a8ef, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5942954, guid: 84d537082b2771a439485aaeef97a8ef, type: 2}
       propertyPath: m_ConnectedAnchor.x
