@@ -32,11 +32,13 @@ public class CubeHero : MonoBehaviour {
 		pos.y += jumpDistanceBeforeGame;
 		jumpBeforeGameTween = LeanTween.move (gameObject, pos, jumpTimeBeforeGame).setLoopPingPong(-1).setEase(LeanTweenType.easeOutQuad).setOnComplete(JumpBeforeGameCallBack).setOnCompleteOnRepeat(true);
 		GetComponent<Rigidbody> ().useGravity = false;
-		//GetComponent<Rigidbody> ().freezeRotation = true;
+		GetComponent<Rigidbody> ().freezeRotation = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		print (GetComponent<Rigidbody> ().useGravity);
 		if (Game.state == Game.State.BeforeGame) {
 			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
 				Game.SetState(Game.State.Gaming);
@@ -67,6 +69,7 @@ public class CubeHero : MonoBehaviour {
 		}
 
 		print ("jump");
+		// give a force to jump
 		Vector3 forceForward;
 		Vector3 forceUp = new Vector3 (0, 1500, 0);
 		if (isFaceLeft) {
@@ -75,7 +78,11 @@ public class CubeHero : MonoBehaviour {
 			forceForward = - Vector3.right * 300;
 		}
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
+
+		// freeze rotation
+		GetComponent<Rigidbody> ().freezeRotation = true;
 		state = CubeState.Jumping;
+
 	}
 
 	void LandSuccess (Transform pillar) {
@@ -88,7 +95,8 @@ public class CubeHero : MonoBehaviour {
 		pillar.GetComponent<Pillar> ().FallingDown ();
 		Rigidbody rigid = GetComponent<Rigidbody> ();
 		rigid.velocity = Vector3.zero;
-		transform.rotation = Quaternion.identity;
+		transform.rotation = Quaternion.Euler(-90, 0, 0);
+		rigid.freezeRotation = false;
 		state = CubeState.Ready;
 		GetScore ();
 	}

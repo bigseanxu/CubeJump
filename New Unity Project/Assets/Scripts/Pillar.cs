@@ -4,6 +4,7 @@ using System.Collections;
 public class Pillar : MonoBehaviour {
 	public float tall;
 	public bool isLeft;
+	public Transform sceneGenerator;
 	// Use this for initialization
 	void Start () {
 		HingeJoint hinge = GetComponent<HingeJoint> ();
