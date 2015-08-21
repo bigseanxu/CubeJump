@@ -10,6 +10,7 @@ public class SceneGenerator : MonoBehaviour {
 	public Transform plants;
 	public Transform fish;
 
+
 	public enum SceneType {
 		Water
 	};
@@ -27,11 +28,11 @@ public class SceneGenerator : MonoBehaviour {
 
 	public void Generate(Transform pillar) {
 		if (sceneType == SceneType.Water) { 
-			if (!pillar.GetComponent<Pillar>().isLeft) {
-				GenerateFlow(pillar.position);
-				GenerateFish(pillar.position);
+			if (!pillar.GetComponent<Pillar> ().isLeft) {
+				GenerateFlow (pillar.position);
+				GenerateFish (pillar.position);
 			}
-			GeneratePlant(pillar.position);
+			GeneratePlant (pillar.position);
 		}
 	}
 
@@ -61,4 +62,8 @@ public class SceneGenerator : MonoBehaviour {
 		newFish.rotation = Quaternion.Euler (-90, 0, 0);
 		newFish.position = position + new Vector3 (-2, -3, -15); 
 	}
+
+
+
+
 }

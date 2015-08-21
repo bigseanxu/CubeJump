@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>F:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>F:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +103,11 @@
      <Compile Include="Assets\Scripts\Plant.cs" />
      <Compile Include="Assets\Scripts\Ripple.cs" />
      <Compile Include="Assets\Scripts\SceneGenerator.cs" />
+     <Compile Include="Assets\Scripts\SceneGenerator01.cs" />
+     <Compile Include="Assets\Scripts\SceneGenerator02.cs" />
+     <Compile Include="Assets\Scripts\SceneGenerator03.cs" />
+     <Compile Include="Assets\Scripts\SceneGenerator04.cs" />
+     <Compile Include="Assets\Scripts\SceneGenerator05.cs" />
      <Compile Include="Assets\Scripts\Shop.cs" />
      <Compile Include="Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Scripts\ShowNumberInCanvas.cs" />
@@ -110,15 +115,16 @@
      <Compile Include="Assets\Scripts\cube.cs" />
      <Compile Include="Assets\Scripts\ui\Sound.cs" />
      <Compile Include="Assets\SprayParticles.cs" />
+     <Compile Include="Assets\balloon.cs" />
      <None Include="Assets\Particle Playground\Graphics\Shaders\VertexLit Color.shader" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
      <None Include="Assets\Particle Playground\Graphics\Shaders\Vertex Color.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>F:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>F:/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

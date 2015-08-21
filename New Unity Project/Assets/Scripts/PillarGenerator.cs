@@ -17,6 +17,7 @@ public class PillarGenerator : MonoBehaviour {
 	List<Transform> pillars = new List<Transform> ();
 	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -4.6f);
 	bool lastPillarLeft = true;
+	int a;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,7 @@ public class PillarGenerator : MonoBehaviour {
 	
 	// Update is called once per frame 
 	void Update () {
-
+	
 	}
 
 	public void GeneratePillar() {
@@ -60,7 +61,7 @@ public class PillarGenerator : MonoBehaviour {
 		}
 		pillars.Add (newPillar);
 
-		sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
+		sceneGenerator.GetComponent<SceneGenerator03> ().Generate (newPillar);
 		PlaySprayParticle ();
 
 	}
