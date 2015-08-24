@@ -12,6 +12,10 @@ public class ShopItem : MonoBehaviour {
 	public Transform l;
 	public bool check;
 	public Texture tLock;
+	public bool fish;
+	public bool cartoon;
+	public Transform tfish;
+	public Transform tcartoon;
 	Texture tHave;
 	Material mat;
 
@@ -20,6 +24,7 @@ public class ShopItem : MonoBehaviour {
 		if(name.IndexOf('(')>0)
 		name = name.Substring (0,gameObject.name.Length-7);
 		isbought = PlayerPrefs.GetInt (name, 0) == 1 ? true : false;
+		PlayerPrefs.SetInt ("Fish", 0);
 		LockGenerator ();
 	}
 
@@ -32,6 +37,12 @@ public class ShopItem : MonoBehaviour {
 		l.SetParent (transform);
 		l.gameObject.SetActive(isbought?false:true);
 		mat=GetComponent<MeshRenderer>().material;
+		if(fish){
+			mat=tfish.GetComponent<SkinnedMeshRenderer>().material;
+		}
+		if(cartoon){
+			mat=tcartoon.GetComponent<SkinnedMeshRenderer>().material;
+		}
 		tHave = mat.mainTexture;
 		mat.mainTexture = isbought ? tHave : tLock;
 	}
