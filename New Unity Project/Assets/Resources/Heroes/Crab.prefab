@@ -27,10 +27,7 @@ GameObject:
   - 4: {fileID: 407030}
   - 33: {fileID: 3302250}
   - 23: {fileID: 2384922}
-  - 54: {fileID: 5473964}
-  - 65: {fileID: 6545206}
   - 96: {fileID: 9647050}
-  - 114: {fileID: 11442700}
   m_Layer: 0
   m_Name: Crab
   m_TagString: Untagged
@@ -124,33 +121,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173050}
   m_Mesh: {fileID: 4300000, guid: 8282c5f45f2ca5e4bb3f1758482ba70a, type: 3}
---- !u!54 &5473964
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173050}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &6545206
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173050}
-  m_Material: {fileID: 13400000, guid: 966d967725e5aed40884e4c76db62bbe, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.19999993, y: 1.20000017, z: 1.20000017}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &9647050
 TrailRenderer:
   m_ObjectHideFlags: 1
@@ -196,23 +166,6 @@ TrailRenderer:
       rgba: 16777215
   m_MinVertexDistance: .100000001
   m_Autodestruct: 0
---- !u!114 &11442700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbda18376e4ecff45b02c30aeb512ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0
-  currentPillar: {fileID: 0}
-  pillarGenerator: {fileID: 0}
-  cameraReference: {x: 0, y: 0, z: 0}
-  jumpDistanceBeforeGame: 3
-  jumpTimeBeforeGame: .600000024
 --- !u!198 &19810248
 ParticleSystem:
   m_ObjectHideFlags: 1

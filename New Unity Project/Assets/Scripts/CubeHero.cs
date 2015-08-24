@@ -8,7 +8,7 @@ public class CubeHero : MonoBehaviour {
 	public Transform currentPillar;
 	public Transform pillarGenerator;
 
-	public Vector3 cameraReference;
+	public Transform cameraReference;
 	public float jumpDistanceBeforeGame = 3;
 	public float jumpTimeBeforeGame = 0.6f;
 	LTDescr jumpBeforeGameTween;
@@ -28,9 +28,15 @@ public class CubeHero : MonoBehaviour {
 	CubeState state = CubeState.BeforeGame;
 	// Use this for initialization
 	void Start () {
+		currentPillar = GameObject.Find ("StartPillar").transform;
+		pillarGenerator = GameObject.Find ("PillarGenerator").transform;
+		cameraReference = GameObject.Find ("CameraReference").transform;
+		cameraReference.GetComponent<CameraReference> ().cubeHero = transform;
+
 		Vector3 pos = transform.position;
 		pos.y += jumpDistanceBeforeGame;
 		jumpBeforeGameTween = LeanTween.move (gameObject, pos, jumpTimeBeforeGame).setLoopPingPong(-1).setEase(LeanTweenType.easeOutQuad).setOnComplete(JumpBeforeGameCallBack).setOnCompleteOnRepeat(true);
+		print ("cubehero start " + transform.localPosition);
 		GetComponent<Rigidbody> ().useGravity = false;
 		GetComponent<Rigidbody> ().freezeRotation = true;
 	}
@@ -38,7 +44,6 @@ public class CubeHero : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print (GetComponent<Rigidbody> ().useGravity);
 		if (Game.state == Game.State.BeforeGame) {
 			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
 				Game.SetState(Game.State.Gaming);
