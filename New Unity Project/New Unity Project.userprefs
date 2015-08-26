@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneManager\SceneWaterGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneManager\SceneManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\SceneManager\SceneHellGenerator.cs" Line="31" Column="1" />
-      <File FileName="Assets\Scripts\SceneManager\SceneWaterGenerator.cs" Line="30" Column="36" />
-      <File FileName="Assets\Scripts\SceneManager\SceneForestGenerator.cs" Line="33" Column="3" />
-      <File FileName="Assets\Scripts\SceneManager\ScenePondGenerator.cs" Line="37" Column="3" />
-      <File FileName="Assets\Scripts\SceneManager\SceneSkyGenerator.cs" Line="31" Column="3" />
-      <File FileName="Assets\Scripts\SceneManager\SceneSpaceGenerator.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\SceneManager\SceneManager.cs" Line="19" Column="3" />
+      <File FileName="Assets\Scripts\GameDirector.cs" Line="13" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
