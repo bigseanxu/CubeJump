@@ -12,4 +12,5 @@ public class QuitShop : MonoBehaviour {
 	public void InShop(){
 		shopscreen.GetComponent<Animator>().Play ("shopIn");
 	}
+	
 }

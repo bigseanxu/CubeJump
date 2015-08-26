@@ -26,5 +26,14 @@ public class Game
 			isStateChanged = true;
 		}
 	}
+
+	public static void ResetState(){
+		state = State.BeforeGame;   
+		isStateChanged = false;	
+		gameDirector = null;	
+		heroName = 0;	
+		score = 0;	
+		diamond = 0;
+	}
 }
 

@@ -9,11 +9,16 @@ public class GameCtrl : MonoBehaviour {
 	public Transform StopPage;
 	public Transform StopBtn;
 	public Transform GameOver;
+	public Transform GameOn;
+	public Transform Loading;
 	public Transform SoundBtn1;
 	public Transform SoundBtn2;
 	int a;
 	// Use this for initialization
 	void Start () {
+		Loading.gameObject.SetActive (true);
+		Loading.GetComponent<Animator>().Play("loadingOut");
+		Game.ResetState ();
 		a=PlayerPrefs.GetInt("Sound",1);
 		if(a==0)
 			SoundBtn1.GetComponent<Toggle> ().isOn = true;
@@ -75,6 +80,8 @@ public class GameCtrl : MonoBehaviour {
 		StartPage.gameObject.SetActive (true);
 		StartPage.GetComponent<Animator> ().Play ("Begin appear");
 		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+		Loading.gameObject.SetActive (true);
+		StartCoroutine (ReLoadLevel());
 	}
 	public void OnHomeOverButtonPress() {
 		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
@@ -82,12 +89,25 @@ public class GameCtrl : MonoBehaviour {
 		StartPage.gameObject.SetActive (true);
 		StartPage.GetComponent<Animator> ().Play ("Begin appear");
 		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+		Loading.gameObject.SetActive (true);
+		StartCoroutine (ReLoadLevel());
 	}
 
 	public void LoadGameOver(){
+		Game.state = Game.State.GameOver;
 		GameOver.gameObject.SetActive (true);
 		GameOver.GetComponent<Animator> ().Play ("Game over appear");
+		GameOn.GetComponent<Animator> ().Play ("GameDisappear");
+	}
 
+
+
+
+
+	IEnumerator ReLoadLevel(){
+		yield return new WaitForSeconds (1.2f);
+		Application.LoadLevel("ccc");
+		print ("loadlevel");
 	}
 
 }

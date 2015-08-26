@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ui\GameCtrl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game.cs">
     <Files>
-      <File FileName="Assets\Scripts\CubeHero.cs" Line="59" Column="1" />
-      <File FileName="Assets\Scripts\ui\GameCtrl.cs" Line="70" Column="11" />
-      <File FileName="Assets\QuitShop.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ui\GameCtrl.cs" Line="21" Column="22" />
+      <File FileName="Assets\Scripts\QuitShop.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CubeHero.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameDirector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ui\Sound.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ui\GameScore.cs" Line="16" Column="1" />
+      <File FileName="Assets\Scripts\Game.cs" Line="36" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

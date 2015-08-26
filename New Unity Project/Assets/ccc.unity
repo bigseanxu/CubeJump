@@ -798,6 +798,14 @@ Prefab:
       propertyPath: SoundBtn2
       value: 
       objectReference: {fileID: 493651986}
+    - target: {fileID: 11437476, guid: 4da44ac2be15798478c517c30a9f39f7, type: 2}
+      propertyPath: GameOn
+      value: 
+      objectReference: {fileID: 589476663}
+    - target: {fileID: 11437476, guid: 4da44ac2be15798478c517c30a9f39f7, type: 2}
+      propertyPath: Loading
+      value: 
+      objectReference: {fileID: 1219301747}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4da44ac2be15798478c517c30a9f39f7, type: 2}
   m_IsPrefabParent: 0
@@ -2195,7 +2203,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2123124002}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -222, y: 176}
@@ -3899,7 +3907,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2123124002}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
   m_AnchoredPosition: {x: -121, y: -433.700012}
@@ -6754,7 +6762,7 @@ RectTransform:
   - {fileID: 1323760406}
   - {fileID: 643461100}
   m_Father: {fileID: 2123124002}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 0, y: 176}
@@ -9291,13 +9299,15 @@ GameObject:
   - 224: {fileID: 1219301747}
   - 222: {fileID: 1219301749}
   - 114: {fileID: 1219301748}
+  - 95: {fileID: 1219301750}
+  - 114: {fileID: 1219301751}
   m_Layer: 5
-  m_Name: "\u53C2\u8003"
+  m_Name: demo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1219301747
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9310,7 +9320,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2123124002}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -9328,9 +9338,9 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: ee06a6bd4ad6eef46998e7fd9c39a63d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00f1efb047febf34295d34d9859b3166, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9345,6 +9355,35 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1219301746}
+--- !u!95 &1219301750
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1219301746}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 240c35bbe1d14734cb8e336dc95c4b86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1219301751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1219301746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f372fe64fdee0d48b718ee08991b5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopscreen: {fileID: 0}
 --- !u!1 &1226805209
 GameObject:
   m_ObjectHideFlags: 0
@@ -10530,7 +10569,7 @@ RectTransform:
   m_Children:
   - {fileID: 1894561512}
   m_Father: {fileID: 2123124002}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 0, y: 412.000061}
@@ -11930,7 +11969,7 @@ RectTransform:
   - {fileID: 1380791368}
   - {fileID: 755633528}
   m_Father: {fileID: 2123124002}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 216, y: 176.5}
@@ -16030,12 +16069,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1219301747}
   - {fileID: 422227415}
   - {fileID: 1348056347}
   - {fileID: 270052471}
   - {fileID: 1473330433}
   - {fileID: 785759711}
+  - {fileID: 1219301747}
   m_Father: {fileID: 863572452}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
