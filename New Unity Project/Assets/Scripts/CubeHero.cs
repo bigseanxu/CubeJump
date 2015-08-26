@@ -4,15 +4,15 @@ using UnityEngine.EventSystems;
 
 public class CubeHero : MonoBehaviour {
 	public float size;
-
+	public Transform ctrl;
 	public Transform currentPillar;
 	public Transform pillarGenerator;
-
 	public Transform cameraReference;
 	public float jumpDistanceBeforeGame = 3;
 	public float jumpTimeBeforeGame = 0.6f;
 	LTDescr jumpBeforeGameTween;
 	bool isFaceLeft = true;
+	bool live=true;
 
 
 	enum CubeState
@@ -54,6 +54,12 @@ public class CubeHero : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) {
 			Jump();
 		}
+		if (transform.position.y < -40) {
+			if(live){
+				ctrl.GetComponent<GameCtrl> ().LoadGameOver ();
+				live=false;
+			}
+		}
 	}
 
 	void OnTriggerEnter(Collider collider) {
@@ -91,6 +97,7 @@ public class CubeHero : MonoBehaviour {
 	}
 
 	void LandSuccess (Transform pillar) {
+		live = true;
 		print ("LandSuccess");
 		isFaceLeft = !isFaceLeft;
 		currentPillar = pillar;
@@ -98,9 +105,10 @@ public class CubeHero : MonoBehaviour {
 		transform.position = currentPillar.GetComponent<Pillar> ().GetCubePosition ();
 
 		pillar.GetComponent<Pillar> ().FallingDown ();
+
 		Rigidbody rigid = GetComponent<Rigidbody> ();
 		rigid.velocity = Vector3.zero;
-		transform.rotation = Quaternion.Euler(-90, 0, 0);
+		transform.rotation =isFaceLeft?Quaternion.Euler(-90, 0, 0):Quaternion.Euler(-90, -90, 0);
 		rigid.freezeRotation = false;
 		state = CubeState.Ready;
 		GetScore ();
@@ -125,4 +133,6 @@ public class CubeHero : MonoBehaviour {
 	void GetScore() {
 		Game.score++;
 	}
+
+
 }

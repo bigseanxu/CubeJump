@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Shop : MonoBehaviour {
+
+	public Transform Hero;
 	public Transform[] cubes;//预制物体
 	public Transform name;
 	public Transform diamond;
@@ -11,14 +13,21 @@ public class Shop : MonoBehaviour {
 	public Transform camera;
 	public float itemDistance=0.3f;
 	public float movingTime=0.17f;
+
+	public Transform ShopPage;
+	public Transform StartPage;
+	public Transform tfish;
+	public Transform tcartoon;
+
+	public Transform gameScreen;
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
 	int diamondCount;
 	bool canTweening;//是否已经完成上一次移动
 	string itemName;
-	Vector3 mVec=new Vector3(2,2,2);   //小
+	Vector3 mVec=new Vector3(3,3,3);   //小
 	Vector3 mVec2=new Vector3(4,4,4);   //中
-	Vector3 mVec3=new Vector3(5.5f,5.5f,5.5f);   //最大
+	Vector3 mVec3=new Vector3(6f,6f,6f);   //最大
 //	Color temp;
 	bool flag ;
 	void Start () {
@@ -143,12 +152,51 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnPlayBtnClick(){
+
 		if (cube [itemID].GetComponent<ShopItem> ().isRandom) {
-			//随机抽取
-		};
-	}
+			int a;
+			do{
+				a = Random.Range (0, cube.Length-1);
+			}
+			while(cube[a].GetComponent<ShopItem>().isbought);
+			if(cube[a].GetComponent<ShopItem>().fish){
+				Hero.gameObject.SetActive(false);
+				tcartoon.gameObject.SetActive(false);
+				tfish.gameObject.SetActive(true);
+			}
+			else if(cube[a].GetComponent<ShopItem>().cartoon){
+				Hero.gameObject.SetActive(false);
+				tcartoon.gameObject.SetActive(true);
+				tfish.gameObject.SetActive(false);
+			}else
+			{
+				tcartoon.gameObject.SetActive(false);
+				tfish.gameObject.SetActive(false);
+				Hero.GetChild (0).GetComponent<MeshFilter> ().mesh = cube [a].GetComponent<MeshFilter> ().mesh;
+			}
+		} else {
+			if(cube[itemID].GetComponent<ShopItem>().isbought){
+				if(cube[itemID].GetComponent<ShopItem>().fish){
+					Hero.gameObject.SetActive(false);
+					tcartoon.gameObject.SetActive(false);
+					tfish.gameObject.SetActive(true);
+				}
+				else if(cube[itemID].GetComponent<ShopItem>().cartoon){
+					Hero.gameObject.SetActive(false);
+					tcartoon.gameObject.SetActive(true);
+					tfish.gameObject.SetActive(false);
+				}else{
+					tcartoon.gameObject.SetActive(false);
+					tfish.gameObject.SetActive(false);
+					Hero.GetChild (0).GetComponent<MeshFilter> ().mesh = cube [itemID].GetComponent<MeshFilter> ().mesh;
+				}
+			}else{
+				print("未购买");
+				return;
+			}
 
-	public void OnCloseBtnClick(){
+		}
+		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
+		ShopPage.GetComponent<Animator> ().Play ("shopOut");
 	}
-
 }

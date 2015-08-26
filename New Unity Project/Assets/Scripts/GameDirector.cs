@@ -25,6 +25,8 @@ public class GameDirector : MonoBehaviour {
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
 	}
 
+
+
 	public void EventHandler() {
 
 	}

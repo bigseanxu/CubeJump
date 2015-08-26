@@ -31,7 +31,7 @@ public class ShopItem : MonoBehaviour {
 	void LockGenerator(){
 		Vector3 vec = transform.position;
 		vec.y += 0.05f;
-		vec.z -= 0.2f;
+		vec.z -= 0.3f;
 		Quaternion qua = Quaternion.Euler (90,180,0);//这里要调很久
 		l=(Transform)GameObject.Instantiate(Lock,vec,qua);
 		l.SetParent (transform);
