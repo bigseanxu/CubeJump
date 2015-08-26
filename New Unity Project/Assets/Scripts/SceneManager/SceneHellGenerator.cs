@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneGenerator04 : MonoBehaviour {
+public class SceneHellGenerator : BaseGenerator {
 	public Transform pillarGenerator;
 
 	public Transform prefabPlant;
@@ -25,6 +25,10 @@ public class SceneGenerator04 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
+	}
+
+	public override void StartGenerate() {
 	
 	}
 

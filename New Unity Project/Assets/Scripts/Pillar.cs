@@ -5,6 +5,8 @@ public class Pillar : MonoBehaviour {
 	public float tall;
 	public bool isLeft;
 	public Transform sceneGenerator;
+	public SprayParticles sprayParticles;
+
 	// Use this for initialization
 	void Start () {
 		HingeJoint hinge = GetComponent<HingeJoint> ();
@@ -60,5 +62,27 @@ public class Pillar : MonoBehaviour {
 	public Transform NextPillar {
 		get { return nextPillar; }
 		set { nextPillar = value; }
+	}
+
+	public void Show () {
+		gameObject.SetActive (true);
+		GetComponent<Animator> ().Play ("Show");
+		PlaySprayParticle ();
+	}
+
+	void PlaySprayParticle() {
+		sprayParticles.Stop ();
+		float duration = 2;
+		if (gameObject.name == "5x5(Clone)") {
+			duration = 0.8f;
+		} else if (gameObject.name == "10x10(Clone)") {
+			duration = 1.6f;
+		} else if (gameObject.name == "15x15(Clone)") {
+			duration = 2.4f;
+		} else {
+			print ("error pillar PlaySprayParticle");
+		}
+		sprayParticles.SetPositon (transform.position);
+		sprayParticles.Play ();
 	}
 }

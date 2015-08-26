@@ -104,6 +104,7 @@ public class CubeHero : MonoBehaviour {
 		rigid.freezeRotation = false;
 		state = CubeState.Ready;
 		GetScore ();
+		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
 	}
 
 	public Transform GetCurrPillar() {

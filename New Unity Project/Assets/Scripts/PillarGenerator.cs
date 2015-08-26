@@ -6,13 +6,14 @@ public class PillarGenerator : MonoBehaviour {
 	public Transform[] pillarPrefabs;
 	public Transform pillarGroup;
 	public Transform sceneGenerator;
+	public Transform diamondGenerator;
 
 	public float minSmallToSmall; 
 	public float minSmallToMedium;
 
 	public Transform startPillar2;
 	public SprayParticles sprayParticles;
-	public ParticleSystem sprayParticle;
+
 
 	List<Transform> pillars = new List<Transform> ();
 	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -4.6f);
@@ -21,6 +22,9 @@ public class PillarGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Physics.gravity = new Vector3 (0, - 50, 0);
+		GeneratePillar ();
+		GeneratePillar ();
+		GeneratePillar ();
 	}
 	
 	// Update is called once per frame 
@@ -34,6 +38,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.SetParent (pillarGroup);
 		newPillar.localScale = Vector3.one;
 		newPillar.rotation = Quaternion.identity;
+
 
 		float distance = 8;
 		if (lastPillarLeft) {
@@ -58,28 +63,23 @@ public class PillarGenerator : MonoBehaviour {
 			startPillar2.GetComponent<Pillar>().NextPillar = newPillar;
 			newPillar.GetComponent<Pillar> ().LastPillar = startPillar2;
 		}
+		newPillar.GetComponent<Pillar> ().sprayParticles = sprayParticles;
+		newPillar.gameObject.SetActive (false);
 		pillars.Add (newPillar);
 
-		sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
-		PlaySprayParticle ();
+		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
+		diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
+//		PlaySprayParticle ();
 
 	}
 
-	void PlaySprayParticle() {
-		sprayParticles.Stop ();
-		Transform lastPillar = pillars [pillars.Count - 1];
-		float duration = 2;
-		if (lastPillar.gameObject.name == "5x5(Clone)") {
-			duration = 0.8f;
-		} else if (lastPillar.gameObject.name == "10x10(Clone)") {
-			duration = 1.6f;
-		} else if (lastPillar.gameObject.name == "15x15(Clone)") {
-			duration = 2.4f;
-		} else {
-			print ("error pillar PlaySprayParticle");
-		}
-		sprayParticles.SetPositon (lastPillar.transform.position);
-		sprayParticles.Play ();
 
+
+	public List<Transform> GetPillars() {
+		return pillars;
+	}
+
+	public Transform GetLastPillar() {
+		return pillars [pillars.Count - 1];
 	}
 }

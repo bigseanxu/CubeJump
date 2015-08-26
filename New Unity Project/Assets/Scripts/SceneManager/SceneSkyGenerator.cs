@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneGenerator03 : MonoBehaviour {
+public class SceneSkyGenerator : BaseGenerator {
 	public Transform pillarGenerator;
 	public Transform[] prefabCloud;
 	public Transform Clouds;
@@ -24,6 +24,10 @@ public class SceneGenerator03 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public override void StartGenerate() {
+		
 	}
 
 	public void Generate(Transform pillar) {

@@ -4,11 +4,13 @@ using System.Collections;
 public class GameDirector : MonoBehaviour {
 	public Transform beginScreen;
 	public Transform gameScreen;
+	public Transform sceneManager;
 	// Use this for initialization
 	void Start () {
 		if (Game.gameDirector == null) {
 			Game.gameDirector = this;
 		}
+		sceneManager.GetComponent<SceneManager> ().Generate ();
 	}
 	
 	// Update is called once per frame

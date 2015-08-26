@@ -15,6 +15,7 @@ public class Game
 	public static int score = 0;						 // Game score
 	public static int diamond = 0;						 // Game diamond
 	public static int heroName = 0;						 // Hero name of the cube
+	public static int sceneType = 0;
 
 	public static void Init() {
 		heroName = PlayerPrefs.GetInt ("HeroName", 0);

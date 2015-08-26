@@ -1,18 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\HeroesHome.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneManager\SceneWaterGenerator.cs">
     <Files>
-      <File FileName="Assets\Scripts\CubeHero.cs" Line="21" Column="15" />
-      <File FileName="Assets\Scripts\SceneGenerator.cs" Line="36" Column="3" />
-      <File FileName="Assets\HeroesHome.cs" Line="23" Column="10" />
-      <File FileName="Assets\Scripts\PillarGenerator.cs" Line="63" Column="36" />
-      <File FileName="Assets\Scripts\Pillar.cs" Line="62" Column="30" />
+      <File FileName="Assets\Scripts\SceneManager\SceneHellGenerator.cs" Line="31" Column="1" />
+      <File FileName="Assets\Scripts\SceneManager\SceneWaterGenerator.cs" Line="30" Column="36" />
+      <File FileName="Assets\Scripts\SceneManager\SceneForestGenerator.cs" Line="33" Column="3" />
+      <File FileName="Assets\Scripts\SceneManager\ScenePondGenerator.cs" Line="37" Column="3" />
+      <File FileName="Assets\Scripts\SceneManager\SceneSkyGenerator.cs" Line="31" Column="3" />
+      <File FileName="Assets\Scripts\SceneManager\SceneSpaceGenerator.cs" Line="29" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="F:\reposition\CubeJump_2\New Unity Project\Assets\Scripts\Shop.cs" line="43" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

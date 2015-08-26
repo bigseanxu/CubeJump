@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DiamondGenerator.cs" />
      <Compile Include="Assets\HeroesHome.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GUIExamplesCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
@@ -77,12 +78,14 @@
      <Compile Include="Assets\Scripts\PillarGenerator.cs" />
      <Compile Include="Assets\Scripts\Plant.cs" />
      <Compile Include="Assets\Scripts\Ripple.cs" />
-     <Compile Include="Assets\Scripts\SceneGenerator.cs" />
-     <Compile Include="Assets\Scripts\SceneGenerator01.cs" />
-     <Compile Include="Assets\Scripts\SceneGenerator02.cs" />
-     <Compile Include="Assets\Scripts\SceneGenerator03.cs" />
-     <Compile Include="Assets\Scripts\SceneGenerator04.cs" />
-     <Compile Include="Assets\Scripts\SceneGenerator05.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\BaseGenerator.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneForestGenerator.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneHellGenerator.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneManager.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\ScenePondGenerator.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneSkyGenerator.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneSpaceGenerator.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneWaterGenerator.cs" />
      <Compile Include="Assets\Scripts\Shop.cs" />
      <Compile Include="Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Scripts\SprayParticles.cs" />

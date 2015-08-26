@@ -3,7 +3,7 @@ using System.Collections;
 using System.Timers;
 
 
-public class SceneGenerator01 : MonoBehaviour {
+public class ScenePondGenerator : BaseGenerator {
 	public Transform pillarGenerator;
 	public Transform prefabFlow;
 	public Transform prefabPlant;
@@ -30,6 +30,10 @@ public class SceneGenerator01 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+	public override void StartGenerate() {
+		
 	}
 
 	public void Generate(Transform pillar) {
