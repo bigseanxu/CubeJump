@@ -20,6 +20,7 @@ public class Shop : MonoBehaviour {
 	public Transform tcartoon;
 
 	public Transform gameScreen;
+	public Transform ctrl;
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
 	int diamondCount;
@@ -198,5 +199,8 @@ public class Shop : MonoBehaviour {
 		}
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
 		ShopPage.GetComponent<Animator> ().Play ("shopOut");
+		if (Game.state != Game.State.BeforeGame) {
+			ctrl.GetComponent<GameCtrl>().ReLoad();
+		}
 	}
 }

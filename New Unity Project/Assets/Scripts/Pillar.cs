@@ -10,19 +10,28 @@ public class Pillar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		HingeJoint hinge = GetComponent<HingeJoint> ();
-		JointMotor motor = hinge.motor;
-		motor.force = 1;
+		JointSpring spring = hinge.spring;
+		spring.spring = 10;
+		spring.damper = 10;
+		spring.targetPosition = -180;
 
-		motor.freeSpin = false;
+		hinge.spring = spring;
+		hinge.useSpring = false;
+
+
+//		JointMotor motor = hinge.motor;
+//		motor.force = 1;
+//
+//		motor.freeSpin = false;
 		if (isLeft) {
 			hinge.axis = Vector3.back;
-			motor.targetVelocity = 3;
+//			motor.targetVelocity = 3;
 		} else {
 			hinge.axis = Vector3.left;
-			motor.targetVelocity = 3;
+//			motor.targetVelocity = 3;
 		}
-		hinge.motor = motor;
-		hinge.useMotor = false;
+//		hinge.motor = motor;
+//		hinge.useMotor = false;
 	}
 	
 	// Update is called once per frame
@@ -37,7 +46,8 @@ public class Pillar : MonoBehaviour {
 
 	public void FallingDown () {
 		HingeJoint hinge = GetComponent<HingeJoint> ();
-		hinge.useMotor = true;
+		hinge.useSpring = true;
+//		hinge.useMotor = true;
 //		if (isLeft) {
 //			LeanTween.rotateLocal (gameObject, new Vector3 (0, 0, 90), 5.5f).setEase (LeanTweenType.easeInCubic);
 //		} else {

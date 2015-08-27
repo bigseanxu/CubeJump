@@ -115,6 +115,14 @@ public class CubeHero : MonoBehaviour {
 		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
 	}
 
+//	IEnumerator TurnAround() {
+//		if (isFaceLeft) {
+//			Vector3 forceUp = new Vector3 (0, 500, 0);
+////			LeanTween.rotate();
+//		}
+//
+//	} 
+
 	public Transform GetCurrPillar() {
 		return currentPillar;
 	}
