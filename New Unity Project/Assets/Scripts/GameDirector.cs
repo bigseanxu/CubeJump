@@ -10,7 +10,7 @@ public class GameDirector : MonoBehaviour {
 		if (Game.gameDirector == null) {
 			Game.gameDirector = this;
 		}
-		sceneManager.GetComponent<SceneManager> ().Generate ();
+
 	}
 	
 	// Update is called once per frame
@@ -18,6 +18,7 @@ public class GameDirector : MonoBehaviour {
 		if (Game.isStateChanged) {
 			if (Game.state == Game.State.Gaming) {
 				GameStart();
+				Game.isStateChanged = false;
 			}
 		}
 	}
@@ -25,6 +26,7 @@ public class GameDirector : MonoBehaviour {
 	public void GameStart() {
 		beginScreen.GetComponent<Animator> ().Play ("Begin disappear");
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
+		sceneManager.GetComponent<SceneManager> ().Generate ();
 	}
 
 	public void EventHandler() {

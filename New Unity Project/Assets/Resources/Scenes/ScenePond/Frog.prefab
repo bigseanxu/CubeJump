@@ -1,93 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &116416
+--- !u!1 &190344
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 477950}
-  - 33: {fileID: 3314302}
-  - 65: {fileID: 6529954}
-  - 23: {fileID: 2304440}
-  - 114: {fileID: 11489746}
+  - 4: {fileID: 490506}
+  - 33: {fileID: 3350374}
+  - 23: {fileID: 2345104}
+  - 114: {fileID: 11424872}
   m_Layer: 0
-  m_Name: Spider
+  m_Name: Frog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &477950
+--- !u!4 &490506
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116416}
+  m_GameObject: {fileID: 190344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.05612803, y: .660995901, z: 26.1032658}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2304440
+--- !u!23 &2345104
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116416}
+  m_GameObject: {fileID: 190344}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: ae34d3137c9ccfd4894c737874c1177e, type: 2}
+  - {fileID: 2100000, guid: 29cb8722a4953bb4ba3c8fb8a5b97a3f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_ImportantGI: 0
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3314302
+--- !u!33 &3350374
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116416}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6529954
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116416}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11489746
+  m_GameObject: {fileID: 190344}
+  m_Mesh: {fileID: 4300004, guid: 78180d36e969f1947bbd62013e9fd8b0, type: 3}
+--- !u!114 &11424872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116416}
+  m_GameObject: {fileID: 190344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6941d40bb075a18408beee6927769aaa, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b15a9627a1843b4492a65ee533742cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 3
-  maxSpeed: 5
-  distance: 5
+  minSpeed: 1
+  maxSpeed: 3
+  distance: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -97,5 +84,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 116416}
+  m_RootGameObject: {fileID: 190344}
   m_IsPrefabParent: 1

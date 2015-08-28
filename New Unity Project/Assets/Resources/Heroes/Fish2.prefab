@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3391586}
   - 23: {fileID: 2317712}
   - 96: {fileID: 9690660}
+  - 95: {fileID: 9593054}
   m_Layer: 0
   m_Name: Fish2
   m_TagString: Untagged
@@ -91,6 +92,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106754}
   m_Mesh: {fileID: 4300002, guid: edf94196ff77f7f489453801463b9edb, type: 3}
+--- !u!95 &9593054
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!96 &9690660
 TrailRenderer:
   m_ObjectHideFlags: 1

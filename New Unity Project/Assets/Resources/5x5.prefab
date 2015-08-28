@@ -47,6 +47,7 @@ GameObject:
   - 65: {fileID: 6509458}
   - 114: {fileID: 11456404}
   - 59: {fileID: 5942954}
+  - 114: {fileID: 11461936}
   m_Layer: 0
   m_Name: 5x5
   m_TagString: Untagged
@@ -585,6 +586,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tall: 0
   isLeft: 0
+  sceneGenerator: {fileID: 0}
+  sprayParticles: {fileID: 0}
+--- !u!114 &11461936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb014dd9e2b5af40a88e2dac1da702b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pillarMaterials:
+  - {fileID: 2100000, guid: ad6c2dc58ce6e2a40abb60b9d02ce740, type: 2}
+  - {fileID: 2100000, guid: ad6c2dc58ce6e2a40abb60b9d02ce740, type: 2}
+  - {fileID: 2100000, guid: bd287db19e562d44da58a873b1742988, type: 2}
+  - {fileID: 2100000, guid: f62dd33c862eb3d47835bcf0093df79b, type: 2}
+  - {fileID: 2100000, guid: 563f001dd153b2241945d69e56f1730c, type: 2}
+  - {fileID: 2100000, guid: b36e8c177a371e744a0ae793f47b1f4b, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

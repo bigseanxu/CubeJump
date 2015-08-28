@@ -21,6 +21,10 @@ public class Game
 		heroName = PlayerPrefs.GetInt ("HeroName", 0);
 	}
 
+	public static void StartGame() {
+		SetState (State.Gaming);
+	}
+
 	public static void SetState(State s) {
 		if (state != s) {
 			state = s;

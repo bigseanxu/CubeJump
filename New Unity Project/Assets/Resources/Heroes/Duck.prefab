@@ -28,6 +28,7 @@ GameObject:
   - 33: {fileID: 3371470}
   - 23: {fileID: 2378740}
   - 96: {fileID: 9698264}
+  - 95: {fileID: 9510240}
   m_Layer: 0
   m_Name: Duck
   m_TagString: Untagged
@@ -91,6 +92,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196716}
   m_Mesh: {fileID: 4300006, guid: 2c1f31ed54b5e4c419782b738a2bb4c6, type: 3}
+--- !u!95 &9510240
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196716}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!96 &9698264
 TrailRenderer:
   m_ObjectHideFlags: 1

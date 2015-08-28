@@ -13,8 +13,7 @@ public class CubeHero : MonoBehaviour {
 	LTDescr jumpBeforeGameTween;
 	bool isFaceLeft = true;
 	bool live=true;
-
-
+	
 	enum CubeState
 	{ 
 		BeforeGame,
@@ -89,8 +88,12 @@ public class CubeHero : MonoBehaviour {
 			forceForward = - Vector3.right * 300;
 		}
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
-
-		// freeze rotation
+		if (isFaceLeft) {
+			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);
+		} else {
+			LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.2f);
+        }
+        // freeze rotation
 		GetComponent<Rigidbody> ().freezeRotation = true;
 		state = CubeState.Jumping;
 
@@ -104,30 +107,38 @@ public class CubeHero : MonoBehaviour {
 		pillarGenerator.GetComponent<PillarGenerator> ().GeneratePillar ();
 		transform.position = currentPillar.GetComponent<Pillar> ().GetCubePosition ();
 
-		pillar.GetComponent<Pillar> ().FallingDown ();
-
 		Rigidbody rigid = GetComponent<Rigidbody> ();
 		rigid.velocity = Vector3.zero;
-		transform.rotation =isFaceLeft?Quaternion.Euler(-90, 0, 0):Quaternion.Euler(-90, -90, 0);
+		//transform.rotation =isFaceLeft?Quaternion.Euler(-90, 0, 0):Quaternion.Euler(-90, -90, 0);
 		rigid.freezeRotation = false;
-		state = CubeState.Ready;
+
 		GetScore ();
 		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
+		StartCoroutine (TurnAround());
 	}
 
-//	IEnumerator TurnAround() {
-//		if (isFaceLeft) {
-//			Vector3 forceUp = new Vector3 (0, 500, 0);
-////			LeanTween.rotate();
-//		}
-//
-//	} 
+	void ShowNextPillar() {
+	
+	}
+
+	IEnumerator TurnAround() {
+		Vector3 forceUp = new Vector3 (0, 500, 0);
+		gameObject.GetComponent<Rigidbody> ().AddForce (forceUp);
+		if (isFaceLeft) {
+			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.5f);
+		} else {
+			LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.5f);
+		}
+		yield return new WaitForSeconds(0.5f);
+		currentPillar.GetComponent<Pillar> ().FallingDown ();
+		state = CubeState.Ready;
+    } 
 
 	public Transform GetCurrPillar() {
 		return currentPillar;
 	}
 
-	bool isLand = false;
+	bool isLand = true;
 	void JumpBeforeGameCallBack() {
 		isLand = !isLand;
 		if (isLand) {

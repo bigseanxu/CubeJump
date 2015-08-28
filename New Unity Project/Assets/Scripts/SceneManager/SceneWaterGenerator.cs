@@ -32,7 +32,7 @@ public class SceneWaterGenerator : BaseGenerator {
 	}
 
 	IEnumerator Generate() {
-		if (sceneType == SceneType.Water) { 
+		if (Game.state == Game.State.Gaming) { 
 			GenerateFlow();
 			GenerateFish();
 			GeneratePlant();

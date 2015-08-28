@@ -11,8 +11,10 @@ public class GameCtrl : MonoBehaviour {
 	public Transform GameOver;
 	public Transform GameOn;
 	public Transform Loading;
+	public Transform Share;
 	public Transform SoundBtn1;
 	public Transform SoundBtn2;
+	bool shareAppear=false;
 	int a;
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,7 @@ public class GameCtrl : MonoBehaviour {
 			SoundBtn1.GetComponent<Toggle> ().isOn = true;
 		else
 			SoundBtn1.GetComponent<Toggle> ().isOn = false;
+		Game.diamond=PlayerPrefs.GetInt ("Diamonds");
 	}
 	
 	// Update is called once per frame
@@ -71,9 +74,17 @@ public class GameCtrl : MonoBehaviour {
 		StopBtn.gameObject.SetActive (true);
 		
 	}
+	public void OnShareMenuButtonPress() {
+		if(!shareAppear)
+			Share.GetComponent<Animator> ().Play ("Share appear");
+		if(shareAppear)
+			Share.GetComponent<Animator> ().Play ("Share disappear");
+		shareAppear = !shareAppear;
+	}
+
 
 	public void OnAdsButtonPress() {
-		LoadGameOver ();
+		//LoadGameOver ();
 	}
 	public void OnHomeButtonPress() {
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
@@ -91,11 +102,14 @@ public class GameCtrl : MonoBehaviour {
 		ReLoad ();
 	}
 
+
+
 	public void LoadGameOver(){
 		Game.state = Game.State.GameOver;
 		GameOver.gameObject.SetActive (true);
 		GameOver.GetComponent<Animator> ().Play ("Game over appear");
 		GameOn.GetComponent<Animator> ().Play ("GameDisappear");
+		PlayerPrefs.SetInt ("Diamonds", Game.diamond);
 	}
 
 	public void ReLoad(){

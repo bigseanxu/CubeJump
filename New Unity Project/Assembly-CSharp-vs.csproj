@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DiamondGenerator.cs" />
      <Compile Include="Assets\HeroesHome.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GUIExamplesCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
@@ -65,10 +64,14 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUniqueId.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TutorialPresentationFinished.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\UIExampleCS.cs" />
+     <Compile Include="Assets\PillarMaterial.cs" />
+     <Compile Include="Assets\SceneLights.cs" />
+     <Compile Include="Assets\Scripts\Balloon.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraReference.cs" />
      <Compile Include="Assets\Scripts\CubeHero.cs" />
      <Compile Include="Assets\Scripts\Diamond.cs" />
+     <Compile Include="Assets\Scripts\DiamondGenerator.cs" />
      <Compile Include="Assets\Scripts\Fish.cs" />
      <Compile Include="Assets\Scripts\Flow.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
@@ -91,11 +94,13 @@
      <Compile Include="Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Scripts\SprayParticles.cs" />
      <Compile Include="Assets\Scripts\Water.cs" />
+     <Compile Include="Assets\Scripts\ui\Background.cs" />
      <Compile Include="Assets\Scripts\ui\GameCtrl.cs" />
      <Compile Include="Assets\Scripts\ui\GameDiamond.cs" />
      <Compile Include="Assets\Scripts\ui\GameScore.cs" />
      <Compile Include="Assets\Scripts\ui\ShowNumberInCanvas.cs" />
      <Compile Include="Assets\Scripts\ui\Sound.cs" />
+     <Compile Include="Assets\Scripts\ui\TapToPlay.cs" />
      <None Include="Assets\Materials\Particle\Translucent.shader" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />

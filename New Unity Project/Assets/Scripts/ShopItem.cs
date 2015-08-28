@@ -16,6 +16,7 @@ public class ShopItem : MonoBehaviour {
 	public bool cartoon;
 	public Transform tfish;
 	public Transform tcartoon;
+	public HeroesHome.HeroName temp;
 	Texture tHave;
 	Material mat;
 

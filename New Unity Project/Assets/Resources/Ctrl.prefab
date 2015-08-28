@@ -46,6 +46,7 @@ MonoBehaviour:
   GameOver: {fileID: 0}
   GameOn: {fileID: 0}
   Loading: {fileID: 0}
+  Share: {fileID: 0}
   SoundBtn1: {fileID: 0}
   SoundBtn2: {fileID: 0}
 --- !u!1001 &100100000

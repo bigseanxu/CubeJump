@@ -28,6 +28,7 @@ GameObject:
   - 33: {fileID: 3373210}
   - 23: {fileID: 2389608}
   - 96: {fileID: 9634544}
+  - 95: {fileID: 9565462}
   m_Layer: 0
   m_Name: Cartoon
   m_TagString: Untagged
@@ -91,6 +92,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172538}
   m_Mesh: {fileID: 4300000, guid: f33a233e3582359499553c91eaa07b6e, type: 3}
+--- !u!95 &9565462
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172538}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!96 &9634544
 TrailRenderer:
   m_ObjectHideFlags: 1
