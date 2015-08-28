@@ -32,7 +32,7 @@ public class SceneWaterGenerator : BaseGenerator {
 	}
 
 	IEnumerator Generate() {
-		if (sceneType == SceneType.Water) { 
+		if (Game.state == Game.State.Gaming) { 
 			GenerateFlow();
 			GenerateFish();
 			GeneratePlant();
@@ -77,6 +77,7 @@ public class SceneWaterGenerator : BaseGenerator {
 	bool CheckFlowCollision(Vector3 pos) {
 		bool ret = false;
 		List<Transform> pillars = pillarGenerator.GetComponent<PillarGenerator> ().GetPillars ();
+
 		for (int i = 0; i < pillars.Count; i++) {
 			if (Mathf.Abs (pillars [i].position.x - pos.x) < 2) {
 				ret = true;

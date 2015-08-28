@@ -5,6 +5,7 @@ using System.Collections;
 public class Shop : MonoBehaviour {
 
 	public Transform Hero;
+	public Transform Heroes;
 	public Transform[] cubes;//预制物体
 	public Transform name;
 	public Transform diamond;
@@ -34,7 +35,6 @@ public class Shop : MonoBehaviour {
 	void Start () {
 		PlayerPrefs.SetInt("Diamonds",100);//测试用
 		diamondCount=PlayerPrefs.GetInt("Diamonds");
-		diamond.GetComponent<Text>().text=diamondCount.ToString();
 		//temp=new Color(Color.gray.r-0.3f,Color.gray.g-0.3f,Color.gray.b-0.3f);
 		itemID = 0;
 		cube = new Transform[cubes.Length];   //初始化商品
@@ -143,8 +143,8 @@ public class Shop : MonoBehaviour {
 			if(diamondCount>=price){
 				diamondCount-=price;
 				PlayerPrefs.SetInt("Diamonds",diamondCount);
+				Game.diamond=diamondCount;
 				cube [itemID].GetComponent<ShopItem> ().isbought=true;
-				diamond.GetComponent<Text>().text=diamondCount.ToString();
 				FixGameObject();
 				print ("购买成功");//测试
 			}else
@@ -197,6 +197,8 @@ public class Shop : MonoBehaviour {
 			}
 
 		}
+
+		//Heroes.GetComponent<HeroesHome> ().GetHero (cube [itemID].GetComponent<ShopItem> ().temp);
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
 		ShopPage.GetComponent<Animator> ().Play ("shopOut");
 		if (Game.state != Game.State.BeforeGame) {

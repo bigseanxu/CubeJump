@@ -1,27 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Timers;
-
+using System.Collections.Generic;
 
 public class ScenePondGenerator : BaseGenerator {
 	public Transform pillarGenerator;
 	public Transform prefabFlow;
 	public Transform prefabPlant;
 	public Transform prefabCrocodile;
+	public Transform prefabButterfly;
 	public Transform flows;
 	public Transform plants;
 	public Transform Crocodiles;
+	public Transform Butterflies;
 	public Transform prefabFrog;
 	public Transform prefabLotus;
 	public Transform frog;
 	public Transform lotus;
-
+	public Transform generatorReference;
 
 	public enum SceneType {
-		Water
+		Pond
 	};
 
-	public SceneType sceneType = SceneType.Water;
+	public SceneType sceneType = SceneType.Pond;
 	 
 	void Start () {
 
@@ -33,77 +35,155 @@ public class ScenePondGenerator : BaseGenerator {
 	}
 
 	public override void StartGenerate() {
-		
+		StartCoroutine (Generate());
 	}
 
-	public void Generate(Transform pillar) {
-		if (sceneType == SceneType.Water) { 
-			if (!pillar.GetComponent<Pillar>().isLeft) {
-				GenerateFlow(pillar.position);
-				GenerateFish(pillar.position);
-			}
-			GeneratePlant(pillar.position);
-			if(Random.Range(0f,2f)>1f)
-				GenerateFrog(pillar.position);
-			else
-				GenerateLotus(pillar.position);
-
+	IEnumerator Generate() {
+		if (Game.state == Game.State.Gaming) { 
+			GenerateFlow();
+			GeneratePlant();
+			int a=Random.Range(0,10);
+			if(a>3)
+				GenerateFrog();
+			if(a>3)
+				GenerateLotus();
+			if(a>6)
+				GenerateCo();
+			if(a>6)
+				GenerateButterfly();
 		}
+		
+		yield return new WaitForSeconds (1);
+		yield return StartCoroutine (Generate());
 	}
 
 
 
-	public void GenerateFlow(Vector3 position) {
-		float xOffset = Random.Range (16, -16);
-		float zOffset = Random.Range (-16, -11);
-		Transform newFlow = (Transform)GameObject.Instantiate (prefabFlow, Vector3.zero, Quaternion.identity);
+	public void GenerateFlow() {
+		float xOffset = 20;
+		float zOffset = 20;
+		Vector3 position = Vector3.zero;
+		// 1. generate a random coordinate
+		while (true) {
+			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
+			Vector3 newPosition = randomPosition + generatorReference.position;
+			bool result = CheckFlowCollision(newPosition);
+			if (!result) {
+				position = newPosition;
+				break;
+			}
+		}
+		Transform newFlow = (Transform)GameObject.Instantiate (prefabFlow);
 		newFlow.SetParent (flows);
 		newFlow.localScale = Vector3.one;
-		newFlow.rotation = Quaternion.Euler (-90, 0, 0);
-		newFlow.position = position + new Vector3 (xOffset, 0, zOffset); 
+		newFlow.localRotation = Quaternion.Euler (0, 0, 0);
+		newFlow.position = position; 
 	}
 
-	public void GeneratePlant(Vector3 position) {
-		float xOffset = Random.Range (-6, -1);
-		float zOffset = Random.Range (-6, -1);
-
-		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant, Vector3.zero, Quaternion.identity);
+	public void GeneratePlant() {
+		float xOffset = Random.Range (-20, 0);
+		float zOffset = Random.Range (0, 20);
+		
+		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant);
 		newPlant.SetParent (plants);
 		newPlant.localScale = Vector3.one;
-		newPlant.rotation = Quaternion.Euler (-90, 0, 0);
-		newPlant.position = position + new Vector3 (xOffset, 0, zOffset);
+		newPlant.localRotation = Quaternion.Euler (270, 0, 0);
+		newPlant.position = generatorReference.position + new Vector3 (xOffset, 0, zOffset);
 	}
+	
 
-	public void GenerateFish(Vector3 position) {
-		float xOffset = Random.Range (-10, -16);
-		float zOffset = Random.Range (-20, -36);
-		int a= Random.Range (1, 5);
-		if (a > 3) {
-			Transform newFish = (Transform)GameObject.Instantiate (prefabCrocodile, Vector3.zero, Quaternion.identity);
-			newFish.SetParent (Crocodiles);
-			newFish.localScale = new Vector3 (10, 10, 10);
-			newFish.rotation = Quaternion.Euler (-90, 0, 0);
-			newFish.position = position + new Vector3 (xOffset, -3, zOffset);
+	public void GenerateFrog() {
+		float xOffset = 20;
+		float zOffset = 20;
+		float scale = Random.Range (8f, 12f);
+		Vector3 position = Vector3.zero;
+		// 1. generate a random coordinate
+		while (true) {
+			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
+			Vector3 newPosition = randomPosition + generatorReference.position;
+			bool result = CheckFlowCollision(newPosition);
+			if (!result) {
+				position = newPosition;
+				break;
+			}
 		}
-	}
-
-	public void GenerateFrog(Vector3 position) {
-		float xOffset = Random.Range (-10, -16);
-		float zOffset = Random.Range (-20, -36);
-		Transform newFrog = (Transform)GameObject.Instantiate (prefabFrog, Vector3.zero, Quaternion.identity);
+		Transform newFrog = (Transform)GameObject.Instantiate (prefabFrog);
 		newFrog.SetParent (frog);
-		newFrog.localScale =new Vector3(10,10,10);
-		newFrog.rotation = Quaternion.Euler (-90, 0, 0);
-		newFrog.position = position + new Vector3 (xOffset, 0, zOffset); 
+		newFrog.localScale = Vector3.one*scale;
+		newFrog.localRotation = Quaternion.Euler (270, 0, 0);
+		newFrog.position = position; 
 	}
 
-	public void GenerateLotus(Vector3 position) {
-		float xOffset = Random.Range (-6, -1);
-		float zOffset = Random.Range (-1, 6);
-		Transform newFish = (Transform)GameObject.Instantiate (prefabLotus, Vector3.zero, Quaternion.identity);
-		newFish.SetParent (lotus);
-		newFish.localScale =new Vector3(10,10,10);
-		newFish.rotation = Quaternion.Euler (-90, 0, 0);
-		newFish.position = position + new Vector3 (xOffset, 0, zOffset); 
+	public void GenerateLotus() {
+		float xOffset = 20;
+		float zOffset = 20;
+		Vector3 position = Vector3.zero;
+		float scale = Random.Range (8f, 12f);
+		// 1. generate a random coordinate
+		while (true) {
+			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
+			Vector3 newPosition = randomPosition + generatorReference.position;
+			bool result = CheckFlowCollision(newPosition);
+			if (!result) {
+				position = newPosition;
+				break;
+			}
+		}
+		Transform newLotus = (Transform)GameObject.Instantiate (prefabLotus);
+		newLotus.SetParent (lotus);
+		newLotus.localScale = Vector3.one*scale;
+		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
+		newLotus.position = position; 
+	}
+
+	public void GenerateCo() {
+		float xOffset = 20;
+		float zOffset = 20;
+		Vector3 position = Vector3.zero;
+		float scale = Random.Range (8f, 12f);
+		// 1. generate a random coordinate
+		while (true) {
+			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
+			Vector3 newPosition = randomPosition + generatorReference.position;
+			bool result = CheckFlowCollision(newPosition);
+			if (!result) {
+				position = newPosition;
+				break;
+			}
+		}
+		Transform newLotus = (Transform)GameObject.Instantiate (prefabCrocodile);
+		newLotus.SetParent (Crocodiles);
+		newLotus.localScale = Vector3.one*scale;
+		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
+		newLotus.position = position; 
+	}
+
+	public void GenerateButterfly() {
+		float xOffset = 20;
+		float zOffset = 20;
+		float scale = Random.Range (8f, 12f);
+		Vector3 position = Vector3.zero;
+		
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 12, Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 newPosition = randomPosition + generatorReference.position;
+		
+		Transform newFish = (Transform)GameObject.Instantiate (prefabButterfly);
+		newFish.SetParent (Butterflies);
+		newFish.localScale = Vector3.one * scale;
+		newFish.localRotation = Quaternion.Euler (270, 0, 0);
+		newFish.position = newPosition; 
+	}
+
+	bool CheckFlowCollision(Vector3 pos) {
+		bool ret = false;
+		List<Transform> pillars = pillarGenerator.GetComponent<PillarGenerator> ().GetPillars ();
+		for (int i = 0; i < pillars.Count; i++) {
+			if (Mathf.Abs (pillars [i].position.x - pos.x) < 2) {
+				ret = true;
+				break;
+			}
+		}
+		
+		return ret;
 	}
 }

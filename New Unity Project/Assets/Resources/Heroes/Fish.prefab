@@ -91,6 +91,8 @@ GameObject:
   - 23: {fileID: 2310778}
   - 114: {fileID: 11443624}
   - 54: {fileID: 5490204}
+  - 65: {fileID: 6565564}
+  - 95: {fileID: 9576128}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -333,6 +335,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6565564
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &9563042
 Animator:
   serializedVersion: 3
@@ -344,6 +358,23 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: edf94196ff77f7f489453801463b9edb, type: 3}
   m_Controller: {fileID: 9100000, guid: a06abe61dd9636d46ab61425aaadb143, type: 2}
   m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &9576128
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160674}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -362,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0
+  ctrl: {fileID: 0}
   currentPillar: {fileID: 0}
   pillarGenerator: {fileID: 0}
   cameraReference: {fileID: 0}

@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3364292}
   - 23: {fileID: 2361798}
   - 96: {fileID: 9636692}
+  - 95: {fileID: 9518790}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -91,6 +92,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106540}
   m_Mesh: {fileID: 4300026, guid: 2c1f31ed54b5e4c419782b738a2bb4c6, type: 3}
+--- !u!95 &9518790
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!96 &9636692
 TrailRenderer:
   m_ObjectHideFlags: 1

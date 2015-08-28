@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Timers;
+using System.Collections.Generic;
 
 public class SceneSkyGenerator : BaseGenerator {
 	public Transform pillarGenerator;
 	public Transform[] prefabCloud;
 	public Transform Clouds;
-	public Transform prefabPlant;
-	public Transform Plants;
+	public Transform prefabPlane;
+	public Transform Planes;
 	public Transform prefabBalloon;
 	public Transform Balloons;
-
+	public Transform generatorReference;
 
 	public enum SceneType {
-		Water
+		Sky
 	};
 
-	public SceneType sceneType = SceneType.Water;
+	public SceneType sceneType = SceneType.Sky;
 	 
 	void Start () {
 	
@@ -27,48 +29,67 @@ public class SceneSkyGenerator : BaseGenerator {
 	}
 
 	public override void StartGenerate() {
-		
+		StartCoroutine (Generate());
 	}
+	
+	IEnumerator Generate() {
+		if (Game.state == Game.State.Gaming) { 
+			GenerateCloud();
+			//GeneratePlant();
+			int a=Random.Range(0,10);
 
-	public void Generate(Transform pillar) {
-		if (sceneType == SceneType.Water) { 
-			GenerateCloud(pillar.position);
-			GenerateBalloon(pillar.position);
-			GeneratePlant(pillar.position);
+			if(a>4)
+				GeneratePlane();
+			if(a>5)
+				GenerateBallon();
 
 		}
-	}
-
-	public void GenerateCloud(Vector3 position) {
-		float yOffset = Random.Range (1f, -1f);
-		int i = Random.Range (0, 5);
-		Transform newCloud = (Transform)GameObject.Instantiate (prefabCloud[i], Vector3.zero, Quaternion.identity);
-		newCloud.SetParent (Clouds);
-		newCloud.localScale = new Vector3(10,10,10);
-		newCloud.rotation = Quaternion.Euler (-90, 0, 0);
-		newCloud.position = position + new Vector3 (-2, yOffset, -15); 
-	}
-
-
-	public void GeneratePlant(Vector3 position) {
-		float xOffset = Random.Range (-6, -1);
-		float zOffset = Random.Range (-6, -1);
 		
-		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant, Vector3.zero, Quaternion.identity);
-		newPlant.SetParent (Plants);
-		newPlant.localScale = Vector3.one;
-		newPlant.rotation = Quaternion.Euler (-90, 0, 0);
-		newPlant.position = position + new Vector3 (xOffset, 0, zOffset);
+		yield return new WaitForSeconds (1);
+		yield return StartCoroutine (Generate());
+	}
+	public void GenerateCloud() {
+		float xOffset = 20;
+		float zOffset = 20;
+		float scale = 10f;
+		int i = Random.Range (0, 5);
+		Vector3 position = Vector3.zero;
+		
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(1f, 10f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 newPosition = randomPosition + generatorReference.position;
+		
+		Transform newFish = (Transform)GameObject.Instantiate (prefabCloud[i]);
+		newFish.SetParent (Clouds);
+		newFish.localScale = Vector3.one * scale;
+		newFish.localRotation = Quaternion.Euler (0, 0, 0);
+		newFish.position = newPosition; 
 	}
 
-	public void GenerateBalloon(Vector3 position) {
-		float xOffset = Random.Range (-6, -1);
-		float zOffset = Random.Range (-6, -1);
-		Transform newBalloon = (Transform)GameObject.Instantiate (prefabBalloon, Vector3.zero, Quaternion.identity);
-		newBalloon.SetParent (Balloons);
-		newBalloon.localScale = new Vector3(10,10,10);
-		newBalloon.rotation = Quaternion.Euler (-90, 0, 0);
-		newBalloon.position = position + new Vector3 (xOffset, -3, zOffset); 
+	public void GenerateBallon() {
+		float xOffset = Random.Range (-20, -10);
+		float zOffset = Random.Range (10, 20);
+		float scale = Random.Range (10, 20);
+		Transform newPlant = (Transform)GameObject.Instantiate (prefabBalloon);
+		newPlant.SetParent (Balloons);
+		newPlant.localScale = Vector3.one*scale;
+		newPlant.localRotation = Quaternion.Euler (0, 0, 0);
+		newPlant.position = generatorReference.position + new Vector3 (xOffset, -20, zOffset);
+	}
+
+	public void GeneratePlane() {
+		float xOffset = 20;
+		float zOffset = 20;
+		float scale = Random.Range (8f, 12f);
+		Vector3 position = Vector3.zero;
+		
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(10f,15f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 newPosition = randomPosition + generatorReference.position;
+		
+		Transform newFish = (Transform)GameObject.Instantiate (prefabPlane);
+		newFish.SetParent (Planes);
+		newFish.localScale = Vector3.one * scale;
+		newFish.localRotation = Quaternion.Euler (270, 0, 0);
+		newFish.position = newPosition; 
 	}
 
 }

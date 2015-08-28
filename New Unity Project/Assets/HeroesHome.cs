@@ -26,7 +26,7 @@ public class HeroesHome : MonoBehaviour {
 		Whale
 	}
 	public Transform CubeHero;
-	HeroName name;
+	public HeroName name;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +38,12 @@ public class HeroesHome : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void GetHeroWithString(string a){
+
+	}
+
+
 
 	public GameObject GetHero(HeroName name) {
 		GameObject heroPrefab;
@@ -78,7 +84,7 @@ public class HeroesHome : MonoBehaviour {
 			heroPrefab = (GameObject) Resources.Load("Heroes/Elephant");
 			break;
 		case HeroName.Fish:
-			heroPrefab = (GameObject) Resources.Load("Particle/Fish");
+			heroPrefab = (GameObject) Resources.Load("Heroes/Fish");
 			break;
 		case HeroName.Flamingos:
 			heroPrefab = (GameObject) Resources.Load("Heroes/Flamingos");

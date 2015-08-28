@@ -1,23 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Timers;
+using System.Collections.Generic;
 
 public class SceneHellGenerator : BaseGenerator {
 	public Transform pillarGenerator;
-
-	public Transform prefabPlant;
-	public Transform Plants;
 	public Transform prefabBat;
 	public Transform Bats;
 	public Transform prefabSpider;
 	public Transform Spiders;
 	public Transform prefabGhost;
 	public Transform Ghosts;
-
+	public Transform generatorReference;
 	public enum SceneType {
-		Water
+		Hell
 	};
 
-	public SceneType sceneType = SceneType.Water;
+	public SceneType sceneType = SceneType.Hell;
 	 
 	void Start () {
 	
@@ -29,60 +28,67 @@ public class SceneHellGenerator : BaseGenerator {
 	}
 
 	public override void StartGenerate() {
+		StartCoroutine (Generate());
+	}
 	
-	}
+	IEnumerator Generate() {
+		if (Game.state == Game.State.Gaming) {
 
-	public void Generate(Transform pillar) {
-		if (sceneType == SceneType.Water) { 
+				GenerateSpider ();
+				int a = Random.Range (0, 10);
+				if (a > 1)
+					GenerateBat ();
+				if (a > 2)
+					GenerateGhost ();
 
-			GenerateBat(pillar.position);
-			GeneratePlant(pillar.position);
-			GenerateSpider(pillar.position);
-			GenerateGhost(pillar.position);
+
 		}
+		yield return new WaitForSeconds (1);
+		yield return StartCoroutine (Generate());
 	}
+	
 
-
-
-	public void GeneratePlant(Vector3 position) {
-		float xOffset = Random.Range (-6, -1);
-		float zOffset = Random.Range (-6, -1);
+	public void GenerateBat() {
+		float xOffset = 20;
+		float zOffset = 20;
+		float scale = Random.Range (8f, 12f);
+		Vector3 position = Vector3.zero;
 		
-		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant, Vector3.zero, Quaternion.identity);
-		newPlant.SetParent (Plants);
-		newPlant.localScale = Vector3.one;
-		newPlant.rotation = Quaternion.Euler (-90, 0, 0);
-		newPlant.position = position + new Vector3 (xOffset, 0, zOffset);
-	}
-
-	public void GenerateBat(Vector3 position) {
-		Transform newBat = (Transform)GameObject.Instantiate (prefabBat, Vector3.zero, Quaternion.identity);
-		newBat.SetParent (Bats);
-		newBat.localScale =  new Vector3(10,10,10);
-		newBat.rotation = Quaternion.Euler (-90, 0, 0);
-		newBat.position = position + new Vector3 (-2, 2, -15); 
-	}
-
-	public void GenerateSpider(Vector3 position) {
-		float xOffset = Random.Range (-16, -1);
-		float zOffset = Random.Range (-1, 8);
-
-		Transform newSpider = (Transform)GameObject.Instantiate (prefabSpider, Vector3.zero, Quaternion.identity);
-		newSpider.SetParent (Spiders);
-		newSpider.localScale = new Vector3(0.3f,0.3f,0.3f);
-		newSpider.rotation = Quaternion.Euler (-90, 0, 0);
-		newSpider.position = position + new Vector3 (xOffset, 3, zOffset); 
-	}
-
-	public void GenerateGhost(Vector3 position) {
-		float xOffset = Random.Range (16, -11);
-		float zOffset = Random.Range (-16, -11);
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(10f,15f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 newPosition = randomPosition + generatorReference.position;
 		
-		Transform newGhost = (Transform)GameObject.Instantiate (prefabGhost, Vector3.zero, Quaternion.identity);
-		newGhost.SetParent (Ghosts);
-		newGhost.localScale = new Vector3(10,10,10);
-		newGhost.rotation = Quaternion.Euler (-90, 0, 0);
-		newGhost.position = position + new Vector3 (xOffset, 4, zOffset); 
+		Transform newFish = (Transform)GameObject.Instantiate (prefabBat);
+		newFish.SetParent (Bats);
+		newFish.localScale = Vector3.one * scale;
+		newFish.localRotation = Quaternion.Euler (270, 0, 0);
+		newFish.position = newPosition; 
+	}
+
+	public void GenerateSpider() {
+		float xOffset = Random.Range (-20, -10);
+		float zOffset = Random.Range (10, 20);
+		float scale = Random.Range (0.1f,0.3f);
+		Transform newPlant = (Transform)GameObject.Instantiate (prefabSpider);
+		newPlant.SetParent (Spiders);
+		newPlant.localScale = Vector3.one*scale;
+		newPlant.localRotation = Quaternion.Euler (0, 0, 0);
+		newPlant.position = generatorReference.position + new Vector3 (xOffset, -20, zOffset);
+	}
+
+	public void GenerateGhost() {
+		float xOffset = 20;
+		float zOffset = 20;
+		float scale = Random.Range (5f, 15f);
+		Vector3 position = Vector3.zero;
+		
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(-15f,15f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 newPosition = randomPosition + generatorReference.position;
+		
+		Transform newFish = (Transform)GameObject.Instantiate (prefabGhost);
+		newFish.SetParent (Ghosts);
+		newFish.localScale = Vector3.one * scale;
+		newFish.localRotation = Quaternion.Euler (270, 0, 0);
+		newFish.position = newPosition; 
 	}
 
 }

@@ -21,6 +21,9 @@ public class Flow : MonoBehaviour {
 	void Move() {
 		Vector3 position = transform.position;
 		position.z += distance;
-		LeanTween.move (gameObject, position, distance / speed);
+		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
+	}
+	void Des(){
+		Destroy (gameObject);
 	}
 }
