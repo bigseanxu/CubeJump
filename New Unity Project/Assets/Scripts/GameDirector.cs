@@ -14,7 +14,6 @@ public class GameDirector : MonoBehaviour {
 		if (Game.gameDirector == null) {
 			Game.gameDirector = this;
 		}
-
 	}
 	
 	// Update is called once per frame

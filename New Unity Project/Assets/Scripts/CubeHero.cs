@@ -13,6 +13,8 @@ public class CubeHero : MonoBehaviour {
 	LTDescr jumpBeforeGameTween;
 	bool isFaceLeft = true;
 	bool live=true;
+	public float forceUp = 1500;
+	public float forceForward = 300;
 	
 	enum CubeState
 	{ 
@@ -63,11 +65,8 @@ public class CubeHero : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.name == "ColliderBox") {
-			// sometimes this will0 call twice, so add a "if" here
-			if (state == CubeState.Jumping) {
-				collider.gameObject.SetActive(false);
-				LandSuccess (collider.transform.parent);
-			}
+			collider.gameObject.SetActive(false);
+			LandSuccess (collider.transform.parent);
 		} else if (collider.gameObject.name == "Water") {
 
 		}
@@ -82,11 +81,11 @@ public class CubeHero : MonoBehaviour {
 		print ("jump");
 		// give a force to jump
 		Vector3 forceForward;
-		Vector3 forceUp = new Vector3 (0, 1500, 0);
+		Vector3 forceUp = new Vector3 (0, forceUp, 0);
 		if (isFaceLeft) {
-			forceForward = Vector3.forward * 300;
+			forceForward = Vector3.forward * forceForward;
 		} else {
-			forceForward = - Vector3.right * 300;
+			forceForward = - Vector3.right * forceForward;
 		}
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
 		if (isFaceLeft) {

@@ -8,20 +8,26 @@ public class PillarGenerator : MonoBehaviour {
 	public Transform sceneGenerator;
 	public Transform diamondGenerator;
 
-	public float minSmallToSmall; 
-	public float minSmallToMedium;
+	//public float minSmallToSmall; 
+	//public float minSmallToMedium;
+
+	public float minDistance = 7;
+	public float maxDistance = 9;
 
 	public Transform startPillar2;
 	public SprayParticles sprayParticles;
+	public Vector3 gravity = new Vector3 (0, - 50, 0);
 
 
 	List<Transform> pillars = new List<Transform> ();
 	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -4.6f);
 	bool lastPillarLeft = true;
 
+
+
 	// Use this for initialization
 	void Start () {
-		Physics.gravity = new Vector3 (0, - 50, 0);
+		Physics.gravity = gravity;
 		GeneratePillar ();
 		GeneratePillar ();
 		GeneratePillar ();
@@ -40,7 +46,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.rotation = Quaternion.identity;
 
 
-		float distance = 8;
+		float distance = Random.Range (minDistance, maxDistance);
 		if (lastPillarLeft) {
 			newPillar.transform.position = lastPillarPosition + new Vector3 (- distance, 0, 0);
 			newPillar.GetComponent<HingeJoint>().connectedAnchor = newPillar.transform.position;
