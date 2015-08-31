@@ -754,7 +754,7 @@ Transform:
   - {fileID: 961989297}
   - {fileID: 1193899211}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!114 &161251058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,6 +766,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b69610ea97f1f4db501c02d7002033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenes:
+  - {fileID: 646548417}
+  - {fileID: 1162735234}
+  - {fileID: 966976257}
+  - {fileID: 1380170473}
+  - {fileID: 1484574541}
+  - {fileID: 1536363765}
   SceneGenerators:
   - {fileID: 261245971}
   - {fileID: 1853084047}
@@ -12130,6 +12137,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+--- !u!4 &1464806865 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 459042, guid: daf4e5a073ced4b45922010e636e2d55, type: 2}
+  m_PrefabInternal: {fileID: 1437263431}
 --- !u!1 &1484574540
 GameObject:
   m_ObjectHideFlags: 0
@@ -12144,7 +12155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1484574541
 Transform:
   m_ObjectHideFlags: 0
@@ -12232,6 +12243,10 @@ Prefab:
       propertyPath: sprayParticles
       value: 
       objectReference: {fileID: 312629954}
+    - target: {fileID: 5439616, guid: 84d537082b2771a439485aaeef97a8ef, type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84d537082b2771a439485aaeef97a8ef, type: 2}
   m_IsPrefabParent: 0
@@ -12493,7 +12508,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 438688, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11475922, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
       propertyPath: sceneManager
@@ -12583,6 +12598,22 @@ Prefab:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnSoundButton2Press
       objectReference: {fileID: 0}
+    - target: {fileID: 184320, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475922, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: gameLights
+      value: 
+      objectReference: {fileID: 1617458662}
+    - target: {fileID: 11475922, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: shopLights
+      value: 
+      objectReference: {fileID: 1464806865}
+    - target: {fileID: 11475922, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: shopScreen
+      value: 
+      objectReference: {fileID: 1019698195}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
   m_IsPrefabParent: 0
@@ -13111,7 +13142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pillarGenerator: {fileID: 1226805211}
-  prefabBat: {fileID: 1057514282}
+  prefabBat: {fileID: 436196, guid: e1f6b0ccb25078440a7d96ac81fe442a, type: 2}
   Bats: {fileID: 1553539365}
   prefabSpider: {fileID: 837261684}
   Spiders: {fileID: 582645142}

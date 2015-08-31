@@ -5,6 +5,10 @@ public class GameDirector : MonoBehaviour {
 	public Transform beginScreen;
 	public Transform gameScreen;
 	public Transform sceneManager;
+
+	public Transform gameLights;
+	public Transform shopLights;
+	public Transform shopScreen;
 	// Use this for initialization
 	void Start () {
 		if (Game.gameDirector == null) {
@@ -21,6 +25,12 @@ public class GameDirector : MonoBehaviour {
 				Game.isStateChanged = false;
 			}
 		}
+
+		if (shopScreen.gameObject.activeInHierarchy) {
+			gameLights.gameObject.SetActive (false);
+		} else {
+			gameLights.gameObject.SetActive (true);
+		}
 	}
 
 	public void GameStart() {
@@ -32,4 +42,5 @@ public class GameDirector : MonoBehaviour {
 	public void EventHandler() {
 
 	}
+	
 }

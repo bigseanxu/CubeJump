@@ -40,5 +40,6 @@ public class Game
 		score = 0;	
 		diamond = 0;
 	}
+
 }
 

@@ -65,6 +65,7 @@ public class PillarGenerator : MonoBehaviour {
 		}
 		newPillar.GetComponent<Pillar> ().sprayParticles = sprayParticles;
 		newPillar.gameObject.SetActive (false);
+		newPillar.GetComponent<Rigidbody> ().isKinematic = true;
 		pillars.Add (newPillar);
 
 		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);

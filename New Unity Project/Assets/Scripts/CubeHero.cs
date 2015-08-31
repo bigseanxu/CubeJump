@@ -35,7 +35,7 @@ public class CubeHero : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.y += jumpDistanceBeforeGame;
 		jumpBeforeGameTween = LeanTween.move (gameObject, pos, jumpTimeBeforeGame).setLoopPingPong(-1).setEase(LeanTweenType.easeOutQuad).setOnComplete(JumpBeforeGameCallBack).setOnCompleteOnRepeat(true);
-		print ("cubehero start " + transform.localPosition);
+//		print ("cubehero start " + transform.localPosition);
 		GetComponent<Rigidbody> ().useGravity = false;
 		GetComponent<Rigidbody> ().freezeRotation = true;
 	}
@@ -65,6 +65,7 @@ public class CubeHero : MonoBehaviour {
 		if (collider.gameObject.name == "ColliderBox") {
 			// sometimes this will0 call twice, so add a "if" here
 			if (state == CubeState.Jumping) {
+				collider.gameObject.SetActive(false);
 				LandSuccess (collider.transform.parent);
 			}
 		} else if (collider.gameObject.name == "Water") {
