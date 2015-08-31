@@ -92,12 +92,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -461
+        value: 100
         inSlope: 2616
         outSlope: 2616
         tangentMode: 10
       - time: .5
-        value: 847
+        value: 1408
         inSlope: 2616
         outSlope: 2616
         tangentMode: 10
@@ -225,12 +225,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -461
+        value: 100
         inSlope: 2616
         outSlope: 2616
         tangentMode: 10
       - time: .5
-        value: 847
+        value: 1408
         inSlope: 2616
         outSlope: 2616
         tangentMode: 10
