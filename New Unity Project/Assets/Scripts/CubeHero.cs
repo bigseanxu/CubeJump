@@ -13,8 +13,8 @@ public class CubeHero : MonoBehaviour {
 	LTDescr jumpBeforeGameTween;
 	bool isFaceLeft = true;
 	bool live=true;
-	public float forceUp = 1500;
-	public float forceForward = 300;
+	public float fForceUp = 1500;
+	public float fForceForward = 300;
 	
 	enum CubeState
 	{ 
@@ -81,11 +81,11 @@ public class CubeHero : MonoBehaviour {
 		print ("jump");
 		// give a force to jump
 		Vector3 forceForward;
-		Vector3 forceUp = new Vector3 (0, forceUp, 0);
+		Vector3 forceUp = new Vector3 (0, fForceUp, 0);
 		if (isFaceLeft) {
-			forceForward = Vector3.forward * forceForward;
+			forceForward = Vector3.forward * fForceForward;
 		} else {
-			forceForward = - Vector3.right * forceForward;
+			forceForward = - Vector3.right * fForceForward;
 		}
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
 		if (isFaceLeft) {
