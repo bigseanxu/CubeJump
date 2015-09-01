@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -66,26 +66,38 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\UIExampleCS.cs" />
      <Compile Include="Assets\PillarMaterial.cs" />
      <Compile Include="Assets\SceneLights.cs" />
-     <Compile Include="Assets\Scripts\Balloon.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraReference.cs" />
      <Compile Include="Assets\Scripts\CubeHero.cs" />
      <Compile Include="Assets\Scripts\Diamond.cs" />
      <Compile Include="Assets\Scripts\DiamondGenerator.cs" />
-     <Compile Include="Assets\Scripts\Fish.cs" />
-     <Compile Include="Assets\Scripts\Flow.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\GameDirector.cs" />
      <Compile Include="Assets\Scripts\ImageNumber.cs" />
      <Compile Include="Assets\Scripts\Pillar.cs" />
      <Compile Include="Assets\Scripts\PillarGenerator.cs" />
-     <Compile Include="Assets\Scripts\Plant.cs" />
      <Compile Include="Assets\Scripts\QuitShop.cs" />
      <Compile Include="Assets\Scripts\Ripple.cs" />
      <Compile Include="Assets\Scripts\SceneManager\BaseGenerator.cs" />
      <Compile Include="Assets\Scripts\SceneManager\SceneForestGenerator.cs" />
      <Compile Include="Assets\Scripts\SceneManager\SceneHellGenerator.cs" />
      <Compile Include="Assets\Scripts\SceneManager\SceneManager.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\AirPlane.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Balloon.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Bat.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Butterfly.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Cloud.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Crocodile.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\DragonFly.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Fish.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Flow.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Frog.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Ghost.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\LineX.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\LineZ.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Lotus.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Plant.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneObject\Spider.cs" />
      <Compile Include="Assets\Scripts\SceneManager\ScenePondGenerator.cs" />
      <Compile Include="Assets\Scripts\SceneManager\SceneSkyGenerator.cs" />
      <Compile Include="Assets\Scripts\SceneManager\SceneSpaceGenerator.cs" />
@@ -106,10 +118,10 @@
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

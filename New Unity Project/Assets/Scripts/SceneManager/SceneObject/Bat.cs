@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fish : MonoBehaviour {
+public class Bat : MonoBehaviour {
 	public float minSpeed;
 	public float maxSpeed;
 	public float distance;
-	
+
 	float speed;
 	// Use this for initialization
 	void Start () {
@@ -15,12 +15,15 @@ public class Fish : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
 	
+	}
+
 	void Move() {
 		Vector3 position = transform.position;
 		position.z += distance;
-		LeanTween.move (gameObject, position, distance / speed).setLoopClamp();
+		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
+	}
+	void Des(){
+		Destroy (gameObject);
 	}
 }

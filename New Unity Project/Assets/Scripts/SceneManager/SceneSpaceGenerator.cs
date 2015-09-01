@@ -11,7 +11,11 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Transform prefabLineLeft;
 	public Transform generatorReference;
 
+	public float verticalLineInterval = 2f;
+	public float horizontalLineInterval = 2f;
 
+	public Vector2 verticalLineScale = new Vector2(-5f, 5f);
+	public Vector2 horizontalLineScale = new Vector2(-5f, 5f);
 	public enum SceneType {
 		Space
 	};
@@ -32,23 +36,21 @@ public class SceneSpaceGenerator : BaseGenerator {
 	}
 	
 	IEnumerator Generate() {
-		if (Game.state == Game.State.Gaming) { 
-			GenerateLine();
-			GenerateLineLeft() ;
-		}
-		
-		yield return new WaitForSeconds (1);
-		yield return StartCoroutine (Generate());
+
+		StartCoroutine(GenerateLine());
+		StartCoroutine(GenerateLineLeft());
+
+		yield return null;
 	}
 
 
-	public void GenerateLine() {
+	IEnumerator GenerateLine() {
 		float xOffset = 20;
 		float zOffset = 20;
 		Vector3 position = Vector3.zero;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(-10, 10), Random.Range(-zOffset - 40, zOffset - 40));
+			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(verticalLineScale.x, verticalLineScale.y), Random.Range(-zOffset - 40, zOffset - 40));
 			Vector3 newPosition = randomPosition + generatorReference.position;
 			bool result = CheckFlowCollision(newPosition);
 			if (!result) {
@@ -61,14 +63,18 @@ public class SceneSpaceGenerator : BaseGenerator {
 		newFlow.localScale = Vector3.one;
 		newFlow.localRotation = Quaternion.Euler (90, 0, 0);
 		newFlow.position = position; 
+
+		yield return new WaitForSeconds (horizontalLineInterval);
+		yield return StartCoroutine (GenerateLine());
 	}
-	public void GenerateLineLeft() {
+
+	IEnumerator GenerateLineLeft() {
 		float xOffset = 20;
 		float zOffset = 20;
 		Vector3 position = Vector3.zero;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(-10, 10), Random.Range(-zOffset - 40, zOffset - 40));
+			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(horizontalLineScale.x, horizontalLineScale.y), Random.Range(-zOffset - 40, zOffset - 40));
 			Vector3 newPosition =generatorReference.position-randomPosition+new Vector3(30,0,-30);
 			bool result = CheckFlowCollision(newPosition);
 			if (!result) {
@@ -81,6 +87,9 @@ public class SceneSpaceGenerator : BaseGenerator {
 		newFlow.localScale = Vector3.one;
 		newFlow.localRotation = Quaternion.Euler (90, 0, 90);
 		newFlow.position = position; 
+
+		yield return new WaitForSeconds (verticalLineInterval);
+		yield return StartCoroutine (GenerateLineLeft());
 	}
 
 
