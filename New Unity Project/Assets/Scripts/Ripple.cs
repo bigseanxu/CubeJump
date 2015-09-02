@@ -30,9 +30,9 @@ public class Ripple : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if (collider.gameObject.tag =="Hero") {
+		if (collider.gameObject.name == "CubeHero") {
 			if(!isPlay)
-			PlayAnimation();
+				PlayAnimation();
 		}
 	}
 

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Shop : MonoBehaviour {
 
-
+	public Transform Hero;
 	public Transform Heroes;
 	public Transform[] cubes;//预制物体
 	public Transform name;
@@ -17,11 +18,11 @@ public class Shop : MonoBehaviour {
 
 	public Transform ShopPage;
 	public Transform StartPage;
-	public Transform tfish;
-	public Transform tcartoon;
 
 	public Transform gameScreen;
 	public Transform ctrl;
+	public Transform heroesForShow;
+
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
 	int diamondCount;
@@ -43,7 +44,7 @@ public class Shop : MonoBehaviour {
 		Quaternion qua = Quaternion.Euler(290,180,40);//这个不要改
 		for (int i=0; i<cubes.Length; i++) {
 			cube[i]=(Transform)GameObject.Instantiate(cubes[i],vec,qua);
-			cube[i].SetParent(transform);
+			cube[i].SetParent(heroesForShow);
 			cube[i].localScale=mVec;
 			//cube [i].GetComponent<Renderer> ().material.color =temp;
 			if(i<cubes.Length-1){
@@ -56,6 +57,10 @@ public class Shop : MonoBehaviour {
 			FixColor(i);
 		}
 		FixGameObject ();
+
+		//Heroes = GameObject.Find ("Heroes").transform;
+//			Heroes.GetComponent<HeroesHome> ().SetDic ();
+
 	}
 	//要修改输入条件
 	void Update () {
@@ -153,32 +158,43 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnPlayBtnClick(){
-
+		/*
 		if (cube [itemID].GetComponent<ShopItem> ().isRandom) {
 			int a;
 			do{
-				a = Random.Range (1, cube.Length-1);
+				a = Random.Range (0, cube.Length-1);
 			}
-			while(!cube[a].GetComponent<ShopItem>().isbought);
-			Game.heroName=a;
-			PlayerPrefs.SetInt("heroID",Game.heroName);
-			for(int i=0;i<Heroes.childCount;i++){
-				if(a==i){
-					Heroes.GetChild(i).gameObject.SetActive(true);
-				}else{
-					Heroes.GetChild(i).gameObject.SetActive(false);
-				}
+			while(cube[a].GetComponent<ShopItem>().isbought);
+			if(cube[a].GetComponent<ShopItem>().fish){
+				Hero.gameObject.SetActive(false);
+				tcartoon.gameObject.SetActive(false);
+				tfish.gameObject.SetActive(true);
+			}
+			else if(cube[a].GetComponent<ShopItem>().cartoon){
+				Hero.gameObject.SetActive(false);
+				tcartoon.gameObject.SetActive(true);
+				tfish.gameObject.SetActive(false);
+			}else
+			{
+				tcartoon.gameObject.SetActive(false);
+				tfish.gameObject.SetActive(false);
+				Hero.GetChild (0).GetComponent<MeshFilter> ().mesh = cube [a].GetComponent<MeshFilter> ().mesh;
 			}
 		} else {
 			if(cube[itemID].GetComponent<ShopItem>().isbought){
-				Game.heroName=itemID;
-				PlayerPrefs.SetInt("heroID",Game.heroName);
-				for(int i=0;i<Heroes.childCount;i++){
-					if(itemID==i){
-						Heroes.GetChild(i).gameObject.SetActive(true);
-					}else{
-						Heroes.GetChild(i).gameObject.SetActive(false);
-					}
+				if(cube[itemID].GetComponent<ShopItem>().fish){
+					Hero.gameObject.SetActive(false);
+					tcartoon.gameObject.SetActive(false);
+					tfish.gameObject.SetActive(true);
+				}
+				else if(cube[itemID].GetComponent<ShopItem>().cartoon){
+					Hero.gameObject.SetActive(false);
+					tcartoon.gameObject.SetActive(true);
+					tfish.gameObject.SetActive(false);
+				}else{
+					tcartoon.gameObject.SetActive(false);
+					tfish.gameObject.SetActive(false);
+					Hero.GetChild (0).GetComponent<MeshFilter> ().mesh = cube [itemID].GetComponent<MeshFilter> ().mesh;
 				}
 			}else{
 				print("未购买");
@@ -186,22 +202,25 @@ public class Shop : MonoBehaviour {
 			}
 
 		}
-
-		//Heroes.GetComponent<HeroesHome> ().GetHero (cube [itemID].GetComponent<ShopItem> ().temp);
+		*/
+		if (Hero.childCount > 0) {
+			for(int i=0;i<Hero.childCount;i++){
+				Destroy(Hero.GetChild(i).gameObject);
+			}
+		}		
+		int a;
+		do{
+			a = Random.Range (1, cube.Length-1);
+		}
+		while(!cube[a].GetComponent<ShopItem>().isbought);
+		Heroes.GetComponent<HeroesHome> ().SetDic (a);
+		HeroesHome.HeroName name = Heroes.GetComponent<HeroesHome> ().dic[cube[itemID].GetComponent<ShopItem>().name];
+		PlayerPrefs.SetInt ("HeroName", (int)name);
+		Heroes.GetComponent<HeroesHome> ().GetHero (name);
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
 		ShopPage.GetComponent<Animator> ().Play ("shopOut");
 		if (Game.state != Game.State.BeforeGame) {
-			Game.replay=true;
 			ctrl.GetComponent<GameCtrl>().ReLoad();
 		}
-
-
-	}
-
-	public void StartHero(){
-		
-
-			
-
 	}
 }

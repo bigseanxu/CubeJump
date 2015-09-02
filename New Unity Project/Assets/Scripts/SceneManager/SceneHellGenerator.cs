@@ -12,6 +12,23 @@ public class SceneHellGenerator : BaseGenerator {
 	public Transform prefabGhost;
 	public Transform Ghosts;
 	public Transform generatorReference;
+	
+	public float batInterval = 2f;
+	public float ghostInterval = 2f;
+	public float spiderInterval = 2f;
+
+	public Vector2 starScale = new Vector2(0.8f, 1.2f);
+	public Vector2 batScale = new Vector2(8f, 12f);
+	public Vector2 ghostScale = new Vector2(0.1f, 0.3f);
+	public Vector2 spiderScale = new Vector2(5f, 15f);
+
+	public Vector2 batY = new Vector2(8f, 12f);
+	public Vector2 ghostY = new Vector2(0, 5f);
+	public Vector2 spiderY = new Vector2(5f, 15f);
+	public Vector2 spiderX = new Vector2(-10, 10f);
+	public Vector2 spiderZ = new Vector2(-10f, 10f);
+
+
 	public enum SceneType {
 		Hell
 	};
@@ -32,26 +49,22 @@ public class SceneHellGenerator : BaseGenerator {
 	}
 	
 	IEnumerator Generate() {
-		if (Game.state == Game.State.Gaming) {
-			GenerateSpider ();
-			int a = Random.Range (0, 10);
-			if (a > 1)
-				GenerateBat ();
-			if (a > 2)
-				GenerateGhost ();
-		}
-		yield return new WaitForSeconds (1);
-		yield return StartCoroutine (Generate());
+
+		StartCoroutine(GenerateSpider ());
+		StartCoroutine(GenerateBat ());
+		StartCoroutine(GenerateGhost ());
+//		StartCoroutine(GenerateStars());
+		yield return null;
 	}
 	
 
-	public void GenerateBat() {
+	IEnumerator GenerateBat() {
 		float xOffset = 20;
 		float zOffset = 20;
-		float scale = Random.Range (8f, 12f);
+		float scale = Random.Range (batScale.x, batScale.y);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(10f,15f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(batY.x,batY.y), Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabBat);
@@ -59,26 +72,32 @@ public class SceneHellGenerator : BaseGenerator {
 		newFish.localScale = Vector3.one * scale;
 		newFish.localRotation = Quaternion.Euler (270, 0, 0);
 		newFish.position = newPosition; 
+
+		yield return new WaitForSeconds (batInterval);
+		yield return StartCoroutine (GenerateBat());
 	}
 
-	public void GenerateSpider() {
-		float xOffset = Random.Range (-20, -10);
-		float zOffset = Random.Range (10, 20);
-		float scale = Random.Range (0.1f,0.3f);
+	IEnumerator GenerateSpider() {
+		float xOffset = Random.Range (spiderX.x, spiderX.y);
+		float zOffset = Random.Range (spiderZ.x, spiderZ.y);
+		float scale = Random.Range (spiderScale.x, spiderScale.y);
 		Transform newPlant = (Transform)GameObject.Instantiate (prefabSpider);
 		newPlant.SetParent (Spiders);
 		newPlant.localScale = Vector3.one*scale;
 		newPlant.localRotation = Quaternion.Euler (0, 0, 0);
-		newPlant.position = generatorReference.position + new Vector3 (xOffset, -20, zOffset);
+		newPlant.position = generatorReference.position + new Vector3 (xOffset, Random.Range(spiderY.x, spiderY.y), zOffset);
+
+		yield return new WaitForSeconds (spiderInterval);
+		yield return StartCoroutine (GenerateSpider());
 	}
 
-	public void GenerateGhost() {
+	IEnumerator GenerateGhost() {
 		float xOffset = 20;
 		float zOffset = 20;
-		float scale = Random.Range (5f, 15f);
+		float scale = Random.Range (ghostScale.x, ghostScale.y);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(-15f,15f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(ghostY.x, ghostY.y), Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabGhost);
@@ -86,6 +105,9 @@ public class SceneHellGenerator : BaseGenerator {
 		newFish.localScale = Vector3.one * scale;
 		newFish.localRotation = Quaternion.Euler (270, 0, 0);
 		newFish.position = newPosition; 
+
+		yield return new WaitForSeconds (ghostInterval);
+		yield return StartCoroutine (GenerateGhost());
 	}
 
 }

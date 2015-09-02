@@ -69,12 +69,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 111760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bda7557c5b46367429f02947eca432ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 72b981f5149b97547ba30bff543fd6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 2
+  minSpeed: 4
   maxSpeed: 8
-  distance: 100
+  distance: 60
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

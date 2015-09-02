@@ -4,15 +4,13 @@ using System.Collections;
 public class CameraReference : MonoBehaviour {
 	public Transform startPillar;
 	public Transform startPillar2;
-	public Transform[] cubeHero;
+	public Transform cubeHero;
 
 	Vector3 startRef;
 	Vector3 startRef2;
 	Vector3 reference;
 	// Use this for initialization
 	void Start () {
-		Game.heroName=PlayerPrefs.GetInt("heroID",1);
-		cubeHero [Game.heroName].gameObject.SetActive (true);
 		startRef = (startPillar.position + startPillar2.position) / 2.0f;
 	}
 	
@@ -24,7 +22,7 @@ public class CameraReference : MonoBehaviour {
 	public Vector3 GetReferencePosition() {
 		Vector3 ret;
 
-		CubeHero hero = cubeHero[Game.heroName].GetComponent<CubeHero>();
+		CubeHero hero = cubeHero.GetComponent<CubeHero>();
 		if (hero.currentPillar == startPillar) {
 			ret = startRef;
 		} else {

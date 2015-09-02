@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 477950}
   - 33: {fileID: 3314302}
-  - 65: {fileID: 6529954}
   - 23: {fileID: 2304440}
   - 114: {fileID: 11489746}
   m_Layer: 0
@@ -41,7 +40,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: ae34d3137c9ccfd4894c737874c1177e, type: 2}
+  - {fileID: 2100000, guid: 2e1c653699404e14d81ae95c07e0e92d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -62,18 +61,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116416}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6529954
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116416}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11489746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,12 +69,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 116416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6941d40bb075a18408beee6927769aaa, type: 3}
+  m_Script: {fileID: 11500000, guid: b3625b728b4679741a077c20ed193e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 2
-  maxSpeed: 4
-  distance: 4
+  minSpeed: .100000001
+  maxSpeed: .300000012
+  distance: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

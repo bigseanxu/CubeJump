@@ -10,6 +10,9 @@ public class SceneManager : MonoBehaviour {
 		Hell,
 		Space
 	};
+
+	public Transform[] scenes;
+
 	public Transform [] SceneGenerators;
 	public Transform background;
 	public Transform lights;
@@ -23,15 +26,16 @@ public class SceneManager : MonoBehaviour {
 		currSceneType = (SceneType) type;
 		background.GetComponent<Background> ().SetBackground (type);
 		lights.GetComponent<SceneLights> ().SetLights (type);
+		scenes [type].gameObject.SetActive (true);
 		Game.sceneType = type;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (currSceneType != sceneType) {
-			currSceneType = sceneType;
-			ChangeScene(currSceneType);
-		}
+//		if (currSceneType != sceneType) {
+//			currSceneType = sceneType;
+//			ChangeScene(currSceneType);
+//		}
 	}
 
 	public void ChangeScene(SceneType type) {
@@ -42,6 +46,7 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	public void Generate() {
+		print ("generate");
 		SceneGenerators [(int)currSceneType].GetComponent<BaseGenerator> () .StartGenerate ();
 	}
 }

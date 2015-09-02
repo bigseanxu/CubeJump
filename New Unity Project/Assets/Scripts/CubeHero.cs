@@ -13,6 +13,8 @@ public class CubeHero : MonoBehaviour {
 	LTDescr jumpBeforeGameTween;
 	bool isFaceLeft = true;
 	bool live=true;
+	public float fForceUp = 1500;
+	public float fForceForward = 300;
 	
 	enum CubeState
 	{ 
@@ -30,12 +32,12 @@ public class CubeHero : MonoBehaviour {
 		currentPillar = GameObject.Find ("StartPillar").transform;
 		pillarGenerator = GameObject.Find ("PillarGenerator").transform;
 		cameraReference = GameObject.Find ("CameraReference").transform;
-		cameraReference.GetComponent<CameraReference> ().cubeHero[Game.heroName] = transform;
+		cameraReference.GetComponent<CameraReference> ().cubeHero = transform;
 
 		Vector3 pos = transform.position;
 		pos.y += jumpDistanceBeforeGame;
 		jumpBeforeGameTween = LeanTween.move (gameObject, pos, jumpTimeBeforeGame).setLoopPingPong(-1).setEase(LeanTweenType.easeOutQuad).setOnComplete(JumpBeforeGameCallBack).setOnCompleteOnRepeat(true);
-		print ("cubehero start " + transform.localPosition);
+//		print ("cubehero start " + transform.localPosition);
 		GetComponent<Rigidbody> ().useGravity = false;
 		GetComponent<Rigidbody> ().freezeRotation = true;
 	}
@@ -51,6 +53,7 @@ public class CubeHero : MonoBehaviour {
 		}	
 
 		if (Input.GetMouseButtonUp (0)) {
+			if(!Game.pause)
 			Jump();
 		}
 		if (transform.position.y < -40) {
@@ -63,16 +66,33 @@ public class CubeHero : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.name == "ColliderBox") {
-			// sometimes this will0 call twice, so add a "if" here
-			if (state == CubeState.Jumping) {
-				LandSuccess (collider.transform.parent);
-			}
-		} else if (collider.gameObject.name == "Water") {
+			collider.gameObject.SetActive(false);
+			LandSuccess (collider.transform.parent);
+		} else if (collider.gameObject.tag == "Pillar") {
+
+				
 
 		}
 	}
 
+	void OnCollisionEnter(Collision collision){
+		int a = transform.GetChild (0).childCount;
+		if (state== CubeState.Jumping&& collision.gameObject.tag=="Pillar") {
+			
+			transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
+			transform.GetChild (0).GetComponent<TrailRenderer> ().enabled = false;
+			if(a==0)
+				return;
+			if(a>1)
+				transform.GetChild (0).GetChild (0).gameObject.SetActive (false);
+			transform.GetComponent<BoxCollider>().isTrigger=true;
+			transform.GetChild (0).GetChild (a-1).gameObject.SetActive (true);
+			
+		}
+	}
+
 	void Jump() {
+
 		if (state != CubeState.Ready) {
 			print ("state is not ready, so we cannot jump");
 			return;
@@ -81,11 +101,11 @@ public class CubeHero : MonoBehaviour {
 		print ("jump");
 		// give a force to jump
 		Vector3 forceForward;
-		Vector3 forceUp = new Vector3 (0, 1500, 0);
+		Vector3 forceUp = new Vector3 (0, fForceUp, 0);
 		if (isFaceLeft) {
-			forceForward = Vector3.forward * 300;
+			forceForward = Vector3.forward * fForceForward;
 		} else {
-			forceForward = - Vector3.right * 300;
+			forceForward = - Vector3.right * fForceForward;
 		}
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
 		if (isFaceLeft) {
@@ -100,6 +120,7 @@ public class CubeHero : MonoBehaviour {
 	}
 
 	void LandSuccess (Transform pillar) {
+		state = CubeState.Fall;
 		live = true;
 		print ("LandSuccess");
 		isFaceLeft = !isFaceLeft;

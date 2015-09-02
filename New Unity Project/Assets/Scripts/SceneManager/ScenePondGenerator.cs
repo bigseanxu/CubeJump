@@ -18,7 +18,20 @@ public class ScenePondGenerator : BaseGenerator {
 	public Transform frog;
 	public Transform lotus;
 	public Transform generatorReference;
-	public Transform ParticleRain;
+
+	public float flowInterval = 2f;
+	public float plantInterval = 2f;
+	public float frogInterval = 2f;
+	public float lotusInterval = 2f;
+	public float coInterval = 2f;
+	public float butterflyInterval = 2f;
+
+	public Vector2 frogScale = new Vector2(8f, 12f);
+	public Vector2 lotusScale = new Vector2(8f, 12f);
+	public Vector2 coScale = new Vector2(8f, 12f);
+	public Vector2 butterflyScale = new Vector2(8f, 12f);
+
+	public Vector2 butterflyY = new Vector2(12f, 12f);
 
 	public enum SceneType {
 		Pond
@@ -40,26 +53,20 @@ public class ScenePondGenerator : BaseGenerator {
 	}
 
 	IEnumerator Generate() {
-		if (Game.state == Game.State.Gaming) { 
-			GeneratePlant();
-		}
-		GenerateFlow();
-		int a=Random.Range(0,10);
-		if(a>5)
-			GenerateFrog();
-		if(a>5)
-			GenerateLotus();
-		if(a>7)
-			GenerateCo();
-		if(a>7)
-			GenerateButterfly();
-		yield return new WaitForSeconds (1);
-		yield return StartCoroutine (Generate());
+
+		StartCoroutine(GenerateFlow());
+		StartCoroutine(GeneratePlant());
+		StartCoroutine(GenerateFrog());
+        StartCoroutine(GenerateLotus());
+        StartCoroutine(GenerateCo());
+     //   StartCoroutine(GenerateButterfly());
+	
+		yield return null;
 	}
 
 
 
-	public void GenerateFlow() {
+	IEnumerator GenerateFlow() {
 		float xOffset = 20;
 		float zOffset = 20;
 		Vector3 position = Vector3.zero;
@@ -67,7 +74,6 @@ public class ScenePondGenerator : BaseGenerator {
 		while (true) {
 			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
 			Vector3 newPosition = randomPosition + generatorReference.position;
-			ParticleRain.position=generatorReference.position;
 			bool result = CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
@@ -79,9 +85,12 @@ public class ScenePondGenerator : BaseGenerator {
 		newFlow.localScale = Vector3.one;
 		newFlow.localRotation = Quaternion.Euler (0, 0, 0);
 		newFlow.position = position; 
+
+		yield return new WaitForSeconds (flowInterval);
+		yield return StartCoroutine (GenerateFlow());
 	}
 
-	public void GeneratePlant() {
+	IEnumerator GeneratePlant() {
 		float xOffset = Random.Range (-20, 0);
 		float zOffset = Random.Range (0, 20);
 		
@@ -90,13 +99,16 @@ public class ScenePondGenerator : BaseGenerator {
 		newPlant.localScale = Vector3.one;
 		newPlant.localRotation = Quaternion.Euler (270, 0, 0);
 		newPlant.position = generatorReference.position + new Vector3 (xOffset, 0, zOffset);
+
+		yield return new WaitForSeconds (plantInterval);
+		yield return StartCoroutine (GeneratePlant());
 	}
 	
 
-	public void GenerateFrog() {
+	IEnumerator GenerateFrog() {
 		float xOffset = 20;
 		float zOffset = 20;
-		float scale = Random.Range (8f, 12f);
+		float scale = Random.Range (frogScale.x, frogScale.y);
 		Vector3 position = Vector3.zero;
 		// 1. generate a random coordinate
 		while (true) {
@@ -113,13 +125,16 @@ public class ScenePondGenerator : BaseGenerator {
 		newFrog.localScale = Vector3.one*scale;
 		newFrog.localRotation = Quaternion.Euler (270, 0, 0);
 		newFrog.position = position; 
+
+		yield return new WaitForSeconds (frogInterval);
+		yield return StartCoroutine (GenerateFrog());
 	}
 
-	public void GenerateLotus() {
+	IEnumerator GenerateLotus() {
 		float xOffset = 20;
 		float zOffset = 20;
 		Vector3 position = Vector3.zero;
-		float scale = Random.Range (8f, 12f);
+		float scale = Random.Range (lotusScale.x, lotusScale.y);
 		// 1. generate a random coordinate
 		while (true) {
 			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
@@ -135,13 +150,16 @@ public class ScenePondGenerator : BaseGenerator {
 		newLotus.localScale = Vector3.one*scale;
 		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
 		newLotus.position = position; 
+
+		yield return new WaitForSeconds (lotusInterval);
+		yield return StartCoroutine (GenerateLotus());
 	}
 
-	public void GenerateCo() {
+	IEnumerator GenerateCo() {
 		float xOffset = 20;
 		float zOffset = 20;
 		Vector3 position = Vector3.zero;
-		float scale = Random.Range (8f, 12f);
+		float scale = Random.Range (coScale.x, coScale.y);
 		// 1. generate a random coordinate
 		while (true) {
 			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
@@ -157,15 +175,19 @@ public class ScenePondGenerator : BaseGenerator {
 		newLotus.localScale = Vector3.one*scale;
 		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
 		newLotus.position = position; 
+
+		yield return new WaitForSeconds (coInterval);
+		yield return StartCoroutine (GenerateCo());
 	}
 
-	public void GenerateButterfly() {
+	IEnumerator GenerateButterfly() {
 		float xOffset = 20;
 		float zOffset = 20;
-		float scale = Random.Range (8f, 12f);
+		float scale = Random.Range (butterflyScale.x, butterflyScale.y);
+		float yOffset = Random.Range (butterflyY.x, butterflyY.y);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 12, Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), yOffset, Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabButterfly);
@@ -173,6 +195,9 @@ public class ScenePondGenerator : BaseGenerator {
 		newFish.localScale = Vector3.one * scale;
 		newFish.localRotation = Quaternion.Euler (270, 0, 0);
 		newFish.position = newPosition; 
+
+		yield return new WaitForSeconds (butterflyInterval);
+		yield return StartCoroutine (GenerateButterfly());
 	}
 
 	bool CheckFlowCollision(Vector3 pos) {

@@ -13,6 +13,21 @@ public class SceneSkyGenerator : BaseGenerator {
 	public Transform Balloons;
 	public Transform generatorReference;
 
+	public float cloudInterval = 2f;
+	public float planeInterval = 2f;
+	public float ballonInterval = 2f;
+
+	public Vector2 planeScale = new Vector2(10f, 20f);
+	public Vector2 ballonScale = new Vector2(8f, 12f);
+
+	public Vector2 planeY = new Vector2(10f, 20f);
+	public Vector2 ballonY = new Vector2(8f, 12f);
+	public Vector2 ballonX = new Vector2(-10f, 10f);
+	public Vector2 ballonZ = new Vector2(-10f, 10f);
+
+	public Vector2 cloudY = new Vector2(-5f, 5f);
+
+
 	public enum SceneType {
 		Sky
 	};
@@ -33,29 +48,23 @@ public class SceneSkyGenerator : BaseGenerator {
 	}
 	
 	IEnumerator Generate() {
-		if (Game.state == Game.State.Gaming) { 
-			GenerateCloud();
-			//GeneratePlant();
-			int a=Random.Range(0,10);
 
-			if(a>4)
-				GeneratePlane();
-			if(a>5)
-				GenerateBallon();
+		StartCoroutine(GenerateCloud());
+		StartCoroutine(GeneratePlane());
+		StartCoroutine(GenerateBallon());
 
-		}
-		
-		yield return new WaitForSeconds (1);
-		yield return StartCoroutine (Generate());
+		yield return null;
 	}
-	public void GenerateCloud() {
+
+	IEnumerator GenerateCloud() {
 		float xOffset = 20;
 		float zOffset = 20;
 		float scale = 10f;
+
 		int i = Random.Range (0, 5);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(1f, 10f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(cloudY.x, cloudY.y), Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabCloud[i]);
@@ -63,26 +72,32 @@ public class SceneSkyGenerator : BaseGenerator {
 		newFish.localScale = Vector3.one * scale;
 		newFish.localRotation = Quaternion.Euler (0, 0, 0);
 		newFish.position = newPosition; 
+		
+		yield return new WaitForSeconds (cloudInterval);
+		yield return StartCoroutine (GenerateCloud());
 	}
 
-	public void GenerateBallon() {
-		float xOffset = Random.Range (-20, -10);
-		float zOffset = Random.Range (10, 20);
-		float scale = Random.Range (10, 20);
+	IEnumerator GenerateBallon() {
+		float xOffset = Random.Range (ballonX.x, ballonX.y);
+		float zOffset = Random.Range (ballonZ.x, ballonZ.y);
+		float scale = Random.Range (ballonScale.x, ballonScale.y);
 		Transform newPlant = (Transform)GameObject.Instantiate (prefabBalloon);
 		newPlant.SetParent (Balloons);
 		newPlant.localScale = Vector3.one*scale;
 		newPlant.localRotation = Quaternion.Euler (0, 0, 0);
-		newPlant.position = generatorReference.position + new Vector3 (xOffset, -20, zOffset);
+		newPlant.position = generatorReference.position + new Vector3 (xOffset, Random.Range(ballonY.x, ballonY.y), zOffset);
+		
+		yield return new WaitForSeconds (ballonInterval);
+		yield return StartCoroutine (GenerateBallon());
 	}
 
-	public void GeneratePlane() {
+	IEnumerator GeneratePlane() {
 		float xOffset = 20;
 		float zOffset = 20;
-		float scale = Random.Range (8f, 12f);
+		float scale = Random.Range (planeScale.x, planeScale.y);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(10f,15f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(planeY.x, planeY.y), Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabPlane);
@@ -90,6 +105,9 @@ public class SceneSkyGenerator : BaseGenerator {
 		newFish.localScale = Vector3.one * scale;
 		newFish.localRotation = Quaternion.Euler (270, 0, 0);
 		newFish.position = newPosition; 
+		
+		yield return new WaitForSeconds (planeInterval);
+		yield return StartCoroutine (GeneratePlane());
 	}
 
 }

@@ -17,7 +17,7 @@ public class Diamond : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if (collider.gameObject.tag =="Hero") {
+		if (collider.gameObject.name == "CubeHero") {
 			particles.transform.position = transform.position;
 			particles.time = 0;
 			particles.Play();

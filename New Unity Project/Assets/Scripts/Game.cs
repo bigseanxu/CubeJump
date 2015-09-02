@@ -18,9 +18,14 @@ public class Game
 	public static int sceneType = 0;
 	public static bool replay=false;
 	public static string sHeroName = "";	
+	public static bool isInit = false;
+	public static bool pause = false;
 
 	public static void Init() {
-		heroName = PlayerPrefs.GetInt ("HeroName", 0);
+		if (!isInit) {
+			heroName = PlayerPrefs.GetInt ("HeroName", 0);
+			isInit = true;
+		}
 	}
 
 	public static void StartGame() {
@@ -38,9 +43,11 @@ public class Game
 		state = State.BeforeGame;   
 		isStateChanged = false;	
 		gameDirector = null;	
-		heroName = 0;	
+		//heroName = 0;	
 		score = 0;	
 		diamond = 0;
+		isInit = false;
 	}
+
 }
 
