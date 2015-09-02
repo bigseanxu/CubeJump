@@ -87,11 +87,17 @@ public class CubeHero : MonoBehaviour {
 		} else {
 			forceForward = - Vector3.right * fForceForward;
 		}
+
+		Vector3 finalForce = Quaternion.Inverse (transform.rotation) * (forceForward + forceUp);
+		gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
+
 		if (isFaceLeft) {
-			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);
+			//LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);
+			transform.rotation = Quaternion.Euler(-90, 0, 0);
 		} else {
-			LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.2f);
+			//LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.2f);
+			transform.rotation = Quaternion.Euler(-90, -90, 0);
         }
         // freeze rotation
 		GetComponent<Rigidbody> ().freezeRotation = true;

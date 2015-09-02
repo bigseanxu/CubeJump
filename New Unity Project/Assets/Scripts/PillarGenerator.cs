@@ -13,7 +13,7 @@ public class PillarGenerator : MonoBehaviour {
 
 	public float minDistance = 7;
 	public float maxDistance = 9;
-
+	public Transform startPillar;
 	public Transform startPillar2;
 	public SprayParticles sprayParticles;
 	public Vector3 gravity = new Vector3 (0, - 50, 0);
@@ -28,6 +28,8 @@ public class PillarGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Physics.gravity = gravity;
+		pillars.Add (startPillar);
+		pillars.Add (startPillar2);
 		GeneratePillar ();
 		GeneratePillar ();
 		GeneratePillar ();
@@ -39,7 +41,15 @@ public class PillarGenerator : MonoBehaviour {
 	}
 
 	public void GeneratePillar() {
-		Transform prefab = pillarPrefabs [Random.Range (0, pillarPrefabs.Length)];
+		int rangeA = 0;
+		int rangeB = pillarPrefabs.Length;
+		if (pillars [pillars.Count - 1].name.Contains ("5x5")) {
+			rangeB = rangeB - 1;
+		} else if (pillars [pillars.Count - 1].name.Contains ("15x15")) {
+			rangeA = 1;
+		}
+
+		Transform prefab = pillarPrefabs [Random.Range (rangeA, rangeB)];
 		Transform newPillar = (Transform)GameObject.Instantiate (prefab, Vector3.zero, Quaternion.identity);
 		newPillar.SetParent (pillarGroup);
 		newPillar.localScale = Vector3.one;

@@ -13,7 +13,7 @@ public class SceneManager : MonoBehaviour {
 
 	public Transform[] scenes;
 
-	public Transform [] SceneGenerators;
+	public Transform [] sceneGenerators;
 	public Transform background;
 	public Transform lights;
 
@@ -22,7 +22,7 @@ public class SceneManager : MonoBehaviour {
 	SceneType currSceneType = 0;
 	// Use this for initialization
 	void Start () {
-		int type = Random.Range (0, 5);
+		int type = Random.Range (0, sceneGenerators.Length);
 		currSceneType = (SceneType) type;
 		background.GetComponent<Background> ().SetBackground (type);
 		lights.GetComponent<SceneLights> ().SetLights (type);
@@ -46,7 +46,7 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	public void Generate() {
-		print ("generate");
-		SceneGenerators [(int)currSceneType].GetComponent<BaseGenerator> () .StartGenerate ();
+		print ("generate " + currSceneType);
+		sceneGenerators [(int)currSceneType].GetComponent<BaseGenerator> () .StartGenerate ();
 	}
 }
