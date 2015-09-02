@@ -12,5 +12,9 @@ public class QuitShop : MonoBehaviour {
 	public void InShop(){
 		shopscreen.GetComponent<Animator>().Play ("shopIn");
 	}
-	
+	public void OnContinue(){
+		Time.timeScale = 1;
+		Game.pause = false;
+	}
+
 }

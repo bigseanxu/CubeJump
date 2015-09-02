@@ -38,14 +38,14 @@ public class HeroesHome : MonoBehaviour {
 	// Use this for initialization
 	public void Start () {
 		Game.Init ();
-		SetDic ();
+		//SetDic ();
 		name = (HeroName)Game.heroName;
 		print ("heroname = " + name);
 		GetHero (name);
 	}
 
-	void SetDic(){
-		dic.Add ("Random", HeroName.Cube);
+	public void SetDic(int a){
+		dic.Add ("Random", (HeroName)a);
 		dic.Add ("Alpaca", HeroName.Alpaca);
 		dic.Add ("Cartoon", HeroName.Cartoon);
 		dic.Add ("Chicken", HeroName.Chicken);

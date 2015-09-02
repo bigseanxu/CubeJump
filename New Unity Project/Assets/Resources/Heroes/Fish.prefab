@@ -97,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &143252
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +398,8 @@ MonoBehaviour:
   cameraReference: {fileID: 0}
   jumpDistanceBeforeGame: 3
   jumpTimeBeforeGame: .600000024
+  fForceUp: 1500
+  fForceForward: 300
 --- !u!137 &13721854
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

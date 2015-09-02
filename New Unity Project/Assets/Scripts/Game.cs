@@ -19,6 +19,7 @@ public class Game
 	public static bool replay=false;
 	public static string sHeroName = "";	
 	public static bool isInit = false;
+	public static bool pause = false;
 
 	public static void Init() {
 		if (!isInit) {

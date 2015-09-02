@@ -53,6 +53,7 @@ public class CubeHero : MonoBehaviour {
 		}	
 
 		if (Input.GetMouseButtonUp (0)) {
+			if(!Game.pause)
 			Jump();
 		}
 		if (transform.position.y < -40) {
@@ -69,6 +70,22 @@ public class CubeHero : MonoBehaviour {
 			LandSuccess (collider.transform.parent);
 		} else if (collider.gameObject.name == "Water") {
 
+		}
+	}
+
+	void OnCollisionEnter(Collision collision){
+		int a = transform.GetChild (0).childCount;
+		if (state== CubeState.Jumping&& collision.gameObject.tag=="Pillar") {
+			
+			transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
+			transform.GetChild (0).GetComponent<TrailRenderer> ().enabled = false;
+			if(a==0)
+				return;
+			if(a>1)
+				transform.GetChild (0).GetChild (0).gameObject.SetActive (false);
+			transform.GetComponent<BoxCollider>().isTrigger=true;
+			transform.GetChild (0).GetChild (a-1).gameObject.SetActive (true);
+			
 		}
 	}
 
@@ -93,11 +110,9 @@ public class CubeHero : MonoBehaviour {
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
 
 		if (isFaceLeft) {
-			//LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);
-			transform.rotation = Quaternion.Euler(-90, 0, 0);
+			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);
 		} else {
-			//LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.2f);
-			transform.rotation = Quaternion.Euler(-90, -90, 0);
+			LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.2f);
         }
         // freeze rotation
 		GetComponent<Rigidbody> ().freezeRotation = true;
@@ -106,6 +121,7 @@ public class CubeHero : MonoBehaviour {
 	}
 
 	void LandSuccess (Transform pillar) {
+		state = CubeState.Fall;
 		live = true;
 		print ("LandSuccess");
 		isFaceLeft = !isFaceLeft;

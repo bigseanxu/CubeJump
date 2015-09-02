@@ -12,6 +12,7 @@ public class GameCtrl : MonoBehaviour {
 	public Transform GameOn;
 	public Transform Loading;
 	public Transform Share;
+	public Transform CountDown;
 	public Transform SoundBtn1;
 	public Transform SoundBtn2;
 	bool shareAppear=false;
@@ -75,14 +76,19 @@ public class GameCtrl : MonoBehaviour {
 		StopPage.GetComponent<Animator> ().Play ("Stop appear");
 		SoundBtn2.GetComponent<Toggle> ().isOn =(a==0)? true:false;
 		StopBtn.gameObject.SetActive (false);
-
+		Game.pause = true;
+		Time.timeScale = 0;
 	}
 
 	public void OnContinueButtonPress() {
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
+		CountDown.gameObject.SetActive (true);
+		CountDown.GetComponent<Animator> ().Play ("CountDown");
 		StopBtn.gameObject.SetActive (true);
-		
+		//Time.timeScale = 1;
+		//StartCoroutine (PauseFlag ());
 	}
+
 	public void OnShareMenuButtonPress() {
 		print ("OnShareMenuButtonPress");
 		if(!shareAppear)
@@ -97,6 +103,7 @@ public class GameCtrl : MonoBehaviour {
 		//LoadGameOver ();
 	}
 	public void OnHomeButtonPress() {
+		Time.timeScale = 1;
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
 		StartPage.gameObject.SetActive (true);
 		StartPage.GetComponent<Animator> ().Play ("Begin appear");
@@ -104,6 +111,7 @@ public class GameCtrl : MonoBehaviour {
 		ReLoad ();
 	}
 	public void OnHomeOverButtonPress() {
+		Time.timeScale = 1;
 		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
 		StartPage.gameObject.SetActive (true);
@@ -113,6 +121,7 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnRestartButtonPress() {
+		Time.timeScale = 1;
 		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
 		StartPage.gameObject.SetActive (true);

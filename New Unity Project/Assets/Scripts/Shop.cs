@@ -207,8 +207,13 @@ public class Shop : MonoBehaviour {
 			for(int i=0;i<Hero.childCount;i++){
 				Destroy(Hero.GetChild(i).gameObject);
 			}
+		}		
+		int a;
+		do{
+			a = Random.Range (1, cube.Length-1);
 		}
-
+		while(!cube[a].GetComponent<ShopItem>().isbought);
+		Heroes.GetComponent<HeroesHome> ().SetDic (a);
 		HeroesHome.HeroName name = Heroes.GetComponent<HeroesHome> ().dic[cube[itemID].GetComponent<ShopItem>().name];
 		PlayerPrefs.SetInt ("HeroName", (int)name);
 		Heroes.GetComponent<HeroesHome> ().GetHero (name);
