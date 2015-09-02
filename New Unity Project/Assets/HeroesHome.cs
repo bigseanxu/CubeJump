@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HeroesHome : MonoBehaviour {
 	public enum HeroName {
@@ -25,15 +26,48 @@ public class HeroesHome : MonoBehaviour {
 		Unicorn,
 		Whale
 	}
-	public Transform CubeHero;
+
+	public List<string> HeroNameString = new List<string> ();
+
+	public Transform cubeHero;
 	HeroName name;
 
+	public Dictionary<string,HeroName> dic=new Dictionary<string, HeroName>();
+
+
 	// Use this for initialization
-	void Start () {
+	public void Start () {
+		Game.Init ();
+		SetDic ();
 		name = (HeroName)Game.heroName;
+		print ("heroname = " + name);
 		GetHero (name);
 	}
-	
+
+	void SetDic(){
+		dic.Add ("Random", HeroName.Cube);
+		dic.Add ("Alpaca", HeroName.Alpaca);
+		dic.Add ("Cartoon", HeroName.Cartoon);
+		dic.Add ("Chicken", HeroName.Chicken);
+		dic.Add ("Crab", HeroName.Crab);
+		dic.Add ("Deer", HeroName.Deer);
+		dic.Add ("Dinosaur", HeroName.Dinosaur);
+		dic.Add ("Dog", HeroName.Dog);
+		dic.Add ("Dragon", HeroName.Dragon);
+		dic.Add ("Duck", HeroName.Duck);
+		dic.Add ("Elephant", HeroName.Elephant);
+		dic.Add ("Fish", HeroName.Fish);
+		dic.Add ("Flamingos", HeroName.Flamingos);
+		dic.Add ("Giraffe", HeroName.Giraffe);
+		dic.Add ("Lion", HeroName.Lion);
+		dic.Add ("Mushroom", HeroName.Mushroom);
+		dic.Add ("Penguin", HeroName.Penguin);
+		dic.Add ("Snail", HeroName.Snail);
+		dic.Add ("Spider", HeroName.Spider);
+		dic.Add ("Unicorn", HeroName.Unicorn);
+		dic.Add ("Whale", HeroName.Whale);
+	}
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -113,7 +147,8 @@ public class HeroesHome : MonoBehaviour {
 		}
 
 		hero = Instantiate (heroPrefab);
-		hero.transform.SetParent (transform);
+		hero.transform.SetParent (cubeHero);
+		hero.transform.localRotation = Quaternion.identity;
 		hero.transform.localPosition = Vector3.zero;
 
 		return hero;

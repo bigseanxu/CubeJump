@@ -12,11 +12,12 @@ public class SceneHellGenerator : BaseGenerator {
 	public Transform prefabGhost;
 	public Transform Ghosts;
 	public Transform generatorReference;
-
+	
 	public float batInterval = 2f;
 	public float ghostInterval = 2f;
 	public float spiderInterval = 2f;
 
+	public Vector2 starScale = new Vector2(0.8f, 1.2f);
 	public Vector2 batScale = new Vector2(8f, 12f);
 	public Vector2 ghostScale = new Vector2(0.1f, 0.3f);
 	public Vector2 spiderScale = new Vector2(5f, 15f);
@@ -24,6 +25,9 @@ public class SceneHellGenerator : BaseGenerator {
 	public Vector2 batY = new Vector2(8f, 12f);
 	public Vector2 ghostY = new Vector2(0, 5f);
 	public Vector2 spiderY = new Vector2(5f, 15f);
+	public Vector2 spiderX = new Vector2(-10, 10f);
+	public Vector2 spiderZ = new Vector2(-10f, 10f);
+
 
 	public enum SceneType {
 		Hell
@@ -49,7 +53,7 @@ public class SceneHellGenerator : BaseGenerator {
 		StartCoroutine(GenerateSpider ());
 		StartCoroutine(GenerateBat ());
 		StartCoroutine(GenerateGhost ());
-	
+//		StartCoroutine(GenerateStars());
 		yield return null;
 	}
 	
@@ -74,8 +78,8 @@ public class SceneHellGenerator : BaseGenerator {
 	}
 
 	IEnumerator GenerateSpider() {
-		float xOffset = Random.Range (-20, -10);
-		float zOffset = Random.Range (10, 20);
+		float xOffset = Random.Range (spiderX.x, spiderX.y);
+		float zOffset = Random.Range (spiderZ.x, spiderZ.y);
 		float scale = Random.Range (spiderScale.x, spiderScale.y);
 		Transform newPlant = (Transform)GameObject.Instantiate (prefabSpider);
 		newPlant.SetParent (Spiders);

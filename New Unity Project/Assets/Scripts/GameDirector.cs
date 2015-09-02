@@ -25,11 +25,11 @@ public class GameDirector : MonoBehaviour {
 			}
 		}
 
-		if (shopScreen.gameObject.activeInHierarchy) {
-			gameLights.gameObject.SetActive (false);
-		} else {
-			gameLights.gameObject.SetActive (true);
-		}
+//		if (shopScreen.gameObject.activeInHierarchy) {
+//			gameLights.gameObject.SetActive (false);
+//		} else {
+//			gameLights.gameObject.SetActive (true);
+//		}
 	}
 
 	public void GameStart() {

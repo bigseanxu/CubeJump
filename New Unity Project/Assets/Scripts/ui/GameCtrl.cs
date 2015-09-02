@@ -27,6 +27,10 @@ public class GameCtrl : MonoBehaviour {
 		else
 			SoundBtn1.GetComponent<Toggle> ().isOn = false;
 		Game.diamond=PlayerPrefs.GetInt ("Diamonds");
+		if (Game.replay) {
+			Game.StartGame ();
+			Game.replay=false;
+		}
 	}
 	
 	// Update is called once per frame
@@ -47,7 +51,12 @@ public class GameCtrl : MonoBehaviour {
 	public void OnShopCloseButtonPress() {
 		Shop.GetComponent<Animator> ().Play ("shopOut");
 		StartPage.gameObject.SetActive (true);
-		StartPage.GetComponent<Animator> ().Play ("Begin appear");
+		if (Game.state == Game.State.GameOver) {
+			LoadGameOver ();
+		} else {
+			StartPage.GetComponent<Animator> ().Play ("Begin appear");
+		}
+
 	}
 
 	public void OnSoundButton1Press() {
@@ -75,6 +84,7 @@ public class GameCtrl : MonoBehaviour {
 		
 	}
 	public void OnShareMenuButtonPress() {
+		print ("OnShareMenuButtonPress");
 		if(!shareAppear)
 			Share.GetComponent<Animator> ().Play ("Share appear");
 		if(shareAppear)
@@ -102,6 +112,15 @@ public class GameCtrl : MonoBehaviour {
 		ReLoad ();
 	}
 
+	public void OnRestartButtonPress() {
+		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
+		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
+		StartPage.gameObject.SetActive (true);
+		StartPage.GetComponent<Animator> ().Play ("Begin appear");
+		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+		ReLoad ();
+		Game.replay = true;
+	}
 
 
 	public void LoadGameOver(){

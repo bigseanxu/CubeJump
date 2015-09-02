@@ -19,9 +19,14 @@ public class SceneForestGenerator : BaseGenerator {
 	public float flyInterval = 2f;
 	public float butterflyInterval = 2f;
 
+	public Vector2 starScale = new Vector2(0.8f, 1.2f);
+
 	public Vector2 butterflyScale = new Vector2 (8f, 12f);
 	public Vector2 butterflyY = new Vector2(12f, 12f);
 
+	public Vector2 cloudY = new Vector2(-5f, 5f);
+	public Vector2 dragonflyY = new Vector2(-5f, 5f);
+	public Vector2 dragonflyScale = new Vector2(8f, 12f);
 	public enum SceneType {
 		Forest
 	};
@@ -55,7 +60,7 @@ public class SceneForestGenerator : BaseGenerator {
 		int i = Random.Range (0, 5);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(1f, 10f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(cloudY.x, cloudY.y), Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabCloud[i]);
@@ -85,10 +90,10 @@ public class SceneForestGenerator : BaseGenerator {
 	IEnumerator GenerateFly() {
 		float xOffset = 20;
 		float zOffset = 20;
-		float scale = 10;
+		float scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(10f, 15f), Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(dragonflyY.x, dragonflyY.y), Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabFly);
@@ -114,7 +119,7 @@ public class SceneForestGenerator : BaseGenerator {
 		Transform newFish = (Transform)GameObject.Instantiate (prefabButterfly);
 		newFish.SetParent (Butterflies);
 		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (270, 0, 0);
+		newFish.localRotation = Quaternion.Euler (285, 0, 0);
 		newFish.position = newPosition; 
 
 		yield return new WaitForSeconds (butterflyInterval);

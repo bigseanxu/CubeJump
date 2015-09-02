@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\HeroesHome.cs" />
+     <Compile Include="Assets\HeroesSpriteCreater.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GUIExamplesCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2dCS.cs" />
@@ -113,6 +114,7 @@
      <Compile Include="Assets\Scripts\ui\ShowNumberInCanvas.cs" />
      <Compile Include="Assets\Scripts\ui\Sound.cs" />
      <Compile Include="Assets\Scripts\ui\TapToPlay.cs" />
+     <Compile Include="Assets\Star.cs" />
      <Compile Include="Assets\test.cs" />
      <None Include="Assets\Materials\Particle\Translucent.shader" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />

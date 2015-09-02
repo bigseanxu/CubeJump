@@ -59,7 +59,7 @@ public class ScenePondGenerator : BaseGenerator {
 		StartCoroutine(GenerateFrog());
         StartCoroutine(GenerateLotus());
         StartCoroutine(GenerateCo());
-        StartCoroutine(GenerateButterfly());
+     //   StartCoroutine(GenerateButterfly());
 	
 		yield return null;
 	}

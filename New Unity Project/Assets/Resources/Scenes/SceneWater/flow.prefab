@@ -72,9 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef96f57c4abe1ba4787e424be8027fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 2
-  maxSpeed: 8
-  distance: 100
+  minSpeed: 1.5
+  maxSpeed: 3.5
+  distance: 60
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

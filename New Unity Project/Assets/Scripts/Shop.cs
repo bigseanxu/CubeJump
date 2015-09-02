@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Shop : MonoBehaviour {
 
@@ -17,11 +18,11 @@ public class Shop : MonoBehaviour {
 
 	public Transform ShopPage;
 	public Transform StartPage;
-	public Transform tfish;
-	public Transform tcartoon;
 
 	public Transform gameScreen;
 	public Transform ctrl;
+	public Transform heroesForShow;
+
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
 	int diamondCount;
@@ -43,7 +44,7 @@ public class Shop : MonoBehaviour {
 		Quaternion qua = Quaternion.Euler(290,180,40);//这个不要改
 		for (int i=0; i<cubes.Length; i++) {
 			cube[i]=(Transform)GameObject.Instantiate(cubes[i],vec,qua);
-			cube[i].SetParent(transform);
+			cube[i].SetParent(heroesForShow);
 			cube[i].localScale=mVec;
 			//cube [i].GetComponent<Renderer> ().material.color =temp;
 			if(i<cubes.Length-1){
@@ -56,6 +57,10 @@ public class Shop : MonoBehaviour {
 			FixColor(i);
 		}
 		FixGameObject ();
+
+		//Heroes = GameObject.Find ("Heroes").transform;
+//			Heroes.GetComponent<HeroesHome> ().SetDic ();
+
 	}
 	//要修改输入条件
 	void Update () {
@@ -153,7 +158,7 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnPlayBtnClick(){
-
+		/*
 		if (cube [itemID].GetComponent<ShopItem> ().isRandom) {
 			int a;
 			do{
@@ -197,8 +202,16 @@ public class Shop : MonoBehaviour {
 			}
 
 		}
+		*/
+		if (Hero.childCount > 0) {
+			for(int i=0;i<Hero.childCount;i++){
+				Destroy(Hero.GetChild(i).gameObject);
+			}
+		}
 
-		//Heroes.GetComponent<HeroesHome> ().GetHero (cube [itemID].GetComponent<ShopItem> ().temp);
+		HeroesHome.HeroName name = Heroes.GetComponent<HeroesHome> ().dic[cube[itemID].GetComponent<ShopItem>().name];
+		PlayerPrefs.SetInt ("HeroName", (int)name);
+		Heroes.GetComponent<HeroesHome> ().GetHero (name);
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
 		ShopPage.GetComponent<Animator> ().Play ("shopOut");
 		if (Game.state != Game.State.BeforeGame) {

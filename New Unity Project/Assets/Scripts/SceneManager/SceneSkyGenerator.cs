@@ -22,6 +22,11 @@ public class SceneSkyGenerator : BaseGenerator {
 
 	public Vector2 planeY = new Vector2(10f, 20f);
 	public Vector2 ballonY = new Vector2(8f, 12f);
+	public Vector2 ballonX = new Vector2(-10f, 10f);
+	public Vector2 ballonZ = new Vector2(-10f, 10f);
+
+	public Vector2 cloudY = new Vector2(-5f, 5f);
+
 
 	public enum SceneType {
 		Sky
@@ -59,7 +64,7 @@ public class SceneSkyGenerator : BaseGenerator {
 		int i = Random.Range (0, 5);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
+		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(cloudY.x, cloudY.y), Random.Range(-zOffset - 40, zOffset - 40));
 		Vector3 newPosition = randomPosition + generatorReference.position;
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabCloud[i]);
@@ -73,8 +78,8 @@ public class SceneSkyGenerator : BaseGenerator {
 	}
 
 	IEnumerator GenerateBallon() {
-		float xOffset = Random.Range (-20, -10);
-		float zOffset = Random.Range (10, 20);
+		float xOffset = Random.Range (ballonX.x, ballonX.y);
+		float zOffset = Random.Range (ballonZ.x, ballonZ.y);
 		float scale = Random.Range (ballonScale.x, ballonScale.y);
 		Transform newPlant = (Transform)GameObject.Instantiate (prefabBalloon);
 		newPlant.SetParent (Balloons);
