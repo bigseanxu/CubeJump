@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ShopItem
   - Pillar
+  - over
   layers:
   - Default
   - TransparentFX

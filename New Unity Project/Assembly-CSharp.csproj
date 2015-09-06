@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GameBestScore.cs" />
      <Compile Include="Assets\HeroesHome.cs" />
      <Compile Include="Assets\HeroesSpriteCreater.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GUIExamplesCS.cs" />
@@ -65,7 +66,9 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUniqueId.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TutorialPresentationFinished.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\UIExampleCS.cs" />
+     <Compile Include="Assets\ParticleFollowCameraReference.cs" />
      <Compile Include="Assets\PillarMaterial.cs" />
+     <Compile Include="Assets\RainParticle.cs" />
      <Compile Include="Assets\SceneLights.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraReference.cs" />
@@ -115,10 +118,25 @@
      <Compile Include="Assets\Scripts\ui\Sound.cs" />
      <Compile Include="Assets\Scripts\ui\TapToPlay.cs" />
      <Compile Include="Assets\Star.cs" />
+     <Compile Include="Assets\UnityAds.cs" />
      <Compile Include="Assets\test.cs" />
+     <None Include="Assets\Plugins\Android\unityads\proguard-project.txt" />
      <None Include="Assets\Materials\Particle\Translucent.shader" />
+     <None Include="Assets\Plugins\Android\unityads\build.xml" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
+     <None Include="Assets\Plugins\FingerGestures\Readme.txt" />
+     <None Include="Assets\Plugins\Android\unityads\res\layout\unityads_button_pause.xml" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
+     <None Include="Assets\Plugins\Android\unityads\res\drawable\unityads_icon_speaker_base.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\drawable\unityads_background_button_pause.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\drawable\unityads_icon_speaker_triangle.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\layout\unityads_button_audio_toggle.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\values\strings.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\drawable\unityads_icon_play.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\drawable\unityads_icon_speaker_waves.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\layout\unityads_view_video_play.xml" />
+     <None Include="Assets\Plugins\Android\unityads\res\layout\unityads_view_video_paused.xml" />
+     <None Include="Assets\Plugins\Android\unityads\AndroidManifest.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

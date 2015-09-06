@@ -46,15 +46,20 @@ public class CubeHero : MonoBehaviour {
 	void Update () {
 
 		if (Game.state == Game.State.BeforeGame) {
+#if UNITY_EDITOR
 			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+
+#else
+			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (0)) {
+#endif
 				Game.SetState(Game.State.Gaming);
-				print("getmousebuttonup");
+				
 			}
 		}	
 
 		if (Input.GetMouseButtonUp (0)) {
-			if(!Game.pause)
-			Jump();
+			if(Time.timeScale==1)
+				Jump();
 		}
 		if (transform.position.y < -40) {
 			if(live){
@@ -68,9 +73,7 @@ public class CubeHero : MonoBehaviour {
 		if (collider.gameObject.name == "ColliderBox") {
 			collider.gameObject.SetActive(false);
 			LandSuccess (collider.transform.parent);
-		} else if (collider.gameObject.tag == "Pillar") {
-
-				
+		} else if (collider.gameObject.name == "Water") {
 
 		}
 	}
@@ -80,7 +83,11 @@ public class CubeHero : MonoBehaviour {
 		if (state== CubeState.Jumping&& collision.gameObject.tag=="Pillar") {
 			
 			transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
-			transform.GetChild (0).GetComponent<TrailRenderer> ().enabled = false;
+
+			if (transform.GetChild(0).GetComponent<TrailRenderer> () != null) {
+				transform.GetChild (0).GetComponent<TrailRenderer> ().enabled = false;
+			}
+
 			if(a==0)
 				return;
 			if(a>1)
@@ -107,7 +114,11 @@ public class CubeHero : MonoBehaviour {
 		} else {
 			forceForward = - Vector3.right * fForceForward;
 		}
+
+		Vector3 finalForce = Quaternion.Inverse (transform.rotation) * (forceForward + forceUp);
+		gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceForward + forceUp);
+
 		if (isFaceLeft) {
 			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);
 		} else {

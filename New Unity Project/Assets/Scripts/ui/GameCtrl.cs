@@ -32,6 +32,7 @@ public class GameCtrl : MonoBehaviour {
 			Game.StartGame ();
 			Game.replay=false;
 		}
+		Input.ResetInputAxes();
 	}
 	
 	// Update is called once per frame
@@ -41,20 +42,25 @@ public class GameCtrl : MonoBehaviour {
 
 	public void OnShopButtonPress() {
 		Shop.gameObject.SetActive (true);
+		Shop.GetComponent<Animator> ().Play ("shopIn");
+		Game.state =Game.State.Shopping;
 		StartPage.GetComponent<Animator> ().Play ("Begin disappear");
 	}
 	public void OnShopOverButtonPress() {
 		Shop.gameObject.SetActive (true);
+		Shop.GetComponent<Animator> ().Play ("shopIn");
 		StartPage.GetComponent<Animator> ().Play ("Begin disappear");
 		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
 	}
 
 	public void OnShopCloseButtonPress() {
 		Shop.GetComponent<Animator> ().Play ("shopOut");
-		StartPage.gameObject.SetActive (true);
 		if (Game.state == Game.State.GameOver) {
-			LoadGameOver ();
+			GameOver.gameObject.SetActive (true);
+			GameOver.GetComponent<Animator> ().Play ("Game over appear");
 		} else {
+			Game.state =Game.State.BeforeGame;
+			StartPage.gameObject.SetActive (true);
 			StartPage.GetComponent<Animator> ().Play ("Begin appear");
 		}
 
@@ -84,7 +90,7 @@ public class GameCtrl : MonoBehaviour {
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
 		CountDown.gameObject.SetActive (true);
 		CountDown.GetComponent<Animator> ().Play ("CountDown");
-		StopBtn.gameObject.SetActive (true);
+		//StopBtn.gameObject.SetActive (true);
 		//Time.timeScale = 1;
 		//StartCoroutine (PauseFlag ());
 	}
@@ -104,29 +110,29 @@ public class GameCtrl : MonoBehaviour {
 	}
 	public void OnHomeButtonPress() {
 		Time.timeScale = 1;
-		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
-		StartPage.gameObject.SetActive (true);
-		StartPage.GetComponent<Animator> ().Play ("Begin appear");
-		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+	//	StopPage.GetComponent<Animator> ().Play ("Stop disappear");
+	//	StartPage.gameObject.SetActive (true);
+	//	StartPage.GetComponent<Animator> ().Play ("Begin appear");
+	//	SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
 		ReLoad ();
 	}
 	public void OnHomeOverButtonPress() {
 		Time.timeScale = 1;
-		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
-		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
-		StartPage.gameObject.SetActive (true);
-		StartPage.GetComponent<Animator> ().Play ("Begin appear");
-		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+	//	GameOver.GetComponent<Animator> ().Play ("Game over disappear");
+	//	StopPage.GetComponent<Animator> ().Play ("Stop disappear");
+	//	StartPage.gameObject.SetActive (true);
+	//	StartPage.GetComponent<Animator> ().Play ("Begin appear");
+	//	SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
 		ReLoad ();
 	}
 
 	public void OnRestartButtonPress() {
 		Time.timeScale = 1;
-		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
-		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
-		StartPage.gameObject.SetActive (true);
-		StartPage.GetComponent<Animator> ().Play ("Begin appear");
-		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+	//	GameOver.GetComponent<Animator> ().Play ("Game over disappear");
+	//	StopPage.GetComponent<Animator> ().Play ("Stop disappear");
+	//	StartPage.gameObject.SetActive (true);
+	//	StartPage.GetComponent<Animator> ().Play ("Begin appear");
+	//	SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
 		ReLoad ();
 		Game.replay = true;
 	}
@@ -153,5 +159,11 @@ public class GameCtrl : MonoBehaviour {
 		Game.ResetState ();
 		print ("loadlevel");
 	}
+
+	public void StartGame() {
+		Game.SetState (Game.State.Gaming);
+	}
+
+
 
 }

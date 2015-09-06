@@ -29,7 +29,7 @@ public class DiamondGenerator : MonoBehaviour {
 			newDiamond.localScale = Vector3.one;
 			newDiamond.localRotation = Quaternion.Euler (0, 0, 0);
 			newDiamond.position = position; 
-			newDiamond.GetComponent<Diamond> ().particles = diamondParticle;
+			newDiamond.GetComponentInChildren<Diamond> ().particles = diamondParticle;
 		}
 	}
 }

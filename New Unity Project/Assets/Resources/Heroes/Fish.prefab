@@ -72,8 +72,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 486098}
   - 23: {fileID: 2349812}
-  - 114: {fileID: 11472066}
-  - 54: {fileID: 5416350}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -348,21 +346,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199986}
   m_Mesh: {fileID: 4300004, guid: edf94196ff77f7f489453801463b9edb, type: 3}
---- !u!54 &5416350
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121550}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!95 &9567422
 Animator:
   serializedVersion: 3
@@ -380,26 +363,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11472066
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbda18376e4ecff45b02c30aeb512ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0
-  ctrl: {fileID: 0}
-  currentPillar: {fileID: 0}
-  pillarGenerator: {fileID: 0}
-  cameraReference: {fileID: 0}
-  jumpDistanceBeforeGame: 3
-  jumpTimeBeforeGame: .600000024
-  fForceUp: 1500
-  fForceForward: 300
 --- !u!137 &13721854
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

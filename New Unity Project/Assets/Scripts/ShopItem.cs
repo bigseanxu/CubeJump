@@ -25,14 +25,14 @@ public class ShopItem : MonoBehaviour {
 		if(name.IndexOf('(')>0)
 		name = name.Substring (0,gameObject.name.Length-7);
 		isbought = PlayerPrefs.GetInt (name, 0) == 1 ? true : false;
-		PlayerPrefs.SetInt ("Fish", 0);
+		//PlayerPrefs.SetInt ("Fish", 0);
 		LockGenerator ();
 	}
 
 	void LockGenerator(){
 		Vector3 vec = transform.position;
 		vec.y += 0.05f;
-		vec.z -= 0.2f;
+		vec.z -= 0.3f;
 		Quaternion qua = Quaternion.Euler (90,180,0);//这里要调很久
 		l=(Transform)GameObject.Instantiate(Lock,vec,qua);
 		l.SetParent (transform);
