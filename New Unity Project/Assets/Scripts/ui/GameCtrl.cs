@@ -154,4 +154,7 @@ public class GameCtrl : MonoBehaviour {
 		print ("loadlevel");
 	}
 
+	public void StartGame() {
+		Game.SetState (Game.State.Gaming);
+	}
 }

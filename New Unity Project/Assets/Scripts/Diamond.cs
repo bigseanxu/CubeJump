@@ -4,9 +4,18 @@ using System.Collections;
 public class Diamond : MonoBehaviour {
 	public float time;
 	public ParticleSystem particles;
+	public float rotateSpeed = 180;
 	// Use this for initialization
+	void Start() {
+
+	}
+
 	void Update () {
-		Move ();
+		Quaternion currentRotation = transform.rotation;
+		Vector3 currentEulerAngles = currentRotation.eulerAngles;
+		Vector3 newEulerAngles = currentEulerAngles;
+		newEulerAngles.y = currentEulerAngles.y + rotateSpeed * Time.deltaTime;
+		transform.rotation = Quaternion.Euler (newEulerAngles);
 	}
 	
 	// Update is called once per frame
@@ -22,7 +31,7 @@ public class Diamond : MonoBehaviour {
 			particles.time = 0;
 			particles.Play();
 			Game.diamond++;
-			GameObject.Destroy(gameObject);
+			GameObject.Destroy(transform.parent.gameObject);
 		}
 	}
 }

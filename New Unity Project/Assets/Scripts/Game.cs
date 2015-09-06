@@ -23,7 +23,8 @@ public class Game
 
 	public static void Init() {
 		if (!isInit) {
-			heroName = PlayerPrefs.GetInt ("HeroName", 0);
+			Application.targetFrameRate = 60;
+			heroName = PlayerPrefs.GetInt ("HeroName", 1);
 			isInit = true;
 		}
 	}

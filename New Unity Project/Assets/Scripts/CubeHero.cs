@@ -46,9 +46,13 @@ public class CubeHero : MonoBehaviour {
 	void Update () {
 
 		if (Game.state == Game.State.BeforeGame) {
+#if UNITY_EDITOR
 			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+#else
+			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (0)) {
+#endif
 				Game.SetState(Game.State.Gaming);
-				print("getmousebuttonup");
+				
 			}
 		}	
 
@@ -78,7 +82,11 @@ public class CubeHero : MonoBehaviour {
 		if (state== CubeState.Jumping&& collision.gameObject.tag=="Pillar") {
 			
 			transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
-			transform.GetChild (0).GetComponent<TrailRenderer> ().enabled = false;
+
+			if (transform.GetChild(0).GetComponent<TrailRenderer> () != null) {
+				transform.GetChild (0).GetComponent<TrailRenderer> ().enabled = false;
+			}
+
 			if(a==0)
 				return;
 			if(a>1)

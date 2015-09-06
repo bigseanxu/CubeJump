@@ -19,10 +19,14 @@ public class SceneManager : MonoBehaviour {
 
 	public SceneType sceneType;
 
-	SceneType currSceneType = 0;
+	SceneType currSceneType = (SceneType) 0;
 	// Use this for initialization
 	void Start () {
 		int type = Random.Range (0, sceneGenerators.Length);
+		while (type == (int)currSceneType) {
+			type = Random.Range (0, sceneGenerators.Length);
+		}
+
 		currSceneType = (SceneType) type;
 		background.GetComponent<Background> ().SetBackground (type);
 		lights.GetComponent<SceneLights> ().SetLights (type);
