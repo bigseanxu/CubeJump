@@ -4,7 +4,7 @@ using System.Collections;
 public class Ripple : MonoBehaviour {
 	Object [] ripples;
 	float startTime = 0;
-	bool isPlay;
+	bool isPlay = false;
 	Material mat;
 	float animationDuration = 0.7f;
 	// Use this for initialization
@@ -31,13 +31,15 @@ public class Ripple : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.name == "CubeHero") {
-			if(!isPlay)
-				PlayAnimation();
+			print ("OnTriggerEnter ripple");
+			PlayAnimation();
 		}
 	}
 
-	void PlayAnimation() {
-		startTime = Time.time;
+	public void PlayAnimation() {
+		if (!isPlay) {
+			startTime = Time.time;
+		}
 		isPlay = true;
 	}
 }

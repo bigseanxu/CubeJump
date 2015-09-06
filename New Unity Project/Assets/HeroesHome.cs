@@ -45,27 +45,29 @@ public class HeroesHome : MonoBehaviour {
 	}
 
 	public void SetDic(int a){
-		dic.Add ("Random", (HeroName)a);
-		dic.Add ("Alpaca", HeroName.Alpaca);
-		dic.Add ("Cartoon", HeroName.Cartoon);
-		dic.Add ("Chicken", HeroName.Chicken);
-		dic.Add ("Crab", HeroName.Crab);
-		dic.Add ("Deer", HeroName.Deer);
-		dic.Add ("Dinosaur", HeroName.Dinosaur);
-		dic.Add ("Dog", HeroName.Dog);
-		dic.Add ("Dragon", HeroName.Dragon);
-		dic.Add ("Duck", HeroName.Duck);
-		dic.Add ("Elephant", HeroName.Elephant);
-		dic.Add ("Fish", HeroName.Fish);
-		dic.Add ("Flamingos", HeroName.Flamingos);
-		dic.Add ("Giraffe", HeroName.Giraffe);
-		dic.Add ("Lion", HeroName.Lion);
-		dic.Add ("Mushroom", HeroName.Mushroom);
-		dic.Add ("Penguin", HeroName.Penguin);
-		dic.Add ("Snail", HeroName.Snail);
-		dic.Add ("Spider", HeroName.Spider);
-		dic.Add ("Unicorn", HeroName.Unicorn);
-		dic.Add ("Whale", HeroName.Whale);
+		if (dic.Keys.Count < 20) {
+			dic.Add ("Random", (HeroName)a);
+			dic.Add ("Alpaca", HeroName.Alpaca);
+			dic.Add ("Cartoon", HeroName.Cartoon);
+			dic.Add ("Chicken", HeroName.Chicken);
+			dic.Add ("Crab", HeroName.Crab);
+			dic.Add ("Deer", HeroName.Deer);
+			dic.Add ("Dinosaur", HeroName.Dinosaur);
+			dic.Add ("Dog", HeroName.Dog);
+			dic.Add ("Dragon", HeroName.Dragon);
+			dic.Add ("Duck", HeroName.Duck);
+			dic.Add ("Elephant", HeroName.Elephant);
+			dic.Add ("Fish", HeroName.Fish);
+			dic.Add ("Flamingos", HeroName.Flamingos);
+			dic.Add ("Giraffe", HeroName.Giraffe);
+			dic.Add ("Lion", HeroName.Lion);
+			dic.Add ("Mushroom", HeroName.Mushroom);
+			dic.Add ("Penguin", HeroName.Penguin);
+			dic.Add ("Snail", HeroName.Snail);
+			dic.Add ("Spider", HeroName.Spider);
+			dic.Add ("Unicorn", HeroName.Unicorn);
+			dic.Add ("Whale", HeroName.Whale);
+		}
 	}
 
 	// Update is called once per frame
@@ -112,7 +114,7 @@ public class HeroesHome : MonoBehaviour {
 			heroPrefab = (GameObject) Resources.Load("Heroes/Elephant");
 			break;
 		case HeroName.Fish:
-			heroPrefab = (GameObject) Resources.Load("Particle/Fish");
+			heroPrefab = (GameObject) Resources.Load("Heroes/Fish");
 			break;
 		case HeroName.Flamingos:
 			heroPrefab = (GameObject) Resources.Load("Heroes/Flamingos");

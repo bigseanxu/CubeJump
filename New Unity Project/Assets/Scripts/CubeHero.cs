@@ -57,8 +57,8 @@ public class CubeHero : MonoBehaviour {
 		}	
 
 		if (Input.GetMouseButtonUp (0)) {
-			if(!Game.pause)
-			Jump();
+			if(Time.timeScale==1)
+				Jump();
 		}
 		if (transform.position.y < -40) {
 			if(live){

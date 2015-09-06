@@ -32,21 +32,26 @@ public class SceneManager : MonoBehaviour {
 		lights.GetComponent<SceneLights> ().SetLights (type);
 		scenes [type].gameObject.SetActive (true);
 		Game.sceneType = type;
+		sceneType = (SceneType)type;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-//		if (currSceneType != sceneType) {
-//			currSceneType = sceneType;
-//			ChangeScene(currSceneType);
-//		}
+#if UNITY_EDITOR
+		if (currSceneType != sceneType) {
+			ChangeScene(sceneType);
+		}
+#endif
 	}
 
 	public void ChangeScene(SceneType type) {
+		scenes [(int)currSceneType].gameObject.SetActive (false);
 		currSceneType = type;
 		Game.sceneType = (int)currSceneType;
+		scenes [(int)type].gameObject.SetActive (true);
 		background.GetComponent<Background> ().SetBackground ((int)type);
 		lights.GetComponent<SceneLights> ().SetLights ((int)type);
+		Generate ();
 	}
 
 	public void Generate() {
