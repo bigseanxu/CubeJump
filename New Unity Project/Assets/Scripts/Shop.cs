@@ -16,6 +16,7 @@ public class Shop : MonoBehaviour {
 	public float itemDistance=0.3f;
 	public float movingTime=0.17f;
 
+
 	public Transform ShopPage;
 	public Transform StartPage;
 
@@ -34,7 +35,6 @@ public class Shop : MonoBehaviour {
 //	Color temp;
 	bool flag ;
 	void Start () {
-		PlayerPrefs.SetInt("Diamonds",100);//测试用
 		diamondCount=PlayerPrefs.GetInt("Diamonds");
 		//temp=new Color(Color.gray.r-0.3f,Color.gray.g-0.3f,Color.gray.b-0.3f);
 		itemID = 0;
@@ -64,7 +64,7 @@ public class Shop : MonoBehaviour {
 	}
 	//要修改输入条件
 	void Update () {
-		if (Input.GetKey ("right") && canTweening) {
+		/*if (Input.GetKey ("right") && canTweening) {
 			if(itemID<cube.Length-1){
 				cube [itemID].GetComponent<Animator> ().enabled = false;
 				Vector3 vec = camera.position;
@@ -83,8 +83,41 @@ public class Shop : MonoBehaviour {
 				itemID--;
 				ScaleItems(true);
 			}
+		}*/
+	}
+	public void OnSwipe(SwipeGesture gesture)
+	{
+		// 完整的滑动数据
+		Vector2 move = gesture.Move;
+		// 滑动的速度
+		float velocity = gesture.Velocity;
+		// 大概的滑动方向
+		FingerGestures.SwipeDirection direction = gesture.Direction;
+		
+		if (direction.ToString () == "Right") {
+			if(itemID>0){
+				cube [itemID].GetComponent<Animator> ().enabled = false;
+				Vector3 vec = camera.position;
+				vec.z+= 10;vec.y-= 0.2f;
+				cube [itemID].position=vec;
+				itemID--;
+				ScaleItems(true);
+			}
+		}
+		if (direction.ToString () == "Left") {
+			if(itemID<cube.Length-1){
+				cube [itemID].GetComponent<Animator> ().enabled = false;
+				Vector3 vec = camera.position;
+				vec.z+= 10;vec.y-= 0.2f;
+				cube [itemID].position=vec;
+				itemID++;
+				ScaleItems(false);//对商品的大小做缩放
+			}
 		}
 	}
+
+
+
 	//缩放商品+移动商品,也可以分成2个方法,效果一样.
 	void ScaleItems(bool isLeft){
 		canTweening=false;
@@ -210,17 +243,21 @@ public class Shop : MonoBehaviour {
 		}		
 		int a;
 		do{
-			a = Random.Range (1, cube.Length-1);
+			a = Random.Range (0, cube.Length);
 		}
 		while(!cube[a].GetComponent<ShopItem>().isbought);
+		a = 0;
 		Heroes.GetComponent<HeroesHome> ().SetDic (a);
 		HeroesHome.HeroName name = Heroes.GetComponent<HeroesHome> ().dic[cube[itemID].GetComponent<ShopItem>().name];
 		PlayerPrefs.SetInt ("HeroName", (int)name);
 		Heroes.GetComponent<HeroesHome> ().GetHero (name);
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
 		ShopPage.GetComponent<Animator> ().Play ("shopOut");
-		if (Game.state != Game.State.BeforeGame) {
-			ctrl.GetComponent<GameCtrl>().ReLoad();
+		if (Game.state == Game.State.GameOver) {
+			ctrl.GetComponent<GameCtrl> ().ReLoad ();
+			Game.replay=true;
+		} else {
+			Game.state =Game.State.BeforeGame;
 		}
 	}
 }
