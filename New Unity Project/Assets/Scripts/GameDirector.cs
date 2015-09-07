@@ -33,7 +33,6 @@ public class GameDirector : MonoBehaviour {
 //		}
 	}
 
-
 	public void GameStart() {
 		beginScreen.GetComponent<Animator> ().Play ("Begin disappear");
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");

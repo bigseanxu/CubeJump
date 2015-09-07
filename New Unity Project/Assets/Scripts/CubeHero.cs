@@ -48,7 +48,6 @@ public class CubeHero : MonoBehaviour {
 		if (Game.state == Game.State.BeforeGame) {
 #if UNITY_EDITOR
 			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
-
 #else
 			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (0)) {
 #endif
@@ -99,7 +98,6 @@ public class CubeHero : MonoBehaviour {
 	}
 
 	void Jump() {
-
 		if (state != CubeState.Ready) {
 			print ("state is not ready, so we cannot jump");
 			return;

@@ -5,7 +5,7 @@ public class GameScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Game.bestScore = PlayerPrefs.GetInt ("bestScore", 0);
+
 	}
 	
 	// Update is called once per frame

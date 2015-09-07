@@ -5,6 +5,7 @@ using System.Collections;
 public class GameCtrl : MonoBehaviour {
 
 	public Transform Shop;
+	public Transform Shopping;
 	public Transform StartPage;
 	public Transform StopPage;
 	public Transform StopBtn;
@@ -45,12 +46,15 @@ public class GameCtrl : MonoBehaviour {
 		Shop.GetComponent<Animator> ().Play ("shopIn");
 		Game.state =Game.State.Shopping;
 		StartPage.GetComponent<Animator> ().Play ("Begin disappear");
+		Game.isShopLoaded = true;
+
 	}
 	public void OnShopOverButtonPress() {
 		Shop.gameObject.SetActive (true);
 		Shop.GetComponent<Animator> ().Play ("shopIn");
 		StartPage.GetComponent<Animator> ().Play ("Begin disappear");
 		GameOver.GetComponent<Animator> ().Play ("Game over disappear");
+		Game.isShopLoaded = true;
 	}
 
 	public void OnShopCloseButtonPress() {
@@ -63,7 +67,6 @@ public class GameCtrl : MonoBehaviour {
 			StartPage.gameObject.SetActive (true);
 			StartPage.GetComponent<Animator> ().Play ("Begin appear");
 		}
-
 	}
 
 	public void OnSoundButton1Press() {
@@ -106,7 +109,8 @@ public class GameCtrl : MonoBehaviour {
 
 
 	public void OnAdsButtonPress() {
-		//LoadGameOver ();
+		Game.diamond +=20;
+		PlayerPrefs.SetInt ("Diamonds", Game.diamond);
 	}
 	public void OnHomeButtonPress() {
 		Time.timeScale = 1;

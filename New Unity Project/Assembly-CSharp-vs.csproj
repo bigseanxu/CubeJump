@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameBestScore.cs" />
      <Compile Include="Assets\HeroesHome.cs" />
      <Compile Include="Assets\HeroesSpriteCreater.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\GUIExamplesCS.cs" />
@@ -111,6 +110,7 @@
      <Compile Include="Assets\Scripts\SprayParticles.cs" />
      <Compile Include="Assets\Scripts\Water.cs" />
      <Compile Include="Assets\Scripts\ui\Background.cs" />
+     <Compile Include="Assets\Scripts\ui\GameBestScore.cs" />
      <Compile Include="Assets\Scripts\ui\GameCtrl.cs" />
      <Compile Include="Assets\Scripts\ui\GameDiamond.cs" />
      <Compile Include="Assets\Scripts\ui\GameScore.cs" />

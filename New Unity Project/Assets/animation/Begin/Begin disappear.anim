@@ -191,7 +191,7 @@ AnimationClip:
         inSlope: -881.945801
         outSlope: -881.945801
         tangentMode: 0
-      - time: .583333313
+      - time: .416666657
         value: -994
         inSlope: -1291.23022
         outSlope: -1291.23022
@@ -210,7 +210,7 @@ AnimationClip:
         inSlope: -536.778442
         outSlope: -536.778442
         tangentMode: 0
-      - time: .583333313
+      - time: .416666657
         value: -1050
         inSlope: -544.830322
         outSlope: -544.830322
@@ -531,7 +531,7 @@ AnimationClip:
         inSlope: -881.945801
         outSlope: -881.945801
         tangentMode: 0
-      - time: .583333313
+      - time: .416666657
         value: -994
         inSlope: -1291.23022
         outSlope: -1291.23022
@@ -550,7 +550,7 @@ AnimationClip:
         inSlope: -536.778442
         outSlope: -536.778442
         tangentMode: 0
-      - time: .583333313
+      - time: .416666657
         value: -1050
         inSlope: -544.830322
         outSlope: -544.830322

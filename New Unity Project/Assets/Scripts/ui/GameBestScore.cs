@@ -10,10 +10,10 @@ public class GameBestScore : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GetComponent<ShowNumberInCanvas> ().SetNumber (Game.bestScore);
 		if (Game.score > Game.bestScore) {
 			Game.bestScore=Game.score;
-			PlayerPrefs.SetInt("bestScore", Game.bestScore);
+			PlayerPrefs.SetInt ("bestScore", Game.bestScore);
 		}
+		GetComponent<ShowNumberInCanvas> ().SetNumber (Game.bestScore);
 	}
 }
