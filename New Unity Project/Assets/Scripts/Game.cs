@@ -31,6 +31,7 @@ public class Game
 			heroName = PlayerPrefs.GetInt ("HeroName", 1);
 			heroItemID=PlayerPrefs.GetInt ("heroItemID", 0);
 			diamond = PlayerPrefs.GetInt ("Diamonds", 0);
+			bestScore = PlayerPrefs.GetInt ("bestScore", 0);
 			isInit = true;
 		}
 	}
@@ -54,6 +55,7 @@ public class Game
 		score = 0;	
 		diamond = PlayerPrefs.GetInt ("Diamonds", 0);
 		isInit = false;
+
 	}
 
 }

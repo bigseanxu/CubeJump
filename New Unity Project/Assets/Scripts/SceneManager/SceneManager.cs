@@ -33,6 +33,7 @@ public class SceneManager : MonoBehaviour {
 		scenes [type].gameObject.SetActive (true);
 		Game.sceneType = type;
 		sceneType = (SceneType)type;
+		Generate ();
 	}
 	
 	// Update is called once per frame

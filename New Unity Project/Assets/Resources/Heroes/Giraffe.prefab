@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 437366}
   - 198: {fileID: 19842136}
   - 199: {fileID: 19915300}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Giraffe dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 466998}
   - 198: {fileID: 19870836}
   - 199: {fileID: 19975870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Giraffe dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 407582}
   - 198: {fileID: 19861522}
   - 199: {fileID: 19977990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 33: {fileID: 3388570}
   - 23: {fileID: 2367104}
   - 96: {fileID: 9683806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Giraffe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

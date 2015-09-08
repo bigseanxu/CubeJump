@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 441040}
   - 198: {fileID: 19846392}
   - 199: {fileID: 19938836}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Whale dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3390082}
   - 23: {fileID: 2376668}
   - 96: {fileID: 9647112}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Whale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 478558}
   - 198: {fileID: 19883902}
   - 199: {fileID: 19993270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Whale dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 4: {fileID: 457598}
   - 198: {fileID: 19874786}
   - 199: {fileID: 19975324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

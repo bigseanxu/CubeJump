@@ -6,6 +6,8 @@ public class QuitShop : MonoBehaviour {
 	public Transform shopscreen;
 	public Transform over;
 	public Transform StopBtn;
+	public Transform camareOnlyHero;
+	public Transform UIAudio;
 	// Use this for initialization
 	public void ExitShop(){
 		gameObject.SetActive (false);
@@ -18,10 +20,14 @@ public class QuitShop : MonoBehaviour {
 		Time.timeScale = 1;
 		Game.pause = false;
 		StopBtn.gameObject.SetActive (true);
+		camareOnlyHero.gameObject.SetActive (false);
 	}
 
 	public void GameOverFixDisappear(){
 		over.gameObject.SetActive (false);
+	}
+	public void ShopItemChoose(){
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 	}
 
 }

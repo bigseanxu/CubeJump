@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 433682}
   - 198: {fileID: 19811100}
   - 199: {fileID: 19917294}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragon dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 448020}
   - 198: {fileID: 19863654}
   - 199: {fileID: 19941700}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FireShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 447262}
   - 198: {fileID: 19868080}
   - 199: {fileID: 19943382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragon dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 407406}
   - 198: {fileID: 19847142}
   - 199: {fileID: 19905682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FireTriangleSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - 4: {fileID: 429814}
   - 33: {fileID: 3323560}
   - 23: {fileID: 2390130}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

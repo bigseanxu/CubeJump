@@ -7,6 +7,7 @@ public class PillarGenerator : MonoBehaviour {
 	public Transform pillarGroup;
 	public Transform sceneGenerator;
 	public Transform diamondGenerator;
+	public Transform UIAudio;
 
 	//public float minSmallToSmall; 
 	//public float minSmallToMedium;
@@ -20,7 +21,7 @@ public class PillarGenerator : MonoBehaviour {
 
 
 	List<Transform> pillars = new List<Transform> ();
-	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -4.6f);
+	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -3.8f);
 	bool lastPillarLeft = true;
 
 
@@ -52,7 +53,7 @@ public class PillarGenerator : MonoBehaviour {
 		Transform prefab = pillarPrefabs [Random.Range (rangeA, rangeB)];
 		Transform newPillar = (Transform)GameObject.Instantiate (prefab, Vector3.zero, Quaternion.identity);
 		newPillar.SetParent (pillarGroup);
-		newPillar.localScale = Vector3.one;
+		// newPillar.localScale = Vector3.one;
 		newPillar.rotation = Quaternion.identity;
 
 
@@ -83,7 +84,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.gameObject.SetActive (false);
 		newPillar.GetComponent<Rigidbody> ().isKinematic = true;
 		pillars.Add (newPillar);
-
+		UIAudio.GetComponent<AudioList> ().PillarAppear.Play ();
 		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
 		diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
 //		PlaySprayParticle ();

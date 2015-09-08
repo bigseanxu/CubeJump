@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 461850}
   - 198: {fileID: 19813504}
   - 199: {fileID: 19949494}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Snail dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 449350}
   - 198: {fileID: 19893716}
   - 199: {fileID: 19906646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShapeCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 33: {fileID: 3342412}
   - 23: {fileID: 2381502}
   - 96: {fileID: 9675534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Snail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 4: {fileID: 460014}
   - 198: {fileID: 19878416}
   - 199: {fileID: 19944356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Snail dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

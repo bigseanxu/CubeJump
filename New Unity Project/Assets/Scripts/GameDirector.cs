@@ -14,7 +14,6 @@ public class GameDirector : MonoBehaviour {
 		if (Game.gameDirector == null) {
 			Game.gameDirector = this;
 		}
-		sceneManager.GetComponent<SceneManager> ().Generate ();
 	}
 	
 	// Update is called once per frame

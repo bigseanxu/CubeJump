@@ -5,6 +5,7 @@ public class Diamond : MonoBehaviour {
 	public float time;
 	public ParticleSystem particles;
 	public float rotateSpeed = 180;
+	public Transform UIAudio;
 	// Use this for initialization
 	void Start() {
 
@@ -29,6 +30,7 @@ public class Diamond : MonoBehaviour {
 		if (collider.gameObject.name == "CubeHero") {
 			particles.transform.position = transform.position;
 			particles.time = 0;
+			UIAudio.GetComponent<AudioList> ().Diamond.Play ();
 			particles.Play();
 			Game.diamond++;
 			GameObject.Destroy(transform.parent.gameObject);

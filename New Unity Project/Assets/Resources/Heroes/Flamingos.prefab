@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 417620}
   - 198: {fileID: 19813074}
   - 199: {fileID: 19984216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 499792}
   - 198: {fileID: 19802442}
   - 199: {fileID: 19934210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flamingos dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 469582}
   - 198: {fileID: 19849842}
   - 199: {fileID: 19930602}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flamingos dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 33: {fileID: 3316574}
   - 23: {fileID: 2313868}
   - 96: {fileID: 9622372}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flamingos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

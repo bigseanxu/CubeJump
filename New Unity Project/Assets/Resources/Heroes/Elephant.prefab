@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 489548}
   - 198: {fileID: 19832772}
   - 199: {fileID: 19973630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Elephant dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3321302}
   - 23: {fileID: 2353544}
   - 96: {fileID: 9607432}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Elephant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 469964}
   - 198: {fileID: 19895126}
   - 199: {fileID: 19939222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 4: {fileID: 480548}
   - 198: {fileID: 19887894}
   - 199: {fileID: 19924324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Elephant dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

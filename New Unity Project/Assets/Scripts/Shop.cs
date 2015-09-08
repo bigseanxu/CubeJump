@@ -24,6 +24,7 @@ public class Shop : MonoBehaviour {
 	public Transform gameScreen;
 	public Transform ctrl;
 	public Transform heroesForShow;
+	public Transform UIAudio;
 
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
@@ -200,6 +201,7 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnBuyBtnClick(){
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		if (canTweening) {
 			int price=cube [itemID].GetComponent<ShopItem> ().price;
 			if(diamondCount>=price){
@@ -215,6 +217,7 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnPlayBtnClick(){
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		/*
 		if (cube [itemID].GetComponent<ShopItem> ().isRandom) {
 			int a;
