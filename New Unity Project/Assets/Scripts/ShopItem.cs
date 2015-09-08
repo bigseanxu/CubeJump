@@ -9,7 +9,7 @@ public class ShopItem : MonoBehaviour {
 	public bool isbought;
 	public bool isRandom;
 	public Transform Lock;
-	public Transform l;
+	Transform l;
 	public bool check;
 	public Texture tLock;
 	public bool fish;
@@ -19,8 +19,10 @@ public class ShopItem : MonoBehaviour {
 	public HeroesHome.HeroName temp;
 	Texture tHave;
 	Material mat;
+	Vector3 vec;
 
 	void Start(){
+		transform.localScale = new Vector3 (0, 0, 0);
 		name = gameObject.name;
 		if(name.IndexOf('(')>0)
 		name = name.Substring (0,gameObject.name.Length-7);
@@ -30,7 +32,7 @@ public class ShopItem : MonoBehaviour {
 	}
 
 	void LockGenerator(){
-		Vector3 vec = transform.position;
+		vec = transform.position;
 		vec.y += 0.05f;
 		vec.z -= 0.3f;
 		Quaternion qua = Quaternion.Euler (90,180,0);//这里要调很久
@@ -54,5 +56,13 @@ public class ShopItem : MonoBehaviour {
 			mat.mainTexture = isbought ? tHave : tLock;
 			check=false;
 		}
+		l.localScale = transform.localScale/50;
+		vec = transform.position;
+		vec.z -= 1;
+		l.position = vec;
+	}
+
+	public void OnLoad(){
+		LeanTween.scale (gameObject, new Vector3 (3, 3, 3), 3f);
 	}
 }

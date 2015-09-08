@@ -11,7 +11,7 @@ public class Pillar : MonoBehaviour {
 	void Start () {
 		HingeJoint hinge = GetComponent<HingeJoint> ();
 		JointSpring spring = hinge.spring;
-		spring.spring = 10;
+		spring.spring = 40;
 		spring.damper = 10;
 		spring.targetPosition = -180;
 

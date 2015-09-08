@@ -16,17 +16,22 @@ public class Game
 	public static int score = 0;			
 	public static int bestScore;	// Game score
 	public static int diamond = 0;						 // Game diamond
-	public static int heroName = 0;						 // Hero name of the cube
+	public static int heroName = 0;
+	public static int heroItemID = 0;// Hero name of the cube
 	public static int sceneType = 0;
 	public static bool replay=false;
 	public static string sHeroName = "";	
 	public static bool isInit = false;
 	public static bool pause = false;
+	public static bool isShopLoaded = false;
 
 	public static void Init() {
 		if (!isInit) {
 			Application.targetFrameRate = 60;
 			heroName = PlayerPrefs.GetInt ("HeroName", 1);
+			heroItemID=PlayerPrefs.GetInt ("heroItemID", 0);
+			diamond = PlayerPrefs.GetInt ("Diamonds", 0);
+			bestScore = PlayerPrefs.GetInt ("bestScore", 0);
 			isInit = true;
 		}
 	}
@@ -50,6 +55,7 @@ public class Game
 		score = 0;	
 		diamond = PlayerPrefs.GetInt ("Diamonds", 0);
 		isInit = false;
+
 	}
 
 }

@@ -155,9 +155,9 @@ public class CubeHero : MonoBehaviour {
 		Vector3 forceUp = new Vector3 (0, 500, 0);
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceUp);
 		if (isFaceLeft) {
-			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.5f);
+			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);
 		} else {
-			LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.5f);
+			LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.2f);
 		}
 		yield return new WaitForSeconds(0.5f);
 		currentPillar.GetComponent<Pillar> ().FallingDown ();
