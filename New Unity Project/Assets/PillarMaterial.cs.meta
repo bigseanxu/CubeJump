@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 1bb014dd9e2b5af40a88e2dac1da702b
-timeCreated: 1440674264
+timeCreated: 1441628936
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hellMaterial: {fileID: 2800000, guid: f6755a93f53bed647948a3a9faef3679, type: 3}
+  - spaceMaterial: {fileID: 2800000, guid: 50e182fa0886d8246bb5b15b3f6a4a97, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

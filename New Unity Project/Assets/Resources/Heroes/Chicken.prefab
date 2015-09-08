@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 478350}
   - 198: {fileID: 19836590}
   - 199: {fileID: 19912754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chicken dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3334122}
   - 23: {fileID: 2366834}
   - 96: {fileID: 9651930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 499190}
   - 198: {fileID: 19865948}
   - 199: {fileID: 19971866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chicken dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 4: {fileID: 438068}
   - 198: {fileID: 19802830}
   - 199: {fileID: 19926944}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

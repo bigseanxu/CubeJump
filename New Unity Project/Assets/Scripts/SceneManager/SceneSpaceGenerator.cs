@@ -7,15 +7,28 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Transform pillarGenerator;
 
 	public Transform prefabLine;
-	public Transform Lines;
+	public Transform verticalLines;
+	public Transform horizontalLines;
 	public Transform prefabLineLeft;
 	public Transform generatorReference;
+	
+	public float horizontalLineInterval = 2f;
+	public Vector3 horizontalLineScaleA = new Vector3(0.8f, 1, 1.2f);
+	public Vector3 horizontalLineScaleB = new Vector3(0.8f, 1, 1.2f);
+	public Vector2 horizontalLineZOffset = new Vector2(-5f, 5f);
+	public float horizontalLineXRange = 20;
+	public Vector2 horizontalLineYOffset = new Vector2 (0, 0);
 
 	public float verticalLineInterval = 2f;
-	public float horizontalLineInterval = 2f;
+	public Vector3 verticalLineScaleA = new Vector3(0.8f, 1, 1.2f);
+	public Vector3 verticalLineScaleB = new Vector3(0.8f, 1, 1.2f);
+	public Vector2 verticalLineZOffset = new Vector2(-5f, 5f);
+	public float verticalLineYRange = 20;
+	public Vector2 verticalLineXOffset = new Vector2 (0, 0);
 
-	public Vector2 verticalLineScale = new Vector2(-5f, 5f);
-	public Vector2 horizontalLineScale = new Vector2(-5f, 5f);
+
+
+	
 	public enum SceneType {
 		Space
 	};
@@ -37,59 +50,64 @@ public class SceneSpaceGenerator : BaseGenerator {
 	
 	IEnumerator Generate() {
 
-		StartCoroutine(GenerateLine());
-		StartCoroutine(GenerateLineLeft());
+		StartCoroutine(GenerateHorizontalLine());
+		StartCoroutine(GenerateVerticalLineLeft());
 
 		yield return null;
 	}
 
 
-	IEnumerator GenerateLine() {
-		float xOffset = 20;
-		float zOffset = 20;
+	IEnumerator GenerateHorizontalLine() {
+		print ("GenerateLine");
+		Vector3 scale = new Vector3 (Random.Range (horizontalLineScaleA.x, horizontalLineScaleB.x),
+		                             Random.Range (horizontalLineScaleA.y, horizontalLineScaleB.y),
+		                             Random.Range (horizontalLineScaleA.z, horizontalLineScaleB.z));
 		Vector3 position = Vector3.zero;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(verticalLineScale.x, verticalLineScale.y), Random.Range(-zOffset - 40, zOffset - 40));
-			Vector3 newPosition = randomPosition + generatorReference.position;
-			bool result = CheckFlowCollision(newPosition);
+			Vector3 randomPosition = new Vector3(Random.Range(- horizontalLineXRange, horizontalLineXRange), Random.Range(horizontalLineYOffset.x, horizontalLineYOffset.y), Random.Range(horizontalLineZOffset.x, horizontalLineZOffset.y));
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			bool result = false; // CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
 				break;
 			}
 		}
 		Transform newFlow = (Transform)GameObject.Instantiate (prefabLine);
-		newFlow.SetParent (Lines);
-		newFlow.localScale = Vector3.one;
-		newFlow.localRotation = Quaternion.Euler (90, 0, 0);
-		newFlow.position = position; 
+		newFlow.SetParent (horizontalLines);
+		newFlow.localScale = scale;
+		newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+		newFlow.localPosition = position; 
 
 		yield return new WaitForSeconds (horizontalLineInterval);
-		yield return StartCoroutine (GenerateLine());
+		yield return StartCoroutine (GenerateHorizontalLine());
 	}
 
-	IEnumerator GenerateLineLeft() {
-		float xOffset = 20;
-		float zOffset = 20;
+	IEnumerator GenerateVerticalLineLeft() {
+		Vector3 scale = new Vector3 (Random.Range (verticalLineScaleA.x, verticalLineScaleB.x),
+		                             Random.Range (verticalLineScaleA.y, verticalLineScaleB.y),
+		                             Random.Range (verticalLineScaleA.z, verticalLineScaleB.z));
+
 		Vector3 position = Vector3.zero;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(horizontalLineScale.x, horizontalLineScale.y), Random.Range(-zOffset - 40, zOffset - 40));
-			Vector3 newPosition =generatorReference.position-randomPosition+new Vector3(30,0,-30);
-			bool result = CheckFlowCollision(newPosition);
+			Vector3 randomPosition = new Vector3(Random.Range(verticalLineXOffset.x, verticalLineXOffset.y), Random.Range(-verticalLineYRange, verticalLineYRange), Random.Range(verticalLineZOffset.x, verticalLineZOffset.y));
+
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			bool result = false; // CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
 				break;
 			}
 		}
 		Transform newFlow = (Transform)GameObject.Instantiate (prefabLineLeft);
-		newFlow.SetParent (Lines);
-		newFlow.localScale = Vector3.one;
-		newFlow.localRotation = Quaternion.Euler (90, 0, 90);
-		newFlow.position = position; 
+		newFlow.SetParent (verticalLines);
+		newFlow.localScale = scale;
+		newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+		newFlow.localPosition = position; 
 
 		yield return new WaitForSeconds (verticalLineInterval);
-		yield return StartCoroutine (GenerateLineLeft());
+		yield return StartCoroutine (GenerateVerticalLineLeft());
 	}
 
 

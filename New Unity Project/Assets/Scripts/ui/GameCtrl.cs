@@ -15,6 +15,7 @@ public class GameCtrl : MonoBehaviour {
 	public Transform CountDown;
 	public Transform SoundBtn1;
 	public Transform SoundBtn2;
+	public Transform camareOnlyHero;
 	bool shareAppear=false;
 	int a;
 	// Use this for initialization
@@ -82,6 +83,7 @@ public class GameCtrl : MonoBehaviour {
 		StopPage.GetComponent<Animator> ().Play ("Stop appear");
 		SoundBtn2.GetComponent<Toggle> ().isOn =(a==0)? true:false;
 		StopBtn.gameObject.SetActive (false);
+		camareOnlyHero.gameObject.SetActive (false);
 		Game.pause = true;
 		Time.timeScale = 0;
 	}

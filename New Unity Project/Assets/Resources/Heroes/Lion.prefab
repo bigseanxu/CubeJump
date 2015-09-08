@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 473964}
   - 198: {fileID: 19854808}
   - 199: {fileID: 19956916}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 481448}
   - 198: {fileID: 19838250}
   - 199: {fileID: 19971278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lion dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 33: {fileID: 3364184}
   - 23: {fileID: 2302240}
   - 96: {fileID: 9649322}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 4: {fileID: 461728}
   - 198: {fileID: 19805096}
   - 199: {fileID: 19998306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lion dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

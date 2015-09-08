@@ -15,18 +15,25 @@ public class SceneForestGenerator : BaseGenerator {
 	public Transform Butterflies;
 	public Transform generatorReference;
 
-	public float cloudInterval = 2f;
-	public float flyInterval = 2f;
+
+
 	public float butterflyInterval = 2f;
-
-	public Vector2 starScale = new Vector2(0.8f, 1.2f);
-
 	public Vector2 butterflyScale = new Vector2 (8f, 12f);
-	public Vector2 butterflyY = new Vector2(12f, 12f);
+	public float butterflyRange = 20;
+	public Vector2 butterflyYOffset = new Vector2(12f, 12f);
+	public Vector2 butterflyZOffset;
 
-	public Vector2 cloudY = new Vector2(-5f, 5f);
-	public Vector2 dragonflyY = new Vector2(-5f, 5f);
+	public float cloudInterval = 2f;
+	public float cloudRange = 20;
+	public Vector2 cloudYOffset = new Vector2(-5f, 5f);
+	public Vector2 cloudZOffset;
+
+	public float dragonflyInterval = 2f;
 	public Vector2 dragonflyScale = new Vector2(8f, 12f);
+	public float dragonflyRange = 20;
+	public Vector2 dragonflyYOffset = new Vector2(-5f, 5f);
+	public Vector2 dragonflyZOffset;
+
 	public enum SceneType {
 		Forest
 	};
@@ -60,8 +67,8 @@ public class SceneForestGenerator : BaseGenerator {
 		int i = Random.Range (0, 5);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(cloudY.x, cloudY.y), Random.Range(-zOffset - 40, zOffset - 40));
-		Vector3 newPosition = randomPosition + generatorReference.position;
+		Vector3 randomPosition = new Vector3(Random.Range(-cloudRange, cloudRange), Random.Range(cloudYOffset.x, cloudYOffset.y), Random.Range(cloudZOffset.x, cloudZOffset.y));
+		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabCloud[i]);
 		newFish.SetParent (Clouds);
@@ -74,27 +81,14 @@ public class SceneForestGenerator : BaseGenerator {
 		yield return StartCoroutine (GenerateCloud());
 	}
 
-
-	public void GeneratePlant() {
-		float xOffset = Random.Range (-20, 0);
-		float zOffset = Random.Range (0, 20);
-		
-		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant);
-		newPlant.SetParent (Plants);
-		newPlant.localScale = Vector3.one;
-		newPlant.localRotation = Quaternion.Euler (270, 0, 0);
-		newPlant.position = generatorReference.position + new Vector3 (xOffset, 0, zOffset);
-
-	}
-
 	IEnumerator GenerateFly() {
 		float xOffset = 20;
 		float zOffset = 20;
 		float scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), Random.Range(dragonflyY.x, dragonflyY.y), Random.Range(-zOffset - 40, zOffset - 40));
-		Vector3 newPosition = randomPosition + generatorReference.position;
+		Vector3 randomPosition = new Vector3(Random.Range(-dragonflyRange, dragonflyRange), Random.Range(dragonflyYOffset.x, dragonflyYOffset.y), Random.Range(dragonflyZOffset.x, dragonflyZOffset.y));
+		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabFly);
 		newFish.SetParent (Flys);
@@ -102,25 +96,23 @@ public class SceneForestGenerator : BaseGenerator {
 		newFish.localRotation = Quaternion.Euler (270, 0, 0);
 		newFish.position = newPosition; 
 		
-		yield return new WaitForSeconds (flyInterval);
+		yield return new WaitForSeconds (dragonflyInterval);
 		yield return StartCoroutine (GenerateFly());
 	}
 
 	IEnumerator GenerateButterfly() {
-		float xOffset = 20;
-		float zOffset = 20;
 		float scale = Random.Range (butterflyScale.x, butterflyScale.y);
-		float yOffset = Random.Range (butterflyY.x, butterflyY.y);
+		float yOffset = Random.Range (butterflyYOffset.x, butterflyYOffset.y);
 		Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), yOffset, Random.Range(-zOffset - 40, zOffset - 40));
-		Vector3 newPosition = randomPosition + generatorReference.position;
+		Vector3 randomPosition = new Vector3(Random.Range(-butterflyRange, butterflyRange), yOffset, Random.Range(butterflyZOffset.x, butterflyZOffset.y));
+		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
 		
 		Transform newFish = (Transform)GameObject.Instantiate (prefabButterfly);
 		newFish.SetParent (Butterflies);
 		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (285, 0, 0);
-		newFish.position = newPosition; 
+		newFish.localRotation = Quaternion.Euler (285, 90, 270);
+		newFish.localPosition = newPosition; 
 
 		yield return new WaitForSeconds (butterflyInterval);
 		yield return StartCoroutine (GenerateButterfly());

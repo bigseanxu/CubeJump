@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 406038}
   - 198: {fileID: 19820996}
   - 199: {fileID: 19912124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dog dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3376202}
   - 23: {fileID: 2320594}
   - 96: {fileID: 9621210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 409924}
   - 198: {fileID: 19870548}
   - 199: {fileID: 19980508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dog dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

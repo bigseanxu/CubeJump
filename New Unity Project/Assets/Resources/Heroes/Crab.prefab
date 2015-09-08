@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 410084}
   - 198: {fileID: 19808716}
   - 199: {fileID: 19976318}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crab dead 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3379704}
   - 23: {fileID: 2377844}
   - 96: {fileID: 9637186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 411350}
   - 198: {fileID: 19809334}
   - 199: {fileID: 19906408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 4: {fileID: 462096}
   - 198: {fileID: 19831734}
   - 199: {fileID: 19968474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - 4: {fileID: 481488}
   - 198: {fileID: 19819780}
   - 199: {fileID: 19908950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crab dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}

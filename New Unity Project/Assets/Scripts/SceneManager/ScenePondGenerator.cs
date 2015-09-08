@@ -20,19 +20,46 @@ public class ScenePondGenerator : BaseGenerator {
 	public Transform generatorReference;
 
 	public float flowInterval = 2f;
+	public float flowRange = 20;
+	public float flowXOffset;
+	public Vector2 flowYOffset;
+	public Vector2 flowZOffset;
+
 	public float plantInterval = 2f;
+	public float plantRange = 20;
+	public float plantXOffset;
+	public Vector2 plantYOffset;
+	public Vector2 plantZOffset;
+
 	public float frogInterval = 2f;
-	public float lotusInterval = 2f;
-	public float coInterval = 2f;
-	public float butterflyInterval = 2f;
-
 	public Vector2 frogScale = new Vector2(8f, 12f);
+	public float frogRange = 20;
+	public float frogXOffset;
+	public Vector2 frogYOffset;
+	public Vector2 frogZOffset;
+
+
+	public float lotusInterval = 2f;
 	public Vector2 lotusScale = new Vector2(8f, 12f);
+	public float lotusRange = 20;
+	public float lotusXOffset;
+	public Vector2 lotusYOffset;
+	public Vector2 lotusZOffset;
+
+	public float coInterval = 2f;
 	public Vector2 coScale = new Vector2(8f, 12f);
-	public Vector2 butterflyScale = new Vector2(8f, 12f);
-
-	public Vector2 butterflyY = new Vector2(12f, 12f);
-
+	public float coRange = 20;
+	public float coXOffset;
+	public Vector2 coYOffset;
+	public Vector2 coZOffset;
+//
+//	public float butterflyInterval = 2f;
+//	public Vector2 butterflyScale = new Vector2(8f, 12f);
+//	public float butterflyRange = 20;
+//	public float butterflyXOffset;
+//	public Vector2 butterflyYOffset = new Vector2(12f, 12f);
+//	public Vector2 butterflyZOffset;
+//
 	public enum SceneType {
 		Pond
 	};
@@ -59,7 +86,6 @@ public class ScenePondGenerator : BaseGenerator {
 		StartCoroutine(GenerateFrog());
         StartCoroutine(GenerateLotus());
         StartCoroutine(GenerateCo());
-     //   StartCoroutine(GenerateButterfly());
 	
 		yield return null;
 	}
@@ -67,13 +93,14 @@ public class ScenePondGenerator : BaseGenerator {
 
 
 	IEnumerator GenerateFlow() {
-		float xOffset = 20;
-		float zOffset = 20;
-		Vector3 position = Vector3.zero;
+		Vector3 position;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
-			Vector3 newPosition = randomPosition + generatorReference.position;
+			float xOffset = Random.Range (-flowRange, flowRange) + flowXOffset;
+			float yOffset = Random.Range (flowYOffset.x, flowYOffset.y);
+			float zOffset = Random.Range (flowZOffset.x, flowZOffset.y);
+			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
 			bool result = CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
@@ -84,21 +111,24 @@ public class ScenePondGenerator : BaseGenerator {
 		newFlow.SetParent (flows);
 		newFlow.localScale = Vector3.one;
 		newFlow.localRotation = Quaternion.Euler (0, 0, 0);
-		newFlow.position = position; 
+		newFlow.localPosition = position; 
 
 		yield return new WaitForSeconds (flowInterval);
 		yield return StartCoroutine (GenerateFlow());
 	}
 
 	IEnumerator GeneratePlant() {
-		float xOffset = Random.Range (-20, 0);
-		float zOffset = Random.Range (0, 20);
-		
+		float xOffset = Random.Range (-plantRange, plantRange) + plantXOffset;
+		float yOffset = Random.Range (plantYOffset.x, plantYOffset.y);
+		float zOffset = Random.Range (plantZOffset.x, plantZOffset.y);
+		Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
+		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+
 		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant);
 		newPlant.SetParent (plants);
 		newPlant.localScale = Vector3.one;
 		newPlant.localRotation = Quaternion.Euler (270, 0, 0);
-		newPlant.position = generatorReference.position + new Vector3 (xOffset, 0, zOffset);
+		newPlant.localPosition = newPosition;
 
 		yield return new WaitForSeconds (plantInterval);
 		yield return StartCoroutine (GeneratePlant());
@@ -106,14 +136,15 @@ public class ScenePondGenerator : BaseGenerator {
 	
 
 	IEnumerator GenerateFrog() {
-		float xOffset = 20;
-		float zOffset = 20;
 		float scale = Random.Range (frogScale.x, frogScale.y);
-		Vector3 position = Vector3.zero;
+		Vector3 position;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
-			Vector3 newPosition = randomPosition + generatorReference.position;
+			float xOffset = Random.Range (-frogRange, frogRange) + frogXOffset;
+			float yOffset = Random.Range (frogYOffset.x, frogYOffset.y);
+			float zOffset = Random.Range (frogZOffset.x, frogZOffset.y);
+			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
 			bool result = CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
@@ -124,21 +155,23 @@ public class ScenePondGenerator : BaseGenerator {
 		newFrog.SetParent (frog);
 		newFrog.localScale = Vector3.one*scale;
 		newFrog.localRotation = Quaternion.Euler (270, 0, 0);
-		newFrog.position = position; 
+		newFrog.localPosition = position; 
 
 		yield return new WaitForSeconds (frogInterval);
 		yield return StartCoroutine (GenerateFrog());
 	}
 
 	IEnumerator GenerateLotus() {
-		float xOffset = 20;
-		float zOffset = 20;
+
 		Vector3 position = Vector3.zero;
 		float scale = Random.Range (lotusScale.x, lotusScale.y);
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
-			Vector3 newPosition = randomPosition + generatorReference.position;
+			float xOffset = Random.Range (-lotusRange, lotusRange) + lotusXOffset;
+			float yOffset = Random.Range (lotusYOffset.x, lotusYOffset.y);
+			float zOffset = Random.Range (lotusZOffset.x, lotusZOffset.y);
+			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
 			bool result = CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
@@ -149,21 +182,22 @@ public class ScenePondGenerator : BaseGenerator {
 		newLotus.SetParent (lotus);
 		newLotus.localScale = Vector3.one*scale;
 		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
-		newLotus.position = position; 
+		newLotus.localPosition = position; 
 
 		yield return new WaitForSeconds (lotusInterval);
 		yield return StartCoroutine (GenerateLotus());
 	}
 
 	IEnumerator GenerateCo() {
-		float xOffset = 20;
-		float zOffset = 20;
-		Vector3 position = Vector3.zero;
+		Vector3 position;
 		float scale = Random.Range (coScale.x, coScale.y);
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), 0, Random.Range(-zOffset - 40, zOffset - 40));
-			Vector3 newPosition = randomPosition + generatorReference.position;
+			float xOffset = Random.Range (-coRange, coRange) + coXOffset;
+			float yOffset = Random.Range (coYOffset.x, coYOffset.y);
+			float zOffset = Random.Range (coZOffset.x, coZOffset.y);
+			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
 			bool result = CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
@@ -174,31 +208,13 @@ public class ScenePondGenerator : BaseGenerator {
 		newLotus.SetParent (Crocodiles);
 		newLotus.localScale = Vector3.one*scale;
 		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
-		newLotus.position = position; 
+		newLotus.localPosition = position; 
 
 		yield return new WaitForSeconds (coInterval);
 		yield return StartCoroutine (GenerateCo());
 	}
 
-	IEnumerator GenerateButterfly() {
-		float xOffset = 20;
-		float zOffset = 20;
-		float scale = Random.Range (butterflyScale.x, butterflyScale.y);
-		float yOffset = Random.Range (butterflyY.x, butterflyY.y);
-		Vector3 position = Vector3.zero;
-		
-		Vector3 randomPosition = new Vector3(Random.Range(-xOffset, xOffset), yOffset, Random.Range(-zOffset - 40, zOffset - 40));
-		Vector3 newPosition = randomPosition + generatorReference.position;
-		
-		Transform newFish = (Transform)GameObject.Instantiate (prefabButterfly);
-		newFish.SetParent (Butterflies);
-		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (270, 0, 0);
-		newFish.position = newPosition; 
 
-		yield return new WaitForSeconds (butterflyInterval);
-		yield return StartCoroutine (GenerateButterfly());
-	}
 
 	bool CheckFlowCollision(Vector3 pos) {
 		bool ret = false;
