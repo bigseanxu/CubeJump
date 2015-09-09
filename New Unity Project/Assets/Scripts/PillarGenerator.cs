@@ -7,6 +7,7 @@ public class PillarGenerator : MonoBehaviour {
 	public Transform pillarGroup;
 	public Transform sceneGenerator;
 	public Transform diamondGenerator;
+	public Transform UIAudio;
 
 	//public float minSmallToSmall; 
 	//public float minSmallToMedium;
@@ -30,7 +31,7 @@ public class PillarGenerator : MonoBehaviour {
 		Physics.gravity = gravity;
 		pillars.Add (startPillar);
 		pillars.Add (startPillar2);
-		GeneratePillar ();
+		GeneratePillar (pillarPrefabs[1]);
 		GeneratePillar ();
 		GeneratePillar ();
 	}
@@ -40,16 +41,20 @@ public class PillarGenerator : MonoBehaviour {
 
 	}
 
-	public void GeneratePillar() {
-		int rangeA = 0;
-		int rangeB = pillarPrefabs.Length;
-		if (pillars [pillars.Count - 1].name.Contains ("5x5")) {
-			rangeB = rangeB - 1;
-		} else if (pillars [pillars.Count - 1].name.Contains ("15x15")) {
-			rangeA = 1;
+	public void GeneratePillar(Transform pillarPrefab = null) {
+//		int rangeA = 0;
+//		int rangeB = pillarPrefabs.Length;
+//		if (pillars [pillars.Count - 1].name.Contains ("5x5")) {
+//			rangeB = rangeB - 1;
+//		} else if (pillars [pillars.Count - 1].name.Contains ("15x15")) {
+//			rangeA = 1;
+//		}
+		Transform prefab;
+		if (pillarPrefab == null) {
+			prefab = pillarPrefabs [Random.Range (0, pillarPrefabs.Length)];
+		} else {
+			prefab = pillarPrefab;
 		}
-
-		Transform prefab = pillarPrefabs [Random.Range (rangeA, rangeB)];
 		Transform newPillar = (Transform)GameObject.Instantiate (prefab, Vector3.zero, Quaternion.identity);
 		newPillar.SetParent (pillarGroup);
 		// newPillar.localScale = Vector3.one;
@@ -83,7 +88,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.gameObject.SetActive (false);
 		newPillar.GetComponent<Rigidbody> ().isKinematic = true;
 		pillars.Add (newPillar);
-
+		UIAudio.GetComponent<AudioList> ().PillarAppear.Play ();
 		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
 		diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
 //		PlaySprayParticle ();

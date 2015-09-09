@@ -9,9 +9,10 @@ public class Pillar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		HingeJoint hinge = GetComponent<HingeJoint> ();
 		JointSpring spring = hinge.spring;
-		spring.spring = 40;
+		spring.spring = 20;
 		spring.damper = 10;
 		spring.targetPosition = -180;
 

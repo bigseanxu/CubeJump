@@ -13,8 +13,10 @@ public class CubeHero : MonoBehaviour {
 	LTDescr jumpBeforeGameTween;
 	bool isFaceLeft = true;
 	bool live=true;
+	bool waterOnce=true;
 	public float fForceUp = 1500;
 	public float fForceForward = 300;
+	public Transform UIAudio;
 	
 	enum CubeState
 	{ 
@@ -60,8 +62,17 @@ public class CubeHero : MonoBehaviour {
 			if(Time.timeScale==1)
 				Jump();
 		}
+		if (transform.position.y < 0) {
+			if (Game.sceneType <= 1 && waterOnce) {
+				waterOnce = false;
+				UIAudio.GetComponent<AudioList> ().HeroFallInWater.Play ();
+			}
+		} else {
+				waterOnce=true;
+		}
 		if (transform.position.y < -40) {
 			if(live){
+				UIAudio.GetComponent<AudioList> ().GameOver.Play ();
 				ctrl.GetComponent<GameCtrl> ().LoadGameOver ();
 				live=false;
 			}
@@ -72,7 +83,7 @@ public class CubeHero : MonoBehaviour {
 		if (collider.gameObject.name == "ColliderBox") {
 			collider.gameObject.SetActive(false);
 			LandSuccess (collider.transform.parent);
-		} else if (collider.gameObject.name == "Water") {
+		} else if (collider.gameObject.name == "water") {
 
 		}
 	}
@@ -80,7 +91,7 @@ public class CubeHero : MonoBehaviour {
 	void OnCollisionEnter(Collision collision){
 		int a = transform.GetChild (0).childCount;
 		if (state== CubeState.Jumping&& collision.gameObject.tag=="Pillar") {
-			
+				UIAudio.GetComponent<AudioList> ().HeroBroken.Play ();
 			transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
 
 			if (transform.GetChild(0).GetComponent<TrailRenderer> () != null) {
@@ -94,6 +105,9 @@ public class CubeHero : MonoBehaviour {
 			transform.GetComponent<BoxCollider>().isTrigger=true;
 			transform.GetChild (0).GetChild (a-1).gameObject.SetActive (true);
 			
+		}
+		if (collision.gameObject.name == "water") {
+				UIAudio.GetComponent<AudioList> ().HeroFallInWater.Play ();
 		}
 	}
 
@@ -129,6 +143,7 @@ public class CubeHero : MonoBehaviour {
 	}
 
 	void LandSuccess (Transform pillar) {
+		UIAudio.GetComponent<AudioList> ().HeroAlive.Play ();
 		state = CubeState.Fall;
 		live = true;
 		print ("LandSuccess");

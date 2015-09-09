@@ -17,6 +17,8 @@ public class GameCtrl : MonoBehaviour {
 	public Transform SoundBtn1;
 	public Transform SoundBtn2;
 	public Transform camareOnlyHero;
+	public Camera MainCamera;
+	public Transform UIAudio;
 	bool shareAppear=false;
 	int a;
 	// Use this for initialization
@@ -34,7 +36,7 @@ public class GameCtrl : MonoBehaviour {
 			Game.StartGame ();
 			Game.replay=false;
 		}
-		Input.ResetInputAxes();
+		MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
 	}
 	
 	// Update is called once per frame
@@ -43,6 +45,7 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnShopButtonPress() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		Shop.gameObject.SetActive (true);
 		Shop.GetComponent<Animator> ().Play ("shopIn");
 		Game.state =Game.State.Shopping;
@@ -51,6 +54,7 @@ public class GameCtrl : MonoBehaviour {
 
 	}
 	public void OnShopOverButtonPress() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		Shop.gameObject.SetActive (true);
 		Shop.GetComponent<Animator> ().Play ("shopIn");
 		StartPage.GetComponent<Animator> ().Play ("Begin disappear");
@@ -59,6 +63,7 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnShopCloseButtonPress() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		Shop.GetComponent<Animator> ().Play ("shopOut");
 		if (Game.state == Game.State.GameOver) {
 			GameOver.gameObject.SetActive (true);
@@ -72,17 +77,22 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnSoundButton1Press() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		PlayerPrefs.SetInt ("Sound", SoundBtn1.GetComponent<Toggle> ().isOn ? 0 : 1);
 		a=PlayerPrefs.GetInt("Sound");
 		SoundBtn2.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+		MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
 	}
 	public void OnSoundButton2Press() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		PlayerPrefs.SetInt ("Sound", SoundBtn2.GetComponent<Toggle> ().isOn ? 0 : 1);
 		a=PlayerPrefs.GetInt("Sound");
 		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
+		MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
 	}
 
 	public void OnPauseButtonPress() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		StopPage.gameObject.SetActive (true);
 		StopPage.GetComponent<Animator> ().Play ("Stop appear");
 		SoundBtn2.GetComponent<Toggle> ().isOn =(a==0)? true:false;
@@ -93,6 +103,7 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnContinueButtonPress() {
+		UIAudio.GetComponent<AudioList> ().CountDown.Play ();
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
 		CountDown.gameObject.SetActive (true);
 		CountDown.GetComponent<Animator> ().Play ("CountDown");
@@ -102,6 +113,7 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnShareMenuButtonPress() {
+		UIAudio.GetComponent<AudioList> ().ShareButton.Play ();
 		print ("OnShareMenuButtonPress");
 		if(!shareAppear)
 			Share.GetComponent<Animator> ().Play ("Share appear");
@@ -112,10 +124,12 @@ public class GameCtrl : MonoBehaviour {
 
 
 	public void OnAdsButtonPress() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		Game.diamond +=20;
 		PlayerPrefs.SetInt ("Diamonds", Game.diamond);
 	}
 	public void OnHomeButtonPress() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		Time.timeScale = 1;
 	//	StopPage.GetComponent<Animator> ().Play ("Stop disappear");
 	//	StartPage.gameObject.SetActive (true);
@@ -124,6 +138,7 @@ public class GameCtrl : MonoBehaviour {
 		ReLoad ();
 	}
 	public void OnHomeOverButtonPress() {
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		Time.timeScale = 1;
 	//	GameOver.GetComponent<Animator> ().Play ("Game over disappear");
 	//	StopPage.GetComponent<Animator> ().Play ("Stop disappear");
@@ -134,6 +149,7 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnRestartButtonPress() {
+		UIAudio.GetComponent<AudioList> ().TapToStart.Play ();
 		Time.timeScale = 1;
 	//	GameOver.GetComponent<Animator> ().Play ("Game over disappear");
 	//	StopPage.GetComponent<Animator> ().Play ("Stop disappear");
@@ -144,6 +160,23 @@ public class GameCtrl : MonoBehaviour {
 		Game.replay = true;
 	}
 
+	public void OnFacebookPress(){
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
+	}
+
+	public void OnTwitterPress(){
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
+	}
+	public void OnRatePress(){
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
+	}
+	public void OnGameCenterPress(){
+		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
+	}
+	public void OnTapToPlayPress(){
+		UIAudio.GetComponent<AudioList> ().TapToStart.Play ();
+		Game.StartGame ();
+	}
 
 	public void LoadGameOver(){
 		Game.state = Game.State.GameOver;
