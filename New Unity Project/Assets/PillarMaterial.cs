@@ -9,7 +9,13 @@ public class PillarMaterial : MonoBehaviour {
 	public Transform logoDown;
 	// Use this for initialization
 	void Start () {
-	
+//		Vector3 v = logoUp.localPosition;
+//		v.z = 0.32f;
+//		logoUp.localPosition = v;
+//
+//		Vector3 v2 = logoDown.localPosition;
+//		v2.z = -0.32f;
+//		logoDown.localPosition = v2;
 	}
 	
 	// Update is called once per frame

@@ -14,6 +14,8 @@ public class PillarGenerator : MonoBehaviour {
 
 	public float minDistance = 7;
 	public float maxDistance = 9;
+	public float minDistanceB = 7;
+	public float maxDistanceB = 9;
 	public Transform startPillar;
 	public Transform startPillar2;
 	public SprayParticles sprayParticles;
@@ -31,9 +33,11 @@ public class PillarGenerator : MonoBehaviour {
 		Physics.gravity = gravity;
 		pillars.Add (startPillar);
 		pillars.Add (startPillar2);
-		GeneratePillar (pillarPrefabs[1]);
+		Transform pillar3 = GeneratePillar (pillarPrefabs[1]);
 		GeneratePillar ();
 		GeneratePillar ();
+		startPillar.GetComponent<Pillar> ().NextPillar = startPillar2;
+		startPillar2.GetComponent<Pillar> ().NextPillar = pillar3;
 	}
 	
 	// Update is called once per frame 
@@ -41,7 +45,7 @@ public class PillarGenerator : MonoBehaviour {
 
 	}
 
-	public void GeneratePillar(Transform pillarPrefab = null) {
+	public Transform GeneratePillar(Transform pillarPrefab = null) {
 //		int rangeA = 0;
 //		int rangeB = pillarPrefabs.Length;
 //		if (pillars [pillars.Count - 1].name.Contains ("5x5")) {
@@ -61,7 +65,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.rotation = Quaternion.identity;
 
 
-		float distance = Random.Range (minDistance, maxDistance);
+		float distance = Random.Range(0f, 1f) < 0.5f ? Random.Range(minDistance, minDistanceB) : Random.Range(maxDistance, maxDistanceB);
 		if (lastPillarLeft) {
 			newPillar.transform.position = lastPillarPosition + new Vector3 (- distance, 0, 0);
 			newPillar.GetComponent<HingeJoint>().connectedAnchor = newPillar.transform.position;
@@ -92,7 +96,7 @@ public class PillarGenerator : MonoBehaviour {
 		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
 		diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
 //		PlaySprayParticle ();
-
+		return newPillar;
 	}
 
 

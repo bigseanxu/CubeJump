@@ -13,7 +13,12 @@ public class Water : MonoBehaviour {
 	void Update () {
 	
 	}
+
 	void Wave(){
 		//浪花
+	}
+
+	void OnTriggerEnter(Collider collider) {
+	//	print ("water trigger");
 	}
 }
