@@ -58,7 +58,6 @@ public class SceneSpaceGenerator : BaseGenerator {
 
 
 	IEnumerator GenerateHorizontalLine() {
-		print ("GenerateLine");
 		Vector3 scale = new Vector3 (Random.Range (horizontalLineScaleA.x, horizontalLineScaleB.x),
 		                             Random.Range (horizontalLineScaleA.y, horizontalLineScaleB.y),
 		                             Random.Range (horizontalLineScaleA.z, horizontalLineScaleB.z));

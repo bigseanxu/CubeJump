@@ -31,7 +31,7 @@ public class PillarGenerator : MonoBehaviour {
 		Physics.gravity = gravity;
 		pillars.Add (startPillar);
 		pillars.Add (startPillar2);
-		GeneratePillar ();
+		GeneratePillar (pillarPrefabs[1]);
 		GeneratePillar ();
 		GeneratePillar ();
 	}
@@ -41,16 +41,20 @@ public class PillarGenerator : MonoBehaviour {
 
 	}
 
-	public void GeneratePillar() {
-		int rangeA = 0;
-		int rangeB = pillarPrefabs.Length;
-		if (pillars [pillars.Count - 1].name.Contains ("5x5")) {
-			rangeB = rangeB - 1;
-		} else if (pillars [pillars.Count - 1].name.Contains ("15x15")) {
-			rangeA = 1;
+	public void GeneratePillar(Transform pillarPrefab = null) {
+//		int rangeA = 0;
+//		int rangeB = pillarPrefabs.Length;
+//		if (pillars [pillars.Count - 1].name.Contains ("5x5")) {
+//			rangeB = rangeB - 1;
+//		} else if (pillars [pillars.Count - 1].name.Contains ("15x15")) {
+//			rangeA = 1;
+//		}
+		Transform prefab;
+		if (pillarPrefab == null) {
+			prefab = pillarPrefabs [Random.Range (0, pillarPrefabs.Length)];
+		} else {
+			prefab = pillarPrefab;
 		}
-
-		Transform prefab = pillarPrefabs [Random.Range (rangeA, rangeB)];
 		Transform newPillar = (Transform)GameObject.Instantiate (prefab, Vector3.zero, Quaternion.identity);
 		newPillar.SetParent (pillarGroup);
 		// newPillar.localScale = Vector3.one;

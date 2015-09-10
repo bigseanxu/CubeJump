@@ -72,8 +72,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 486098}
   - 23: {fileID: 2349812}
-  - 114: {fileID: 11472066}
-  - 54: {fileID: 5416350}
+  - 96: {fileID: 9618684}
   m_Layer: 9
   m_Name: Fish
   m_TagString: Untagged
@@ -165,7 +164,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122386}
   m_LocalRotation: {x: -1, y: 0, z: 0, w: -2.68220873e-07}
-  m_LocalPosition: {x: .730000496, y: .0799980089, z: -4.5999999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 486098}
@@ -348,21 +347,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199986}
   m_Mesh: {fileID: 4300004, guid: edf94196ff77f7f489453801463b9edb, type: 3}
---- !u!54 &5416350
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121550}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!95 &9567422
 Animator:
   serializedVersion: 3
@@ -380,26 +364,51 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11472066
-MonoBehaviour:
+--- !u!96 &9618684
+TrailRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121550}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbda18376e4ecff45b02c30aeb512ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0
-  ctrl: {fileID: 0}
-  currentPillar: {fileID: 0}
-  pillarGenerator: {fileID: 0}
-  cameraReference: {fileID: 0}
-  jumpDistanceBeforeGame: 3
-  jumpTimeBeforeGame: .600000024
-  fForceUp: 1500
-  fForceForward: 300
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 23ba5889a389ec54f9aa652715bd7191, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: .400000006
+  m_StartWidth: 1
+  m_EndWidth: 1
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!137 &13721854
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

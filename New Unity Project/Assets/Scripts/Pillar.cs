@@ -7,13 +7,12 @@ public class Pillar : MonoBehaviour {
 	public Transform sceneGenerator;
 	public SprayParticles sprayParticles;
 
-
 	// Use this for initialization
 	void Start () {
 
 		HingeJoint hinge = GetComponent<HingeJoint> ();
 		JointSpring spring = hinge.spring;
-		spring.spring = 40;
+		spring.spring = 20;
 		spring.damper = 10;
 		spring.targetPosition = -180;
 
@@ -69,7 +68,6 @@ public class Pillar : MonoBehaviour {
 	}
 
 	void PlaySprayParticle() {
-
 		sprayParticles.Stop ();
 		float duration = 2;
 		if (gameObject.name == "5x5(Clone)") {

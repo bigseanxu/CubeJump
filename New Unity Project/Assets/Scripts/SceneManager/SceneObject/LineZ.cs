@@ -21,7 +21,7 @@ public class LineZ : MonoBehaviour {
 
 	void Move() {
 		Vector3 position = transform.position;
-		position.x -= distance;
+		position.x += distance;
 		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
 	}
 	void Des(){

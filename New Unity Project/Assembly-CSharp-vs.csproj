@@ -110,6 +110,7 @@
      <Compile Include="Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Scripts\SprayParticles.cs" />
      <Compile Include="Assets\Scripts\Water.cs" />
+     <Compile Include="Assets\Scripts\tools\GameObjectPool.cs" />
      <Compile Include="Assets\Scripts\ui\Background.cs" />
      <Compile Include="Assets\Scripts\ui\GameBestScore.cs" />
      <Compile Include="Assets\Scripts\ui\GameCtrl.cs" />

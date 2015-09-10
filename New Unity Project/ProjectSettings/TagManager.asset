@@ -7,7 +7,6 @@ TagManager:
   - ShopItem
   - Pillar
   - over
-  - Audio
   layers:
   - Default
   - TransparentFX
