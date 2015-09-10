@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 	public Transform cubeHero;
 	public Transform cameraReference;
+	public Transform cameraOnlyHero;
 
 	Vector3 lastReferencePosition;
 	Vector3 newPosition;
@@ -25,5 +26,10 @@ public class CameraController : MonoBehaviour {
 	 
 	void Update () {
 		transform.position = Vector3.Lerp (transform.position, newPosition, Time.deltaTime * 2);
+		if (Game.state != Game.State.BeforeGame) {
+			cameraOnlyHero.gameObject.SetActive(false);
+		} else {
+			cameraOnlyHero.gameObject.SetActive(true);		
+		}
 	}
 }

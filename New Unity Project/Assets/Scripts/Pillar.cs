@@ -64,21 +64,23 @@ public class Pillar : MonoBehaviour {
 	public void Show () {
 		gameObject.SetActive (true);
 		GetComponent<Animator> ().Play ("Show");
-		PlaySprayParticle ();
+		if (Game.sceneType <= 1) {
+			PlaySprayParticle ();
+		}
 	}
 
 	void PlaySprayParticle() {
 		sprayParticles.Stop ();
-		float duration = 2;
-		if (gameObject.name == "5x5(Clone)") {
-			duration = 0.8f;
-		} else if (gameObject.name == "10x10(Clone)") {
-			duration = 1.6f;
-		} else if (gameObject.name == "15x15(Clone)") {
-			duration = 2.4f;
-		} else {
-			print ("error pillar PlaySprayParticle");
-		}
+		float duration = 1.5f;
+//		if (gameObject.name == "8x8(Clone)") {
+//			duration = 0.8f;
+//		} else if (gameObject.name == "10x10(Clone)") {
+//			duration = 1.6f;
+//		} else if (gameObject.name == "12x12(Clone)") {
+//			duration = 2.4f;
+//		} else {
+//			print ("error pillar PlaySprayParticle");
+//		}
 		sprayParticles.SetPositon (transform.position);
 		sprayParticles.Play ();
 	}

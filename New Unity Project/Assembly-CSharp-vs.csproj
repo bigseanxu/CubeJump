@@ -119,6 +119,7 @@
      <Compile Include="Assets\Scripts\ui\ShowNumberInCanvas.cs" />
      <Compile Include="Assets\Scripts\ui\Sound.cs" />
      <Compile Include="Assets\Scripts\ui\TapToPlay.cs" />
+     <Compile Include="Assets\ShopClose.cs" />
      <Compile Include="Assets\Star.cs" />
      <Compile Include="Assets\UnityAds.cs" />
      <Compile Include="Assets\test.cs" />

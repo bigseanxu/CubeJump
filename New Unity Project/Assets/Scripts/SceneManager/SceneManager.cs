@@ -23,7 +23,7 @@ public class SceneManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		int type = Random.Range (0, sceneGenerators.Length);
-		while (type == (int)currSceneType) {
+		while (type == Game.sceneType) {
 			type = Random.Range (0, sceneGenerators.Length);
 		}
 

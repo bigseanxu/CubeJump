@@ -17,7 +17,8 @@ public class CubeHero : MonoBehaviour {
 	public float fForceUp = 1500;
 	public float fForceForward = 300;
 	public Transform UIAudio;
-	
+	public ParticleSystem waterSpray;
+
 	enum CubeState
 	{ 
 		BeforeGame,
@@ -84,8 +85,12 @@ public class CubeHero : MonoBehaviour {
 			collider.gameObject.SetActive(false);
 			LandSuccess (collider.transform.parent);
 		} else if (collider.gameObject.name == "water") {
+				print("cube is in water");
+				waterSpray.transform.position = transform.position;
+				waterSpray.Play();
 
 		}
+			print("collider is " + collider.name);
 	}
 
 	void OnCollisionEnter(Collision collision){
@@ -109,6 +114,7 @@ public class CubeHero : MonoBehaviour {
 		if (collision.gameObject.name == "water") {
 				UIAudio.GetComponent<AudioList> ().HeroFallInWater.Play ();
 		}
+			print("collision is " + collision.gameObject.name);
 	}
 
 	void Jump() {
@@ -139,6 +145,7 @@ public class CubeHero : MonoBehaviour {
         // freeze rotation
 		GetComponent<Rigidbody> ().freezeRotation = true;
 		state = CubeState.Jumping;
+		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
 
 	}
 
@@ -158,7 +165,6 @@ public class CubeHero : MonoBehaviour {
 		rigid.freezeRotation = false;
 
 		GetScore ();
-		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
 		StartCoroutine (TurnAround());
 	}
 
@@ -174,7 +180,7 @@ public class CubeHero : MonoBehaviour {
 		} else {
 			LeanTween.rotate (gameObject, new Vector3(-90, -90, 0), 0.2f);
 		}
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.2f);
 		currentPillar.GetComponent<Pillar> ().FallingDown ();
 		state = CubeState.Ready;
     } 

@@ -25,7 +25,7 @@ public class Shop : MonoBehaviour {
 	public Transform ctrl;
 	public Transform UIAudio;
 	public Camera shopCam;
-	float velocity;
+	public float velocity;
 	bool moveLeft;
 	Vector3 mVecPos;
 	Vector3 mVecPosStart;
