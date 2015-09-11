@@ -60,7 +60,7 @@ public class CubeHero : MonoBehaviour {
 		}	
 
 		if (Input.GetMouseButtonUp (0)) {
-			if(Time.timeScale==1)
+			if(Game.state == Game.State.Gaming)
 				Jump();
 		}
 		if (transform.position.y < 0) {

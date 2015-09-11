@@ -77,7 +77,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.19999981, y: 8.36999607, z: 10.409996}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 493626}
@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169744}
   m_LocalRotation: {x: 1.63912773e-07, y: -5.96046448e-08, z: .891082048, w: .453842282}
-  m_LocalPosition: {x: 9.19999981, y: 8.36999416, z: 10.4099941}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .201214433, y: .201214463, z: .201214448}
   m_Children: []
   m_Father: {fileID: 493626}
@@ -259,7 +259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   particles: {fileID: 0}
-  rotateSpeed: 180
+  rotateSpeed: 90
+  UIAudio: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
 --- !u!222 &22236744
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -273,14 +274,14 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191076}
   m_LocalRotation: {x: .0892703831, y: -.408844411, z: -.105576381, w: .902070224}
-  m_LocalPosition: {x: 0, y: 0, z: 10.3449945}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .100000001, y: .100000001, z: .100000009}
   m_Children: []
   m_Father: {fileID: 493626}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 9.19499969, y: 8.35899448}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000

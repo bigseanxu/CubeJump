@@ -12,18 +12,21 @@ public class SceneWaterGenerator : BaseGenerator {
 	public Transform fish;
 	public Transform generatorReference;
 
+	public uint maxFlowCount = 10;
 	public float flowInterval = 2f;
 	public float flowRange = 20;
 	public float flowXOffset;
 	public Vector2 flowYOffset;
 	public Vector2 flowZOffset;
-	
+
+	public uint maxPlantCount = 10;
 	public float plantInterval = 2f;
 	public float plantRange = 20;
 	public float plantXOffset;
 	public Vector2 plantYOffset;
 	public Vector2 plantZOffset;
 
+	public uint maxFishCount = 10;
 	public float fishInterval = 2f;
 	public Vector2 fishScale = new Vector2(0.1f, 0.3f);
 	public float fishRange = 20;
@@ -31,7 +34,9 @@ public class SceneWaterGenerator : BaseGenerator {
 	public Vector2 fishYOffset = new Vector2(-10f, -5f);
 	public Vector2 fishZOffset;
 
-
+	GameObjectPool flowPool; 
+	GameObjectPool plantPool;
+	GameObjectPool fishPool; 
 
 	public enum SceneType {
 		Water
@@ -40,7 +45,12 @@ public class SceneWaterGenerator : BaseGenerator {
 	public SceneType sceneType = SceneType.Water;
 	 
 	void Start () {
-
+		flowPool = new GameObjectPool(prefabFlow.gameObject, maxFlowCount,
+		                              (gameObject) => {}, false);
+		plantPool = new GameObjectPool(prefabPlant.gameObject, maxPlantCount,
+		                               (gameObject) => {}, false);
+		fishPool = new GameObjectPool(prefabFish.gameObject, maxFishCount,
+		                              (gameObject) => {}, false);
 	}
 	
 	// Update is called once per frame
@@ -53,12 +63,12 @@ public class SceneWaterGenerator : BaseGenerator {
 	}
 
 	IEnumerator Generate() {
-
+		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(GenerateFlow());
 		StartCoroutine(GenerateFish());
 		StartCoroutine(GeneratePlant());
 	
-		yield return null;
+
 	}
 
 	IEnumerator GenerateFlow() {

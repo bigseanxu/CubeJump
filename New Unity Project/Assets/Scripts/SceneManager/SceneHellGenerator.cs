@@ -13,6 +13,7 @@ public class SceneHellGenerator : BaseGenerator {
 	public Transform Ghosts;
 	public Transform generatorReference;
 
+	public uint maxSpiderCount = 10;
 	public float spiderInterval = 2f;
 	public Vector2 spiderScale = new Vector2(5f, 15f);
 	public float spiderRange = 20;
@@ -20,13 +21,15 @@ public class SceneHellGenerator : BaseGenerator {
 	public Vector2 spiderYOffset;
 	public Vector2 spiderZOffset;
 
+	public uint maxBatCount = 10;
 	public float batInterval = 2f;
 	public Vector2 batScale = new Vector2(8f, 12f);
 	public float batRange = 20;
 	public float barXOffset;
 	public Vector2 batYOffset;
 	public Vector2 batZOffset;
-	
+
+	public uint maxGhostCount = 10;
 	public float ghostInterval = 2f;
 	public Vector2 ghostScale = new Vector2(0.1f, 0.3f);
 	public float ghostRange = 20;
@@ -34,15 +37,24 @@ public class SceneHellGenerator : BaseGenerator {
 	public Vector2 ghostYOffset;
 	public Vector2 ghostZOffset;
 
+	GameObjectPool spiderPool; 
+	GameObjectPool batPool;
+	GameObjectPool ghostPool; 
 
 	public enum SceneType {
 		Hell
 	};
 
+
 	public SceneType sceneType = SceneType.Hell;
 	 
 	void Start () {
-	
+		spiderPool = new GameObjectPool(prefabSpider.gameObject, maxSpiderCount,
+		                                   (gameObject) => {}, false);
+		batPool = new GameObjectPool(prefabBat.gameObject, maxBatCount,
+		                                   (gameObject) => {}, false);
+		ghostPool = new GameObjectPool(prefabGhost.gameObject, maxGhostCount,
+		                                   (gameObject) => {}, false);
 	}
 	
 	// Update is called once per frame
@@ -55,11 +67,11 @@ public class SceneHellGenerator : BaseGenerator {
 	}
 	
 	IEnumerator Generate() {
-
+		yield return new WaitForSeconds(0.5f);
 		StartCoroutine(GenerateSpider ());
 		StartCoroutine(GenerateBat ());
 		StartCoroutine(GenerateGhost ());
-		yield return null;
+
 	}
 	
 
