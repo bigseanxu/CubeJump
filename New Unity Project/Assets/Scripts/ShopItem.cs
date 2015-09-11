@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ShopItem : MonoBehaviour {
 
 	public int id ;
+	public Sprite nameSprite;
 	public string name;
 	public int price;
 	public bool isbought;
@@ -20,6 +22,7 @@ public class ShopItem : MonoBehaviour {
 	Texture tHave;
 	Material mat;
 	Vector3 vec;
+	Vector3 vecPos;
 
 	void Start(){
 		transform.localScale = new Vector3 (0, 0, 0);
@@ -60,6 +63,7 @@ public class ShopItem : MonoBehaviour {
 		vec = transform.position;
 		vec.z -= 1;
 		l.position = vec;
+
 	}
 
 	public void OnLoad(){

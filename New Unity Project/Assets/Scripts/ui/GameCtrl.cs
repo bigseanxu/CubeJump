@@ -98,7 +98,7 @@ public class GameCtrl : MonoBehaviour {
 		SoundBtn2.GetComponent<Toggle> ().isOn =(a==0)? true:false;
 		StopBtn.gameObject.SetActive (false);
 		camareOnlyHero.gameObject.SetActive (false);
-		Game.pause = true;
+		Game.state = Game.State.Pause;
 		Time.timeScale = 0;
 	}
 

@@ -6,6 +6,7 @@ public class Game
 	public enum State {
 		BeforeGame,
 		Gaming,
+		Pause,
 		GameOver,
 		Shopping
 	};
@@ -22,7 +23,6 @@ public class Game
 	public static bool replay=false;
 	public static string sHeroName = "";	
 	public static bool isInit = false;
-	public static bool pause = false;
 	public static bool isShopLoaded = false;
 
 	public static void Init() {

@@ -625,7 +625,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &107559631
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +704,15 @@ Prefab:
     - target: {fileID: 11435806, guid: 9732cfe30fd33614489c2851e6c99376, type: 2}
       propertyPath: UIAudio
       value: 
-      objectReference: {fileID: 1736804789}
+      objectReference: {fileID: 1409759600}
+    - target: {fileID: 11435806, guid: 9732cfe30fd33614489c2851e6c99376, type: 2}
+      propertyPath: rotateSpeed
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 129308, guid: 9732cfe30fd33614489c2851e6c99376, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9732cfe30fd33614489c2851e6c99376, type: 2}
   m_IsPrefabParent: 0
@@ -875,7 +883,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!4 &233739771 stripped
 Transform:
   m_PrefabParentObject: {fileID: 472640, guid: a570269a7648c6542b849cddba6b005d, type: 2}
@@ -2272,7 +2280,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &299550411 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 123500, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
@@ -2304,6 +2312,31 @@ MonoBehaviour:
   MaxDistance: 0
   MinVelocity: 5
   MaxDeviation: 25
+--- !u!114 &299550414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 299550411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fe0f62e9c5bb14d98ea3ee7ce170a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredFingerCount: 1
+  DistanceUnit: 2
+  MaxSimultaneousGestures: 1
+  ResetMode: 0
+  Raycaster: {fileID: 0}
+  ClusterManager: {fileID: 0}
+  Delegate: {fileID: 0}
+  UseSendMessage: 1
+  EventMessageName: OnDrag
+  EventMessageTarget: {fileID: 0}
+  SendMessageToSelection: 0
+  IsExclusive: 0
+  MoveTolerance: .25
+  ApplySameDirectionConstraint: 0
 --- !u!1 &301026766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,7 +2455,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ad6fdd6c3751993499aef52903582a27, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad6fdd6c3751993499aef52903582a27, type: 2}
@@ -4149,6 +4182,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2055554901}
   m_RootOrder: 0
+--- !u!1 &559561262 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 145974, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+  m_PrefabInternal: {fileID: 1638521486}
+--- !u!114 &559561264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 559561262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!1 &559939238 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 111176, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
@@ -4217,7 +4275,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &582645141
 GameObject:
   m_ObjectHideFlags: 0
@@ -4400,7 +4458,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &642254351 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 141818, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
@@ -5704,7 +5762,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &776762978
 GameObject:
   m_ObjectHideFlags: 0
@@ -6532,7 +6590,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &900014634
 GameObject:
   m_ObjectHideFlags: 0
@@ -7669,7 +7727,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &958448551
 GameObject:
   m_ObjectHideFlags: 0
@@ -7716,7 +7774,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &961989296
 GameObject:
   m_ObjectHideFlags: 0
@@ -10775,7 +10833,7 @@ MonoBehaviour:
   pillarGroup: {fileID: 1530269409}
   sceneGenerator: {fileID: 261245971}
   diamondGenerator: {fileID: 1355006410}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
   minDistance: 7.0999999
   maxDistance: 7.5999999
   minDistanceB: 8.39999962
@@ -10907,7 +10965,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!224 &1290313784 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22463694, guid: ac7a6e392fc63b649b60f4e112efa576,
@@ -11091,7 +11149,7 @@ MonoBehaviour:
   jumpTimeBeforeGame: .600000024
   fForceUp: 1800
   fForceForward: 400
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
   waterSpray: {fileID: 19854096, guid: 2a98451dab321734697d4ee80af7e61a, type: 2}
 --- !u!65 &1330010682
 BoxCollider:
@@ -11139,7 +11197,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &1354763898 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 193922, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
@@ -11159,7 +11217,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &1355006408
 GameObject:
   m_ObjectHideFlags: 0
@@ -11188,7 +11246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pillarGenerator: {fileID: 1226805210}
-  chance: .100000001
+  chance: .300000012
   prefabDiamond: {fileID: 493626, guid: 9732cfe30fd33614489c2851e6c99376, type: 2}
   diamondParticle: {fileID: 736767052}
 --- !u!4 &1355006410
@@ -11400,7 +11458,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &1394836674
 GameObject:
   m_ObjectHideFlags: 0
@@ -11432,6 +11490,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 405916, guid: 8b631d50a658c704fb07f3cbea27b40e, type: 2}
   m_PrefabInternal: {fileID: 1728421203}
+--- !u!4 &1409759600 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
+  m_PrefabInternal: {fileID: 1719994924}
 --- !u!4 &1421860089 stripped
 Transform:
   m_PrefabParentObject: {fileID: 449832, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
@@ -13190,7 +13252,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &1526504000
 GameObject:
   m_ObjectHideFlags: 0
@@ -13416,7 +13478,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &1553539364
 GameObject:
   m_ObjectHideFlags: 0
@@ -13447,6 +13509,11 @@ Transform:
 --- !u!4 &1585412590 stripped
 Transform:
   m_PrefabParentObject: {fileID: 411094, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+  m_PrefabInternal: {fileID: 1638521486}
+--- !u!20 &1587831639 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2092042, guid: ac7a6e392fc63b649b60f4e112efa576,
+    type: 2}
   m_PrefabInternal: {fileID: 1638521486}
 --- !u!1 &1592611711
 GameObject:
@@ -13692,7 +13759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 2e8b181e52d4db1429883d60b8c120e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 348e91a6f01caef439bfac149329f330, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14530,7 +14597,7 @@ Prefab:
     - target: {fileID: 11436910, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
       propertyPath: UIAudio
       value: 
-      objectReference: {fileID: 1736804789}
+      objectReference: {fileID: 1409759600}
     - target: {fileID: 9568834, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
       propertyPath: m_UpdateMode
       value: 2
@@ -14578,7 +14645,7 @@ Prefab:
     - target: {fileID: 11402682, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
       propertyPath: UIAudio
       value: 
-      objectReference: {fileID: 1736804789}
+      objectReference: {fileID: 1409759600}
     - target: {fileID: 11472810, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -14631,8 +14698,148 @@ Prefab:
       propertyPath: Loading
       value: 
       objectReference: {fileID: 1919643776}
+    - target: {fileID: 11402682, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: shopCam
+      value: 
+      objectReference: {fileID: 1587831639}
+    - target: {fileID: 11402682, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: HeroesForShow
+      value: 
+      objectReference: {fileID: 531901103}
+    - target: {fileID: 11402682, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: movingTime
+      value: .109999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 11402682, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: itemDistance
+      value: .560000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420924, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f5edcdff815e8cf4ca4b595cf7992283,
+        type: 3}
+    - target: {fileID: 11475028, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4cf34825c06a19342b833c6b79baf1f3,
+        type: 3}
+    - target: {fileID: 11454336, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f9bf7a215e40a49459ef29c6d3124cf1,
+        type: 3}
+    - target: {fileID: 11446672, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c36d78b899460c4c9d8a7661a16d887,
+        type: 3}
+    - target: {fileID: 11426538, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cd723c6d279da5b4881240209c67884a,
+        type: 3}
+    - target: {fileID: 11432002, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5312dd311f4351b48b649dca778545d5,
+        type: 3}
+    - target: {fileID: 11430168, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5bc55c656b19454e93a3f9ca2524a73,
+        type: 3}
+    - target: {fileID: 11404160, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8678d56014964cb4796675af0fb2255b,
+        type: 3}
+    - target: {fileID: 11449756, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e2000243e8031d54db1cacbfe39450e0,
+        type: 3}
+    - target: {fileID: 11454378, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dd4776b63e90c7e4dabd7c4becdd567a,
+        type: 3}
+    - target: {fileID: 11465438, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 10a284d8b354ce941a544d1634a2f2f7,
+        type: 3}
+    - target: {fileID: 11439616, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d8505d094a8a5a94385661315e6898ac,
+        type: 3}
+    - target: {fileID: 11477646, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 827a169a934d3d04a9b800eb19775a3d,
+        type: 3}
+    - target: {fileID: 11406074, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79f6eb6c04f574f46b482fb301c13725,
+        type: 3}
+    - target: {fileID: 11484780, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6170a1ad8d50b61478002465c2879ae3,
+        type: 3}
+    - target: {fileID: 11470332, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e779b3aa7b71ecc4bbc350d13192f9e4,
+        type: 3}
+    - target: {fileID: 11474328, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a7aac395d36ca54f8248ba6a33ed7a8,
+        type: 3}
+    - target: {fileID: 11429394, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e8ee38d66e432314a9cedd2581bd86e1,
+        type: 3}
+    - target: {fileID: 11498514, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 147182a02c6862c48b4bb24ab31193e7,
+        type: 3}
+    - target: {fileID: 11494046, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b17692e3c24ff844b9c9277c232168a3,
+        type: 3}
+    - target: {fileID: 11416658, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b1f276cb19a63046b17383bf261abda,
+        type: 3}
+    - target: {fileID: 11440704, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: nameSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f9bf7a215e40a49459ef29c6d3124cf1,
+        type: 3}
+    - target: {fileID: 11488012, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: UIAudio
+      value: 
+      objectReference: {fileID: 1409759600}
+    - target: {fileID: 11419390, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: UIAudio
+      value: 
+      objectReference: {fileID: 1409759600}
+    - target: {fileID: 11420612, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11479138, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+    - {fileID: 11453710, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+    - {fileID: 8191468, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1644101191
@@ -14798,7 +15005,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1001 &1719994924
 Prefab:
   m_ObjectHideFlags: 0
@@ -14806,44 +15013,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_LocalPosition.x
       value: 168.331741
       objectReference: {fileID: 0}
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_LocalPosition.y
       value: 50.3255615
       objectReference: {fileID: 0}
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_LocalPosition.z
       value: 64.5
       objectReference: {fileID: 0}
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+    - target: {fileID: 472998, guid: 118cef200fca69448826bf039dc21408, type: 2}
       propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 168062, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
-      propertyPath: m_TagString
-      value: Audio
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 118cef200fca69448826bf039dc21408, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1723733203
 GameObject:
@@ -15095,16 +15298,32 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!224 &1730651389 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22467514, guid: ac7a6e392fc63b649b60f4e112efa576,
     type: 2}
   m_PrefabInternal: {fileID: 1638521486}
---- !u!4 &1736804789 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 490634, guid: 85b1ec9f10316be4e9f4602b9272f786, type: 2}
-  m_PrefabInternal: {fileID: 1719994924}
+--- !u!1 &1737758254 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 180324, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+  m_PrefabInternal: {fileID: 1638521486}
+--- !u!114 &1737758260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1737758254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f372fe64fdee0d48b718ee08991b5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopscreen: {fileID: 0}
+  over: {fileID: 0}
+  StopBtn: {fileID: 0}
+  camareOnlyHero: {fileID: 0}
+  UIAudio: {fileID: 1409759600}
 --- !u!1 &1764114597
 GameObject:
   m_ObjectHideFlags: 0
@@ -15152,7 +15371,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!1001 &1777675318
 Prefab:
   m_ObjectHideFlags: 0
@@ -15800,7 +16019,7 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
 --- !u!4 &1988298911 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433610, guid: db87de044684827489a31c4f00cd4ab7, type: 2}
@@ -16937,7 +17156,23 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}
+--- !u!1 &2026173944 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 136860, guid: ac7a6e392fc63b649b60f4e112efa576, type: 2}
+  m_PrefabInternal: {fileID: 1638521486}
+--- !u!114 &2026173949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2026173944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417e5e1877b036a448c3b8a186d492f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shopping: {fileID: 2055554901}
 --- !u!224 &2055554901 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22441716, guid: ac7a6e392fc63b649b60f4e112efa576,
@@ -17372,4 +17607,4 @@ MonoBehaviour:
   over: {fileID: 0}
   StopBtn: {fileID: 0}
   camareOnlyHero: {fileID: 0}
-  UIAudio: {fileID: 1736804789}
+  UIAudio: {fileID: 1409759600}

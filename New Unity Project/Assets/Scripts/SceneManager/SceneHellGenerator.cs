@@ -12,7 +12,7 @@ public class SceneHellGenerator : BaseGenerator {
 	public Transform prefabGhost;
 	public Transform Ghosts;
 	public Transform generatorReference;
-
+	
 	public float spiderInterval = 2f;
 	public Vector2 spiderScale = new Vector2(5f, 15f);
 	public float spiderRange = 20;

@@ -31,8 +31,6 @@ public class SceneWaterGenerator : BaseGenerator {
 	public Vector2 fishYOffset = new Vector2(-10f, -5f);
 	public Vector2 fishZOffset;
 
-
-
 	public enum SceneType {
 		Water
 	};

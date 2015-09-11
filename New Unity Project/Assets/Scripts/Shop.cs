@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Shop : MonoBehaviour {
-
+	public Transform HeroesForShow;
 	public Transform Hero;
 	public Transform Heroes;
 	public Transform[] cubes;//预制物体
@@ -23,31 +23,38 @@ public class Shop : MonoBehaviour {
 
 	public Transform gameScreen;
 	public Transform ctrl;
-	public Transform heroesForShow;
 	public Transform UIAudio;
-
+	public Camera shopCam;
+	public float velocity;
+	bool moveLeft;
+	Vector3 mVecPos;
+	Vector3 mVecPosStart;
 	Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
+	int usingHero;//当前选中物品的ID
 	int diamondCount;
 	bool canTweening;//是否已经完成上一次移动
 	string itemName;
 	Vector3 mVecStart = new Vector3 (0, 0, 0);
 	Vector3 mVec=new Vector3(3,3,3);   //小
-	Vector3 mVec2=new Vector3(4,4,4);   //中
-	Vector3 mVec3=new Vector3(6f,6f,6f);   //最大
+	Vector3 mVec2=new Vector3(0,0,0);   //中
+	Vector3 mVec3=new Vector3(7f,7f,7f);   //最大
+	int a;
+	int screenWidth;
 //	Color temp;
 	bool flag ;
 	public void Start () {
+
 		diamondCount=PlayerPrefs.GetInt("Diamonds");
 		//temp=new Color(Color.gray.r-0.3f,Color.gray.g-0.3f,Color.gray.b-0.3f);
-		itemID =0;
+		//itemID =Game.heroItemID;
 		cube = new Transform[cubes.Length];   //初始化商品
 		Vector3 vec = camera.position;
 		vec.z+= 10;vec.y-= 0.2f;//测试数据
 		Quaternion qua = Quaternion.Euler(290,180,40);//这个不要改
 		for (int i=0; i<cubes.Length; i++) {
 			cube [i] = (Transform)GameObject.Instantiate (cubes [i], vec, qua);
-			cube [i].SetParent (heroesForShow);
+			cube [i].SetParent (HeroesForShow);
 			cube [i].localScale = mVecStart;
 			//cube [i].GetComponent<Renderer> ().material.color =temp;
 			if (i < cubes.Length - 1) {
@@ -57,39 +64,75 @@ public class Shop : MonoBehaviour {
 		}
 		//OnLoad ();
 		FixGameObject ();
-		
+		screenWidth = Screen.width;
 		//Heroes = GameObject.Find ("Heroes").transform;
 //			Heroes.GetComponent<HeroesHome> ().SetDic ();
-
+		usingHero=PlayerPrefs.GetInt("usingHero",0);
+		itemID = usingHero;
+		if (usingHero != 0) {
+			mVecPosStart=HeroesForShow.localPosition;
+			mVecPosStart.x=-9.3f*usingHero;
+			HeroesForShow.localPosition=mVecPosStart;
+			mVecPos=mVecPosStart;
+		}
 	}
 
 	//要修改输入条件
-	void FixedUpdate () {
+	void Update () {
 		if (Game.isShopLoaded) {
 			OnLoad();
 			Game.isShopLoaded=false;
 		}
+
+		Check ();
+		if (velocity > 50) {
+			//cube [itemID].GetComponent<Animator> ().enabled = false;
+			velocity = velocity * 0.95f;
+			if(moveLeft)
+				mVecPos.x+=velocity/1000;
+			else{
+				mVecPos.x-=velocity/1000;
+			}
+			LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.01f);
+			Check ();
+		} else {
+			
+			velocity=0;
+
+			//cube [itemID].GetComponent<Animator> ().enabled = true;
+			//cube [itemID].GetComponent<Animator> ().Play ("item");
+		}
+		//StartCoroutine (Check ());
+		if (mVecPos.x>0) {
+			mVecPos.x=0;
+			LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.4f).setEase(LeanTweenType.easeOutElastic);
+			velocity=0;
+
+		}
+		if (mVecPos.x < -186) {
+			mVecPos.x=-186;
+			LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.4f).setEase(LeanTweenType.easeOutElastic);
+			velocity=0;
+
+		}
+
+
 	}
 
    public void OnLoad(){
 		canTweening = false;
 		cube [itemID].GetComponent<Animator> ().enabled = false;
 		for (int i=0; i<cube.Length; i++) {
-			cube[i].localScale=mVecStart;
+			cube[i].localScale=mVec2;
 			if(itemID==i)
 				LeanTween.scale(cube[itemID].gameObject,mVec3,movingTime*4).setOnComplete(FixGameObject);
-			if(itemID>0)
-				LeanTween.scale(cube[itemID-1].gameObject,mVec2,movingTime*4);
-			if(cube.Length>itemID+1)
-				LeanTween.scale(cube[itemID+1].gameObject,mVec2,movingTime*4);
-			if(itemID>1)
-				LeanTween.scale(cube[itemID-2].gameObject,mVec,movingTime*4);
-			if(cube.Length>itemID+2)
-				LeanTween.scale(cube[itemID+2].gameObject,mVec,movingTime*4);
-			if(itemID>2)
-				LeanTween.scale(cube[itemID-3].gameObject,mVec,movingTime*4);
-			if(cube.Length>itemID+3)
-				LeanTween.scale(cube[itemID+3].gameObject,mVec,movingTime*4);
+
+			if(itemID>i)
+				LeanTween.scale(cube[itemID-(i+1)].gameObject,mVec,movingTime*4);
+			if(cube.Length>itemID+(i+1))
+				LeanTween.scale(cube[itemID+(i+1)].gameObject,mVec,movingTime*4);
+
+
 		}
 
 	}
@@ -98,63 +141,84 @@ public class Shop : MonoBehaviour {
 	{
 		if (canTweening) {
 			// 完整的滑动数据
-			Vector2 move = gesture.Move;
+			//Vector2 move = gesture.Move;
 			// 滑动的速度
-			float velocity = gesture.Velocity;
+			velocity = gesture.Velocity;
 			// 大概的滑动方向
 			FingerGestures.SwipeDirection direction = gesture.Direction;
-		
 			if (direction.ToString () == "Right") {
-				if (itemID > 0) {
-					cube [itemID].GetComponent<Animator> ().enabled = false;
-					Vector3 vec = camera.position;
-					vec.z += 10;
-					vec.y -= 0.2f;
-					cube [itemID].position = vec;
-					itemID--;
-					ScaleItems (true);
-				}
+				moveLeft=true;
 			}
 			if (direction.ToString () == "Left") {
-				if (itemID < cube.Length - 1) {
-					cube [itemID].GetComponent<Animator> ().enabled = false;
-					Vector3 vec = camera.position;
-					vec.z += 10;
-					vec.y -= 0.2f;
-					cube [itemID].position = vec;
-					itemID++;
-					ScaleItems (false);//对商品的大小做缩放
-				}
+				moveLeft=false;
 			}
+		}
+
+
+
+	}
+
+	void OnDrag( DragGesture gesture ) 
+	{
+		
+		// 当前识别器阶段 (Started/Updated/Ended)
+		ContinuousGesturePhase phase = gesture.Phase;
+		
+		// 最后一帧的拖拽/移动数据
+		Vector2 deltaMove = gesture.DeltaMove;
+		///if (phase == ContinuousGesturePhase.Updated) {
+	//		velocity = 0;
+		//}
+		
+		//完整的拖拽数据
+		//Vector2 totalMove = gesture.TotalMove;
+		mVecPos.x += deltaMove.x*0.1f;
+		//Vector3 vec = mVecStart.x;//*0.1f;
+		LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.01f);
+		//HeroesForShow.transform.localPosition=mVecPos;
+
+
+
+	}
+
+	void Check(){
+		a = itemID;
+		for (int i=0; i<cube.Length; i++) {
+			mVecStart= shopCam.WorldToScreenPoint(cube[i].position);
+			//print(shopCam.WorldToScreenPoint(cube[1].position));
+			if(mVecStart.x>=screenWidth*0.38f&&mVecStart.x<=screenWidth*0.62f&&itemID!=i){
+				itemID=i;
+				//print (itemID);
+				
+			}
+			//ScaleItems();
+		}
+		if (a != itemID) {
+			ScaleItems ();
 		}
 		Game.heroItemID = itemID;
 		PlayerPrefs.SetInt ("heroItemID", itemID);
 	}
-
-
-
 	//缩放商品+移动商品,也可以分成2个方法,效果一样.
-	void ScaleItems(bool isLeft){
+	void ScaleItems(){
 		canTweening=false;
 		for(int i=0;i<cube.Length;i++){
-			if(itemID==i)
-				LeanTween.scale(cube[itemID].gameObject,mVec3,movingTime).setOnComplete(FixGameObject);
-			if(itemID>0)
-				LeanTween.scale(cube[itemID-1].gameObject,mVec2,movingTime);
-			if(cube.Length>itemID+1)
-				LeanTween.scale(cube[itemID+1].gameObject,mVec2,movingTime);
-			if(itemID>1)
-				LeanTween.scale(cube[itemID-2].gameObject,mVec,movingTime);
-			if(cube.Length>itemID+2)
-				LeanTween.scale(cube[itemID+2].gameObject,mVec,movingTime);
+			if(itemID==i){
+
+				cube [itemID].GetComponent<Animator> ().Rebind();
+				cube [itemID].GetComponent<Animator> ().enabled = true;
+				cube [itemID].GetComponent<Animator> ().Play ("item");
+				cube [itemID].localScale=mVec3;
+			}
+			else{
+				//LeanTween.scale(cube[i].gameObject,mVec,0.01f);
+				cube [i].GetComponent<Animator> ().enabled = false;
+				cube[i].localScale=mVec;
+			}
 			FixColor(i);
-			Vector3 vec=cube[i].position;
-			if(isLeft)
-				vec.x+=itemDistance;
-			else
-				vec.x-=itemDistance;
-			LeanTween.move(cube[i].gameObject,vec,movingTime);
+			FixGameObject();
 		}
+
 	}
 	//对原始方法进行修补,重设是否购买,避免在tween的时候狂按方向键的bug
 	void FixGameObject(){
@@ -173,13 +237,13 @@ public class Shop : MonoBehaviour {
 		}
 		//Buy.FindChild("Price").GetComponent<Text>().text= price.ToString ();
 		//BuyNoColor.FindChild("Price").GetComponent<Text>().text= price.ToString ();
-		itemName = cube [itemID].GetComponent<ShopItem> ().name;
-		name.GetComponent<Text> ().text = itemName;
+		name.GetComponent<Image> ().sprite = cube [itemID].GetComponent<ShopItem> ().nameSprite;
+		name.GetComponent<Image> ().SetNativeSize ();
 		PlayerPrefs.SetInt (itemName,flag ? 1 : 0);
 		cube [itemID].GetComponent<ShopItem> ().check = true;
 		canTweening = true;
-		cube [itemID].GetComponent<Animator> ().Rebind ();
-		cube [itemID].GetComponent<Animator> ().enabled = flag;
+		//cube [itemID].GetComponent<Animator> ().Rebind ();
+		//cube [itemID].GetComponent<Animator> ().enabled = flag;
 		if(flag)
 		cube[itemID].GetComponent<Renderer>().material.color=Color.white;//这句话是为了更新购买后的缓存
 	}
@@ -200,6 +264,55 @@ public class Shop : MonoBehaviour {
 		}
 	}
 
+	public void SwitchHeroAudio(){
+		string name=cube [itemID].GetComponent<ShopItem> ().name;
+		switch (name) {
+		case "Cube":
+			UIAudio.GetComponent<AudioList> ().Cube.Play ();break;
+		case "Alpaca":
+			UIAudio.GetComponent<AudioList> ().Alpaca.Play ();break;
+		case "Cartoon":
+			UIAudio.GetComponent<AudioList> ().Cartoon.Play ();break;
+		case "Chicken":
+			UIAudio.GetComponent<AudioList> ().Chicken.Play ();break;
+		case "Crab":
+			UIAudio.GetComponent<AudioList> ().Crab.Play ();break;
+		case "Deer":
+			UIAudio.GetComponent<AudioList> ().Deer.Play ();break;
+		case "Dinosaur":
+			UIAudio.GetComponent<AudioList> ().Dinosaur.Play ();break;
+		case "Dog":
+			UIAudio.GetComponent<AudioList> ().Dog.Play ();break;
+		case "Dragon":
+			UIAudio.GetComponent<AudioList> ().Dragon.Play ();break;
+		case "Duck":
+			UIAudio.GetComponent<AudioList> ().Duck.Play ();break;
+		case "Elephant":
+			UIAudio.GetComponent<AudioList> ().Elephant.Play ();break;
+		case "Fish":
+			UIAudio.GetComponent<AudioList> ().Fish.Play ();break;
+		case "Flamingos":
+			UIAudio.GetComponent<AudioList> ().Flamingos.Play ();break;
+		case "Giraffe":
+			UIAudio.GetComponent<AudioList> ().Giraffe.Play ();break;
+		case "Lion":
+			UIAudio.GetComponent<AudioList> ().Lion.Play ();break;
+		case "Mushroom":
+			UIAudio.GetComponent<AudioList> ().Mushroom.Play ();break;
+		case "Penguin":
+			UIAudio.GetComponent<AudioList> ().Penguin.Play ();break;
+		case "Snail":
+			UIAudio.GetComponent<AudioList> ().Snail.Play ();break;
+		case "Spider":
+			UIAudio.GetComponent<AudioList> ().Spider.Play ();break;
+		case "Unicorn":
+			UIAudio.GetComponent<AudioList> ().Unicorn.Play ();break;
+		case "Whale":
+			UIAudio.GetComponent<AudioList> ().Whale.Play ();break;
+		}
+
+	}
+
 	public void OnBuyBtnClick(){
 		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		if (canTweening) {
@@ -218,51 +331,7 @@ public class Shop : MonoBehaviour {
 
 	public void OnPlayBtnClick(){
 		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
-		/*
-		if (cube [itemID].GetComponent<ShopItem> ().isRandom) {
-			int a;
-			do{
-				a = Random.Range (0, cube.Length-1);
-			}
-			while(cube[a].GetComponent<ShopItem>().isbought);
-			if(cube[a].GetComponent<ShopItem>().fish){
-				Hero.gameObject.SetActive(false);
-				tcartoon.gameObject.SetActive(false);
-				tfish.gameObject.SetActive(true);
-			}
-			else if(cube[a].GetComponent<ShopItem>().cartoon){
-				Hero.gameObject.SetActive(false);
-				tcartoon.gameObject.SetActive(true);
-				tfish.gameObject.SetActive(false);
-			}else
-			{
-				tcartoon.gameObject.SetActive(false);
-				tfish.gameObject.SetActive(false);
-				Hero.GetChild (0).GetComponent<MeshFilter> ().mesh = cube [a].GetComponent<MeshFilter> ().mesh;
-			}
-		} else {
-			if(cube[itemID].GetComponent<ShopItem>().isbought){
-				if(cube[itemID].GetComponent<ShopItem>().fish){
-					Hero.gameObject.SetActive(false);
-					tcartoon.gameObject.SetActive(false);
-					tfish.gameObject.SetActive(true);
-				}
-				else if(cube[itemID].GetComponent<ShopItem>().cartoon){
-					Hero.gameObject.SetActive(false);
-					tcartoon.gameObject.SetActive(true);
-					tfish.gameObject.SetActive(false);
-				}else{
-					tcartoon.gameObject.SetActive(false);
-					tfish.gameObject.SetActive(false);
-					Hero.GetChild (0).GetComponent<MeshFilter> ().mesh = cube [itemID].GetComponent<MeshFilter> ().mesh;
-				}
-			}else{
-				print("未购买");
-				return;
-			}
 
-		}
-		*/
 		if (Hero.childCount > 0) {
 			for(int i=0;i<Hero.childCount;i++){
 				Destroy(Hero.GetChild(i).gameObject);
@@ -287,5 +356,7 @@ public class Shop : MonoBehaviour {
 			Game.state =Game.State.BeforeGame;
 		}
 		Game.isShopLoaded = false;
+		usingHero = itemID;
+		PlayerPrefs.SetInt ("usingHero", usingHero);
 	}
 }

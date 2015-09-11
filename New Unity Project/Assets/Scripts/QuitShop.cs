@@ -17,8 +17,8 @@ public class QuitShop : MonoBehaviour {
 		shopscreen.GetComponent<Animator>().Play ("shopIn");
 	}
 	public void OnContinue(){
+		Game.state = Game.State.Gaming;
 		Time.timeScale = 1;
-		Game.pause = false;
 		StopBtn.gameObject.SetActive (true);
 		camareOnlyHero.gameObject.SetActive (false);
 	}
