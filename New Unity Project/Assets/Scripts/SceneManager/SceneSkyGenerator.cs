@@ -13,12 +13,14 @@ public class SceneSkyGenerator : BaseGenerator {
 	public Transform Balloons;
 	public Transform generatorReference;
 
+	public uint maxCloudCount = 10;
 	public float cloudInterval = 2f;
 	public float cloudRange = 20;
 	public float cloudXOffset;
 	public Vector2 cloudYOffset = new Vector2(-5f, 5f);
 	public Vector2 cloudZOffset;
 
+	public uint maxPlaneCount = 10;
 	public float planeInterval = 2f;
 	public Vector2 planeScale = new Vector2(10f, 20f);
 	public float planeRange = 20;
@@ -26,12 +28,17 @@ public class SceneSkyGenerator : BaseGenerator {
 	public Vector2 planeYOffset = new Vector2(10f, 20f);
 	public Vector2 planeZOffset;
 
+	public uint maxBallonCount = 10;
 	public float ballonInterval = 2f;
 	public Vector2 ballonScale = new Vector2(8f, 12f);
 	public float ballonRange = 20;
 	public float ballonXOffset;
 	public Vector2 ballonYOffset = new Vector2(10f, 20f);
 	public Vector2 ballonZOffset;
+
+	GameObjectPool planePool; 
+	GameObjectPool [] cloudPools = new GameObjectPool[6]; 
+	GameObjectPool ballonPool; 
 
 	public enum SceneType {
 		Sky
@@ -40,7 +47,15 @@ public class SceneSkyGenerator : BaseGenerator {
 	public SceneType sceneType = SceneType.Sky;
 	 
 	void Start () {
-	
+		planePool = new GameObjectPool(prefabPlane.gameObject, maxPlaneCount,
+		                                   (gameObject) => {}, false);
+		for (int i = 0; i < 6; i++) {
+			cloudPools[i] = new GameObjectPool(prefabCloud[i].gameObject, maxCloudCount,
+			                                   (gameObject) => {}, false);	
+		}
+		
+		ballonPool = new GameObjectPool(prefabBalloon.gameObject, maxBallonCount,
+		                                   (gameObject) => {}, false);	
 	}
 	
 	// Update is called once per frame
@@ -53,12 +68,12 @@ public class SceneSkyGenerator : BaseGenerator {
 	}
 	
 	IEnumerator Generate() {
-
+		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(GenerateCloud());
 		StartCoroutine(GeneratePlane());
 		StartCoroutine(GenerateBallon());
 
-		yield return null;
+
 	}
 
 	IEnumerator GenerateCloud() {

@@ -11,7 +11,8 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Transform horizontalLines;
 	public Transform prefabLineLeft;
 	public Transform generatorReference;
-	
+
+	public uint maxHorizontalLineCount = 10;
 	public float horizontalLineInterval = 2f;
 	public Vector3 horizontalLineScaleA = new Vector3(0.8f, 1, 1.2f);
 	public Vector3 horizontalLineScaleB = new Vector3(0.8f, 1, 1.2f);
@@ -19,6 +20,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public float horizontalLineXRange = 20;
 	public Vector2 horizontalLineYOffset = new Vector2 (0, 0);
 
+	public uint maxVerticalLineCount = 10;
 	public float verticalLineInterval = 2f;
 	public Vector3 verticalLineScaleA = new Vector3(0.8f, 1, 1.2f);
 	public Vector3 verticalLineScaleB = new Vector3(0.8f, 1, 1.2f);
@@ -27,7 +29,8 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Vector2 verticalLineXOffset = new Vector2 (0, 0);
 
 
-
+	GameObjectPool horizontalLinePool; 
+	GameObjectPool verticalLinePool; 
 	
 	public enum SceneType {
 		Space
@@ -36,7 +39,10 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public SceneType sceneType = SceneType.Space;
 	 
 	void Start () {
-	
+		horizontalLinePool = new GameObjectPool(prefabLine.gameObject, maxHorizontalLineCount,
+		                              (gameObject) => {}, false);
+		verticalLinePool = new GameObjectPool(prefabLineLeft.gameObject, maxVerticalLineCount,
+		                               (gameObject) => {}, false);
 	}
 	
 	// Update is called once per frame
@@ -49,11 +55,11 @@ public class SceneSpaceGenerator : BaseGenerator {
 	}
 	
 	IEnumerator Generate() {
-
+		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(GenerateHorizontalLine());
 		StartCoroutine(GenerateVerticalLineLeft());
 
-		yield return null;
+
 	}
 
 

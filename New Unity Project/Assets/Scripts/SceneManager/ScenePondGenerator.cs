@@ -19,18 +19,21 @@ public class ScenePondGenerator : BaseGenerator {
 	public Transform lotus;
 	public Transform generatorReference;
 
+	public uint maxFlowCount = 10;
 	public float flowInterval = 2f;
 	public float flowRange = 20;
 	public float flowXOffset;
 	public Vector2 flowYOffset;
 	public Vector2 flowZOffset;
 
+	public uint maxPlantCount = 10;
 	public float plantInterval = 2f;
 	public float plantRange = 20;
 	public float plantXOffset;
 	public Vector2 plantYOffset;
 	public Vector2 plantZOffset;
 
+	public uint maxFrogCount = 10;
 	public float frogInterval = 2f;
 	public Vector2 frogScale = new Vector2(8f, 12f);
 	public float frogRange = 20;
@@ -38,7 +41,7 @@ public class ScenePondGenerator : BaseGenerator {
 	public Vector2 frogYOffset;
 	public Vector2 frogZOffset;
 
-
+	public uint maxLotusCount = 10;
 	public float lotusInterval = 2f;
 	public Vector2 lotusScale = new Vector2(8f, 12f);
 	public float lotusRange = 20;
@@ -46,20 +49,20 @@ public class ScenePondGenerator : BaseGenerator {
 	public Vector2 lotusYOffset;
 	public Vector2 lotusZOffset;
 
+	public uint maxCoCount = 10;
 	public float coInterval = 2f;
 	public Vector2 coScale = new Vector2(8f, 12f);
 	public float coRange = 20;
 	public float coXOffset;
 	public Vector2 coYOffset;
 	public Vector2 coZOffset;
-//
-//	public float butterflyInterval = 2f;
-//	public Vector2 butterflyScale = new Vector2(8f, 12f);
-//	public float butterflyRange = 20;
-//	public float butterflyXOffset;
-//	public Vector2 butterflyYOffset = new Vector2(12f, 12f);
-//	public Vector2 butterflyZOffset;
-//
+
+	GameObjectPool flowPool; 
+	GameObjectPool plantPool;
+	GameObjectPool frogPool; 
+	GameObjectPool lotusPool; 
+	GameObjectPool coPool; 
+
 	public enum SceneType {
 		Pond
 	};
@@ -67,7 +70,16 @@ public class ScenePondGenerator : BaseGenerator {
 	public SceneType sceneType = SceneType.Pond;
 	 
 	void Start () {
-
+		flowPool = new GameObjectPool(prefabFlow.gameObject, maxFlowCount,
+		                                (gameObject) => {}, false);
+		plantPool = new GameObjectPool(prefabPlant.gameObject, maxPlantCount,
+		                                (gameObject) => {}, false);
+		frogPool = new GameObjectPool(prefabFrog.gameObject, maxFrogCount,
+		                                (gameObject) => {}, false);
+		lotusPool = new GameObjectPool(prefabLotus.gameObject, maxLotusCount,
+		                                (gameObject) => {}, false);
+		coPool = new GameObjectPool(prefabCrocodile.gameObject, maxCoCount,
+		                               (gameObject) => {}, false);
 	}
 	
 	// Update is called once per frame
@@ -80,14 +92,14 @@ public class ScenePondGenerator : BaseGenerator {
 	}
 
 	IEnumerator Generate() {
-
+		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(GenerateFlow());
 		StartCoroutine(GeneratePlant());
 		StartCoroutine(GenerateFrog());
         StartCoroutine(GenerateLotus());
         StartCoroutine(GenerateCo());
 	
-		yield return null;
+
 	}
 
 

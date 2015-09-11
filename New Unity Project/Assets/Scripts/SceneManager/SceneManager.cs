@@ -56,7 +56,7 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	public void Generate() {
-		print ("generate " + currSceneType);
+//		print ("generate " + currSceneType);
 		sceneGenerators [(int)currSceneType].GetComponent<BaseGenerator> () .StartGenerate ();
 	}
 }

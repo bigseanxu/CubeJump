@@ -70,10 +70,11 @@ public class SceneForestGenerator : BaseGenerator {
 	}
 
 	IEnumerator Generate() {
+		yield return new WaitForSeconds(0.5f);
 		StartCoroutine(GenerateCloud());
 		StartCoroutine(GenerateFly());
 		StartCoroutine(GenerateButterfly());
-		yield return null;
+
 	}
 
 	IEnumerator GenerateCloud() {
