@@ -59,7 +59,11 @@ public class CubeHero : MonoBehaviour {
 			}
 		}	
 
-		if (Input.GetMouseButtonUp (0)) {
+#if UNITY_EDITOR
+		if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+#else
+		if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (0)) {
+#endif
 			if(Game.state == Game.State.Gaming)
 				Jump();
 		}
