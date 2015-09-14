@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -27,6 +27,7 @@ public class GameCtrl : MonoBehaviour {
 		cheat=0;
 		StartCoroutine(CheatCheck());
 		PlayerPrefs.SetInt ("Dinosaur", 1);
+		PlayerPrefs.SetInt ("Random", 1);
 		Loading.gameObject.SetActive (true);
 		Loading.GetComponent<Animator>().Play("loadingOut");
 		Game.ResetState ();
