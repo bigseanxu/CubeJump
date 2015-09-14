@@ -40,7 +40,7 @@ public class HeroesHome : MonoBehaviour {
 		Game.Init ();
 		//SetDic ();
 		name = (HeroName)Game.heroName;
-		print ("heroname = " + name);
+//		print ("heroname = " + name);
 		GetHero (name);
 	}
 

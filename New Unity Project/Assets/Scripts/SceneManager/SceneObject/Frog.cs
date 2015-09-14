@@ -5,10 +5,10 @@ public class Frog : MonoBehaviour {
 	public float minSpeed;
 	public float maxSpeed;
 	public float distance;
-
+	public GameObjectPool pool;
 	float speed;
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		speed = Random.Range (minSpeed, maxSpeed);
 		Move ();
 	}
@@ -24,6 +24,6 @@ public class Frog : MonoBehaviour {
 		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
 	}
 	void Des(){
-		Destroy (gameObject);
+		pool.Destroy (gameObject);
 	}
 }

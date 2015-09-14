@@ -20,7 +20,7 @@ public class UnityAds : MonoBehaviour {
 		dt = Convert.ToDateTime (s);
 		dtNow=DateTime.Now;
 		ts = dtNow.Subtract (dt);
-		print (ts.TotalSeconds);
+//		print (ts.TotalSeconds);
 		if ((int)ts.TotalSeconds > timeToShowAdsNext) {
 			adsButton.gameObject.SetActive (true);
 		} else {

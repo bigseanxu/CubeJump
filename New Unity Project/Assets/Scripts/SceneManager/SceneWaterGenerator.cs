@@ -72,44 +72,52 @@ public class SceneWaterGenerator : BaseGenerator {
 	}
 
 	IEnumerator GenerateFlow() {
-		Vector3 position;
-		// 1. generate a random coordinate
-		while (true) {
-			float xOffset = Random.Range (-flowRange, flowRange) + flowXOffset;
-			float yOffset = Random.Range (flowYOffset.x, flowYOffset.y);
-			float zOffset = Random.Range (flowZOffset.x, flowZOffset.y);
-			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
-			bool result = CheckFlowCollision(newPosition);
-			if (!result) {
-				position = newPosition;
-				break;
+		if (flowPool.numActive < maxFlowCount) {
+			Vector3 position;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-flowRange, flowRange) + flowXOffset;
+				float yOffset = Random.Range (flowYOffset.x, flowYOffset.y);
+				float zOffset = Random.Range (flowZOffset.x, flowZOffset.y);
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
 			}
-		}
-		Transform newFlow = (Transform)GameObject.Instantiate (prefabFlow);
-		newFlow.SetParent (flows);
-		newFlow.localScale = Vector3.one;
-		newFlow.localRotation = Quaternion.Euler (0, 0, 0);
-		newFlow.localPosition = position; 
+			Transform newFlow = flowPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFlow.SetParent (flows);
+			newFlow.localScale = Vector3.one;
+			newFlow.localRotation = Quaternion.Euler (0, 0, 0);
+			newFlow.localPosition = position; 
+			newFlow.GetComponent<Flow> ().pool = flowPool;
 
+		}
 		yield return new WaitForSeconds (flowInterval);
+		
 		yield return StartCoroutine (GenerateFlow());
 	}
 
 	IEnumerator GeneratePlant() {
-		float xOffset = Random.Range (-plantRange, plantRange) + plantXOffset;
-		float yOffset = Random.Range (plantYOffset.x, plantYOffset.y);
-		float zOffset = Random.Range (plantZOffset.x, plantZOffset.y);
-		Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+		if (plantPool.numActive < maxPlantCount) {
+			float xOffset = Random.Range (-plantRange, plantRange) + plantXOffset;
+			float yOffset = Random.Range (plantYOffset.x, plantYOffset.y);
+			float zOffset = Random.Range (plantZOffset.x, plantZOffset.y);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 		
-		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant);
-		newPlant.SetParent (plants);
-		newPlant.localScale = Vector3.one;
-		newPlant.localRotation = Quaternion.Euler (0, 0, 0);
-		newPlant.localPosition = newPosition;
+			Transform newPlant = plantPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newPlant.SetParent (plants);
+			newPlant.localScale = Vector3.one;
+			newPlant.localRotation = Quaternion.Euler (0, 0, 0);
+			newPlant.localPosition = newPosition;
+			newPlant.GetComponent<Plant> ().pool = plantPool;
 		
+		}
 		yield return new WaitForSeconds (plantInterval);
+		
 		yield return StartCoroutine (GeneratePlant());
 	}
 
@@ -127,22 +135,25 @@ public class SceneWaterGenerator : BaseGenerator {
 	}
 
 	IEnumerator GenerateFish() {
-		float xOffset = Random.Range (-fishRange, fishRange) + fishXOffset;
-		float yOffset = Random.Range (fishYOffset.x, fishYOffset.y);
-		float zOffset = Random.Range (fishZOffset.x, fishZOffset.y);
+		if (fishPool.numActive < maxFishCount) {
+			float xOffset = Random.Range (-fishRange, fishRange) + fishXOffset;
+			float yOffset = Random.Range (fishYOffset.x, fishYOffset.y);
+			float zOffset = Random.Range (fishZOffset.x, fishZOffset.y);
 
-		float scale = Random.Range (fishScale.x, fishScale.y);
+			float scale = Random.Range (fishScale.x, fishScale.y);
 	
-		Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 
-		Transform newFish = (Transform)GameObject.Instantiate (prefabFish);
-		newFish.SetParent (fish);
-		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (0, 0, 0);
-		newFish.localPosition = newPosition; 
-		
+			Transform newFish = fishPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (fish);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (0, 0, 0);
+			newFish.localPosition = newPosition; 
+			newFish.GetComponent<Fish> ().pool = fishPool;
+		}
 		yield return new WaitForSeconds (fishInterval);
+		
 		yield return StartCoroutine (GenerateFish());
 	}
 }

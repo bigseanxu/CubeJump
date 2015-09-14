@@ -64,31 +64,36 @@ public class SceneSpaceGenerator : BaseGenerator {
 
 
 	IEnumerator GenerateHorizontalLine() {
+
 		Vector3 scale = new Vector3 (Random.Range (horizontalLineScaleA.x, horizontalLineScaleB.x),
 		                             Random.Range (horizontalLineScaleA.y, horizontalLineScaleB.y),
 		                             Random.Range (horizontalLineScaleA.z, horizontalLineScaleB.z));
 		Vector3 position = Vector3.zero;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(- horizontalLineXRange, horizontalLineXRange), Random.Range(horizontalLineYOffset.x, horizontalLineYOffset.y), Random.Range(horizontalLineZOffset.x, horizontalLineZOffset.y));
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			Vector3 randomPosition = new Vector3 (Random.Range (- horizontalLineXRange, horizontalLineXRange), Random.Range (horizontalLineYOffset.x, horizontalLineYOffset.y), Random.Range (horizontalLineZOffset.x, horizontalLineZOffset.y));
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			bool result = false; // CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
 				break;
 			}
 		}
-		Transform newFlow = (Transform)GameObject.Instantiate (prefabLine);
-		newFlow.SetParent (horizontalLines);
-		newFlow.localScale = scale;
-		newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
-		newFlow.localPosition = position; 
+		if (horizontalLinePool.numActive < maxHorizontalLineCount) {
+			Transform newFlow = horizontalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFlow.SetParent (horizontalLines);
+			newFlow.localScale = scale;
+			newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+			newFlow.localPosition = position; 
+			newFlow.GetComponent<LineX> ().pool = horizontalLinePool;
+		}
+			yield return new WaitForSeconds (horizontalLineInterval);
 
-		yield return new WaitForSeconds (horizontalLineInterval);
 		yield return StartCoroutine (GenerateHorizontalLine());
 	}
 
 	IEnumerator GenerateVerticalLineLeft() {
+	
 		Vector3 scale = new Vector3 (Random.Range (verticalLineScaleA.x, verticalLineScaleB.x),
 		                             Random.Range (verticalLineScaleA.y, verticalLineScaleB.y),
 		                             Random.Range (verticalLineScaleA.z, verticalLineScaleB.z));
@@ -96,22 +101,25 @@ public class SceneSpaceGenerator : BaseGenerator {
 		Vector3 position = Vector3.zero;
 		// 1. generate a random coordinate
 		while (true) {
-			Vector3 randomPosition = new Vector3(Random.Range(verticalLineXOffset.x, verticalLineXOffset.y), Random.Range(-verticalLineYRange, verticalLineYRange), Random.Range(verticalLineZOffset.x, verticalLineZOffset.y));
+			Vector3 randomPosition = new Vector3 (Random.Range (verticalLineXOffset.x, verticalLineXOffset.y), Random.Range (-verticalLineYRange, verticalLineYRange), Random.Range (verticalLineZOffset.x, verticalLineZOffset.y));
 
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			bool result = false; // CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
 				break;
 			}
 		}
-		Transform newFlow = (Transform)GameObject.Instantiate (prefabLineLeft);
-		newFlow.SetParent (verticalLines);
-		newFlow.localScale = scale;
-		newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
-		newFlow.localPosition = position; 
+		if (verticalLinePool.numActive < maxVerticalLineCount) {
+			Transform newFlow = verticalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFlow.SetParent (verticalLines);
+			newFlow.localScale = scale;
+			newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+			newFlow.localPosition = position; 
+			newFlow.GetComponent<LineZ> ().pool = verticalLinePool;
+		}
+			yield return new WaitForSeconds (verticalLineInterval);
 
-		yield return new WaitForSeconds (verticalLineInterval);
 		yield return StartCoroutine (GenerateVerticalLineLeft());
 	}
 

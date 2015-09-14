@@ -90,7 +90,7 @@ public class CubeHero : MonoBehaviour {
 				waterSpray.Play();
 
 		}
-			print("collider is " + collider.name);
+
 	}
 
 	void OnCollisionEnter(Collision collision){
@@ -114,7 +114,7 @@ public class CubeHero : MonoBehaviour {
 		if (collision.gameObject.name == "water") {
 				UIAudio.GetComponent<AudioList> ().HeroFallInWater.Play ();
 		}
-			print("collision is " + collision.gameObject.name);
+//			print("collision is " + collision.gameObject.name);
 	}
 
 	void Jump() {
@@ -123,7 +123,7 @@ public class CubeHero : MonoBehaviour {
 			return;
 		}
 
-		print ("jump");
+//		print ("jump");
 		// give a force to jump
 		Vector3 forceForward;
 		Vector3 forceUp = new Vector3 (0, fForceUp, 0);
@@ -153,7 +153,7 @@ public class CubeHero : MonoBehaviour {
 		UIAudio.GetComponent<AudioList> ().HeroAlive.Play ();
 		state = CubeState.Fall;
 		live = true;
-		print ("LandSuccess");
+//		print ("LandSuccess");
 		isFaceLeft = !isFaceLeft;
 		currentPillar = pillar;
 		pillarGenerator.GetComponent<PillarGenerator> ().GeneratePillar ();

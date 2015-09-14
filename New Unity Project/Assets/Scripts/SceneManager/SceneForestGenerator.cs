@@ -50,6 +50,7 @@ public class SceneForestGenerator : BaseGenerator {
 	void Start () {
 		butterflyPool = new GameObjectPool(prefabButterfly.gameObject, maxButterflyCount,
 		                                    (gameObject) => {}, false);
+
 		for (int i = 0; i < 6; i++) {
 			cloudPools[i] = new GameObjectPool(prefabCloud[i].gameObject, maxCloudCount,
 			                                   (gameObject) => {}, false);	
@@ -77,60 +78,69 @@ public class SceneForestGenerator : BaseGenerator {
 	}
 
 	IEnumerator GenerateCloud() {
+
 		float xOffset = 20;
 		float zOffset = 20;
 		float scale = 10f;
 		int i = Random.Range (0, prefabCloud.Length);
-		Vector3 position = Vector3.zero;
+		if (cloudPools [i].numActive < maxCloudCount) {
+			Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-cloudRange, cloudRange), Random.Range(cloudYOffset.x, cloudYOffset.y), Random.Range(cloudZOffset.x, cloudZOffset.y));
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			Vector3 randomPosition = new Vector3 (Random.Range (-cloudRange, cloudRange), Random.Range (cloudYOffset.x, cloudYOffset.y), Random.Range (cloudZOffset.x, cloudZOffset.y));
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 		
-		Transform newFish = cloudPools[i].Spawn (Vector3.zero, Quaternion.identity).transform;
-		newFish.SetParent (Clouds);
-		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (0, 0, 0);
-		newFish.position = newPosition; 
-
+			Transform newFish = cloudPools [i].Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (Clouds);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (0, 0, 0);
+			newFish.position = newPosition; 
+			newFish.GetComponent<Cloud> ().pool = cloudPools [i];
+		}
 		yield return new WaitForSeconds (cloudInterval);
+	
 		yield return StartCoroutine (GenerateCloud());
 	}
 
 	IEnumerator GenerateFly() {
-		float xOffset = 20;
-		float zOffset = 20;
-		float scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
-		Vector3 position = Vector3.zero;
+		if (dragonflyPool.numActive < maxDragonCount) {
+			float xOffset = 20;
+			float zOffset = 20;
+			float scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
+			Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-dragonflyRange, dragonflyRange), Random.Range(dragonflyYOffset.x, dragonflyYOffset.y), Random.Range(dragonflyZOffset.x, dragonflyZOffset.y));
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			Vector3 randomPosition = new Vector3 (Random.Range (-dragonflyRange, dragonflyRange), Random.Range (dragonflyYOffset.x, dragonflyYOffset.y), Random.Range (dragonflyZOffset.x, dragonflyZOffset.y));
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 		
-		Transform newFish = dragonflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
-		newFish.SetParent (Flys);
-		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (270, 0, 0);
-		newFish.position = newPosition; 
-//		
+			Transform newFish = dragonflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (Flys);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (270, 0, 0);
+			newFish.position = newPosition; 
+			newFish.GetComponent<DragonFly> ().pool = dragonflyPool;
+		}
 		yield return new WaitForSeconds (dragonflyInterval);
+	
 		yield return StartCoroutine (GenerateFly());
 	}
 
 	IEnumerator GenerateButterfly() {
-		float scale = Random.Range (butterflyScale.x, butterflyScale.y);
-		float yOffset = Random.Range (butterflyYOffset.x, butterflyYOffset.y);
-		Vector3 position = Vector3.zero;
+		if (butterflyPool.numActive < maxButterflyCount) {
+			float scale = Random.Range (butterflyScale.x, butterflyScale.y);
+			float yOffset = Random.Range (butterflyYOffset.x, butterflyYOffset.y);
+			Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-butterflyRange, butterflyRange), yOffset, Random.Range(butterflyZOffset.x, butterflyZOffset.y));
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			Vector3 randomPosition = new Vector3 (Random.Range (-butterflyRange, butterflyRange), yOffset, Random.Range (butterflyZOffset.x, butterflyZOffset.y));
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 		
-		Transform newButterfly = butterflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
-
-		newButterfly.SetParent (Butterflies);
-		newButterfly.localScale = Vector3.one * scale;
-		newButterfly.localRotation = Quaternion.Euler (285, 90, 270);
-		newButterfly.localPosition = newPosition; 
-
+			Transform newButterfly = butterflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newButterfly.SetParent (Butterflies);
+			newButterfly.localScale = Vector3.one * scale;
+			newButterfly.localRotation = Quaternion.Euler (285, 90, 270);
+			newButterfly.localPosition = newPosition; 
+			newButterfly.GetComponent<Butterfly> ().pool = butterflyPool;
+		}
 		yield return new WaitForSeconds (butterflyInterval);
+	
 		yield return StartCoroutine (GenerateButterfly());
 	}
 
