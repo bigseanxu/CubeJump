@@ -27,13 +27,15 @@ public class Diamond : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
+
 		if (collider.gameObject.name == "CubeHero") {
 			particles.transform.position = transform.position;
 			particles.time = 0;
-			UIAudio.GetComponent<AudioList> ().Diamond.Play ();
 			particles.Play();
+			UIAudio.GetComponent<AudioList> ().Diamond.Play ();
 			Game.diamond++;
 			GameObject.Destroy(transform.parent.gameObject);
 		}
 	}
+
 }

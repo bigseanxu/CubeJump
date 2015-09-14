@@ -59,14 +59,22 @@ public class CubeHero : MonoBehaviour {
 			}
 		}	
 
-		if (Input.GetMouseButtonUp (0)) {
+#if UNITY_EDITOR
+		if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+#else
+		if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (0)) {
+#endif
 			if(Game.state == Game.State.Gaming)
 				Jump();
 		}
 		if (transform.position.y < 0) {
-			if (Game.sceneType <= 1 && waterOnce) {
+			if (Game.sceneType <= 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled) {
 				waterOnce = false;
 				UIAudio.GetComponent<AudioList> ().HeroFallInWater.Play ();
+			}
+			if (Game.sceneType > 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled) {
+				waterOnce = false;
+				UIAudio.GetComponent<AudioList> ().Fall.Play ();
 			}
 		} else {
 				waterOnce=true;
@@ -146,7 +154,7 @@ public class CubeHero : MonoBehaviour {
 		GetComponent<Rigidbody> ().freezeRotation = true;
 		state = CubeState.Jumping;
 		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
-
+				UIAudio.GetComponent<AudioList> ().Jump.Play ();
 	}
 
 	void LandSuccess (Transform pillar) {

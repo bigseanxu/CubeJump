@@ -30,6 +30,8 @@ public class ShopItem : MonoBehaviour {
 		isbought = PlayerPrefs.GetInt (name, 0) == 1 ? true : false;
 		//PlayerPrefs.SetInt ("Fish", 0);
 		LockGenerator ();
+		Lock = transform.GetChild (0).transform;
+		Lock.gameObject.SetActive(isbought?false:true);
 	}
 
 	void LockGenerator(){
@@ -47,6 +49,7 @@ public class ShopItem : MonoBehaviour {
 
 	void Update(){
 		if (check) {
+			Lock = transform.GetChild (0).transform;
 			Lock.gameObject.SetActive(isbought?false:true);
 			mat.mainTexture = isbought ? tHave : tLock;
 			check=false;

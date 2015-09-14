@@ -10,14 +10,16 @@ public class Balloon : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable () {
 		speed = Random.Range (minSpeed, maxSpeed);
-		Move ();
+		StartCoroutine(Move ());
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 	}
-	void Move() {
+
+	IEnumerator Move() {
+		yield return new WaitForSeconds (0.01f);
 		Vector3 position = transform.position;
 		position.y += distance;
 		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);

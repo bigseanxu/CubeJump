@@ -10,7 +10,7 @@ public class Fish : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable () {
 		speed = Random.Range (minSpeed, maxSpeed);
-		Move ();
+		StartCoroutine(Move ());
 	}
 	
 	// Update is called once per frame
@@ -18,7 +18,8 @@ public class Fish : MonoBehaviour {
 		
 	}
 	
-	void Move() {
+	IEnumerator Move() {
+		yield return new WaitForSeconds (0.01f);
 		Vector3 position = transform.position;
 		position.z += distance;
 		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);

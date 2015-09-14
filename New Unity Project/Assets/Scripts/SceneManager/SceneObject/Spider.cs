@@ -13,7 +13,7 @@ public class Spider : MonoBehaviour {
 	void OnEnable () {
 		speed = Random.Range (minSpeed, maxSpeed);
 		lineScale = 1.0f / transform.localScale.x; 
-		Move ();
+		StartCoroutine(Move ());
 
 		//line.GetComponent<LineRenderer> ().SetWidth (lineScale * 0.06f, lineScale * 0.06f);
 	}
@@ -23,7 +23,8 @@ public class Spider : MonoBehaviour {
 		CheckOutOfCamera ();
 		line.GetComponent<LineRenderer> ().SetPosition (1, new Vector3(0, 20 - transform.localPosition.y * transform.localScale.y, 0));
 	}
-	void Move() {
+	IEnumerator Move() {
+		yield return new WaitForSeconds (0.01f);
 		Vector3 position = transform.position;
 		position.y += distance;
 		LeanTween.move (gameObject, position, distance / speed).setLoopPingPong ();
