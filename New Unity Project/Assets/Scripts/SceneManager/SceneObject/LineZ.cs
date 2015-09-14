@@ -12,7 +12,7 @@ public class LineZ : MonoBehaviour {
 	void OnEnable () {
 		GetComponent<MeshRenderer>().material.mainTexture = lightMaps[Random.Range(0, lightMaps.Length - 1)];
 		speed = Random.Range (minSpeed, maxSpeed);
-		Move ();
+		StartCoroutine(Move ());
 	}
 	
 	// Update is called once per frame
@@ -20,7 +20,8 @@ public class LineZ : MonoBehaviour {
 	
 	}
 
-	void Move() {
+	IEnumerator Move() {
+		yield return new WaitForSeconds (0.01f);
 		Vector3 position = transform.position;
 		position.x += distance;
 		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);

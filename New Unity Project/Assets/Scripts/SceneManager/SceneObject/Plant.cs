@@ -7,21 +7,28 @@ public class Plant : MonoBehaviour {
 	public float distance;
 	public GameObjectPool pool;
 	float speed;
+	LTDescr tween;
 	// Use this for initialization
 	void OnEnable () {
 
 		speed = Random.Range (minSpeed, maxSpeed);
+		StartCoroutine (Move());
 		Move ();
+		print (transform.localPosition);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		CheckOutOfCamera ();
+
 	}
-	void Move() {
-		Vector3 position = transform.position;
-		position.y += distance;
-		LeanTween.move (gameObject, position, distance / speed).setLoopPingPong ();
+
+	IEnumerator Move() {
+		yield return new WaitForSeconds(0.01f);
+		Vector3 position = transform.localPosition;
+		position.z += distance;
+		tween = LeanTween.moveLocal (gameObject, position, distance / speed).setLoopPingPong ();
+
 		//CheckOutOfCamera ();
 	}
 
@@ -29,6 +36,7 @@ public class Plant : MonoBehaviour {
 		Vector2 vec = Camera.main.WorldToScreenPoint(transform.position);
 		//print (vec.y);
 		if (vec.y >1500) {
+			tween.cancel();
 			pool.Destroy (gameObject);
 		}
 	}

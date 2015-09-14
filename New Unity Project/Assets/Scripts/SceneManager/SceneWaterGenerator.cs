@@ -19,7 +19,7 @@ public class SceneWaterGenerator : BaseGenerator {
 	public Vector2 flowYOffset;
 	public Vector2 flowZOffset;
 
-	public uint maxPlantCount = 10;
+	public uint maxPlantCount = 1;
 	public float plantInterval = 2f;
 	public float plantRange = 20;
 	public float plantXOffset;
@@ -114,7 +114,8 @@ public class SceneWaterGenerator : BaseGenerator {
 			newPlant.localRotation = Quaternion.Euler (0, 0, 0);
 			newPlant.localPosition = newPosition;
 			newPlant.GetComponent<Plant> ().pool = plantPool;
-		
+			print ("new position = " + newPosition);
+			print ("localPosition = " + newPlant.localPosition);
 		}
 		yield return new WaitForSeconds (plantInterval);
 		
