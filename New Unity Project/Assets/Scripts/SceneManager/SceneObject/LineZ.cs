@@ -6,9 +6,10 @@ public class LineZ : MonoBehaviour {
 	public float maxSpeed;
 	public float distance;
 	public Texture [] lightMaps;
+	public GameObjectPool pool;
 	float speed;
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		GetComponent<MeshRenderer>().material.mainTexture = lightMaps[Random.Range(0, lightMaps.Length - 1)];
 		speed = Random.Range (minSpeed, maxSpeed);
 		Move ();
@@ -25,6 +26,6 @@ public class LineZ : MonoBehaviour {
 		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
 	}
 	void Des(){
-		Destroy (gameObject);
+		pool.Destroy (gameObject);
 	}
 }

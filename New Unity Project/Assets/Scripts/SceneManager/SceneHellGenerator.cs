@@ -75,56 +75,65 @@ public class SceneHellGenerator : BaseGenerator {
 	
 
 	IEnumerator GenerateBat() {
-		float scale = Random.Range (batScale.x, batScale.y);
-		Vector3 position = Vector3.zero;
+		if (batPool.numActive < maxBatCount) {
+			float scale = Random.Range (batScale.x, batScale.y);
+			Vector3 position = Vector3.zero;
 		
-		Vector3 randomPosition = new Vector3(Random.Range(-batRange, batRange), Random.Range(batYOffset.x,batYOffset.y), Random.Range(batZOffset.x, batZOffset.y));
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+			Vector3 randomPosition = new Vector3 (Random.Range (-batRange, batRange), Random.Range (batYOffset.x, batYOffset.y), Random.Range (batZOffset.x, batZOffset.y));
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 		
-		Transform newFish = (Transform)GameObject.Instantiate (prefabBat);
-		newFish.SetParent (Bats);
-		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (270, 0, 0);
-		newFish.localPosition = newPosition; 
-
+			Transform newFish = batPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (Bats);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (270, 0, 0);
+			newFish.localPosition = newPosition; 
+			newFish.GetComponent<Bat> ().pool = batPool;
+		}
 		yield return new WaitForSeconds (batInterval);
+		
 		yield return StartCoroutine (GenerateBat());
 	}
 
 	IEnumerator GenerateSpider() {
-		float xOffset = Random.Range (-spiderRange, spiderRange) + spiderXOffset;
-		float yOffset = Random.Range (spiderYOffset.x, spiderYOffset.y);
-		float zOffset = Random.Range (spiderZOffset.x, spiderZOffset.y);
-		float scale = Random.Range (spiderScale.x, spiderScale.y);
-		Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+		if (spiderPool.numActive < maxSpiderCount) {
+			float xOffset = Random.Range (-spiderRange, spiderRange) + spiderXOffset;
+			float yOffset = Random.Range (spiderYOffset.x, spiderYOffset.y);
+			float zOffset = Random.Range (spiderZOffset.x, spiderZOffset.y);
+			float scale = Random.Range (spiderScale.x, spiderScale.y);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 
-		Transform newPlant = (Transform)GameObject.Instantiate (prefabSpider);
-		newPlant.SetParent (Spiders);
-		newPlant.localScale = Vector3.one * scale;
-		newPlant.localRotation = Quaternion.Euler (0, 0, 0);
-		newPlant.localPosition = newPosition;
-
+			Transform newPlant = spiderPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newPlant.SetParent (Spiders);
+			newPlant.localScale = Vector3.one * scale;
+			newPlant.localRotation = Quaternion.Euler (0, 0, 0);
+			newPlant.localPosition = newPosition;
+			newPlant.GetComponent<Spider> ().pool = spiderPool;
+		}
 		yield return new WaitForSeconds (spiderInterval);
+
 		yield return StartCoroutine (GenerateSpider());
 	}
 
 	IEnumerator GenerateGhost() {
-		float xOffset = Random.Range (-ghostRange, ghostRange) + ghostXOffset;
-		float yOffset = Random.Range (ghostYOffset.x, ghostYOffset.y);
-		float zOffset = Random.Range (ghostZOffset.x, ghostZOffset.y);
-		Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+		if (ghostPool.numActive < maxGhostCount) {
+			float xOffset = Random.Range (-ghostRange, ghostRange) + ghostXOffset;
+			float yOffset = Random.Range (ghostYOffset.x, ghostYOffset.y);
+			float zOffset = Random.Range (ghostZOffset.x, ghostZOffset.y);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 
-		float scale = Random.Range (ghostScale.x, ghostScale.y);
+			float scale = Random.Range (ghostScale.x, ghostScale.y);
 		
-		Transform newFish = (Transform)GameObject.Instantiate (prefabGhost);
-		newFish.SetParent (Ghosts);
-		newFish.localScale = Vector3.one * scale;
-		newFish.localRotation = Quaternion.Euler (270, 0, 0);
-		newFish.localPosition = newPosition; 
-
+			Transform newFish = ghostPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (Ghosts);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (270, 0, 0);
+			newFish.localPosition = newPosition; 
+			newFish.GetComponent<Ghost> ().pool = ghostPool;
+		}
 		yield return new WaitForSeconds (ghostInterval);
+	
 		yield return StartCoroutine (GenerateGhost());
 	}
 

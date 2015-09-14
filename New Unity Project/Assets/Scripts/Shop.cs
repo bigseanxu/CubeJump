@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour {
 	public Transform HeroesForShow;
 	public Transform Hero;
 	public Transform Heroes;
-	public Transform[] cubes;//预制物体
+	public Transform[] cube;//预制物体
 	public Transform name;
 	public Transform diamond;
 	public Transform Buy;
@@ -29,7 +29,7 @@ public class Shop : MonoBehaviour {
 	bool moveLeft;
 	Vector3 mVecPos;
 	Vector3 mVecPosStart;
-	Transform[] cube;//使用预制物体创建的副本
+	//Transform[] cube;//使用预制物体创建的副本
 	int itemID;//当前选中物品的ID
 	int usingHero;//当前选中物品的ID
 	int diamondCount;
@@ -40,7 +40,6 @@ public class Shop : MonoBehaviour {
 	Vector3 mVec2=new Vector3(0,0,0);   //中
 	Vector3 mVec3=new Vector3(7f,7f,7f);   //最大
 	int a;
-	int screenWidth;
 //	Color temp;
 	bool flag ;
 	public void Start () {
@@ -48,30 +47,30 @@ public class Shop : MonoBehaviour {
 		diamondCount=PlayerPrefs.GetInt("Diamonds");
 		//temp=new Color(Color.gray.r-0.3f,Color.gray.g-0.3f,Color.gray.b-0.3f);
 		//itemID =Game.heroItemID;
-		cube = new Transform[cubes.Length];   //初始化商品
-		Vector3 vec = camera.position;
-		vec.z+= 10;vec.y-= 0.2f;//测试数据
-		Quaternion qua = Quaternion.Euler(290,180,40);//这个不要改
-		for (int i=0; i<cubes.Length; i++) {
-			cube [i] = (Transform)GameObject.Instantiate (cubes [i], vec, qua);
-			cube [i].SetParent (HeroesForShow);
+	//	cube = new Transform[cubes.Length];   //初始化商品
+		//Vector3 vec = camera.position;
+		//vec.z+= 10;vec.y-= 0.2f;//测试数据
+		//Quaternion qua = Quaternion.Euler(290,180,40);//这个不要改
+		for (int i=0; i<cube.Length; i++) {
+			//cube [i] =cubes [i];// (Transform)GameObject.Instantiate (cubes [i], vec, qua);
+		//	cube [i].SetParent (HeroesForShow);
 			cube [i].localScale = mVecStart;
 			//cube [i].GetComponent<Renderer> ().material.color =temp;
-			if (i < cubes.Length - 1) {
-				vec.x += itemDistance;
+		//	if (i < cube.Length - 1) {
+		//		vec.x += itemDistance;
 				FixColor (i);
-			}
+		//	}
 		}
 		//OnLoad ();
 		FixGameObject ();
-		screenWidth = Screen.width;
+
 		//Heroes = GameObject.Find ("Heroes").transform;
 //			Heroes.GetComponent<HeroesHome> ().SetDic ();
 		usingHero=PlayerPrefs.GetInt("usingHero",0);
 		itemID = usingHero;
 		if (usingHero != 0) {
 			mVecPosStart=HeroesForShow.localPosition;
-			mVecPosStart.x=-9.3f*usingHero;
+			mVecPosStart.x=-10f*usingHero;
 			HeroesForShow.localPosition=mVecPosStart;
 			mVecPos=mVecPosStart;
 		}
@@ -85,7 +84,7 @@ public class Shop : MonoBehaviour {
 		}
 
 		Check ();
-		if (velocity > 50) {
+		if (velocity > 30) {
 			//cube [itemID].GetComponent<Animator> ().enabled = false;
 			velocity = velocity * 0.95f;
 			if(moveLeft)
@@ -105,13 +104,13 @@ public class Shop : MonoBehaviour {
 		//StartCoroutine (Check ());
 		if (mVecPos.x>0) {
 			mVecPos.x=0;
-			LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.4f).setEase(LeanTweenType.easeOutElastic);
+			LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.5f).setEase(LeanTweenType.easeOutElastic);
 			velocity=0;
 
 		}
-		if (mVecPos.x < -186) {
-			mVecPos.x=-186;
-			LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.4f).setEase(LeanTweenType.easeOutElastic);
+		if (mVecPos.x < -200) {
+			mVecPos.x=-200;
+			LeanTween.move (HeroesForShow.gameObject, transform.localToWorldMatrix.MultiplyPoint(mVecPos), 0.5f).setEase(LeanTweenType.easeOutElastic);
 			velocity=0;
 
 		}
@@ -125,12 +124,12 @@ public class Shop : MonoBehaviour {
 		for (int i=0; i<cube.Length; i++) {
 			cube[i].localScale=mVec2;
 			if(itemID==i)
-				LeanTween.scale(cube[itemID].gameObject,mVec3,movingTime*4).setOnComplete(FixGameObject);
+				LeanTween.scale(cube[itemID].gameObject,mVec3,movingTime*6).setOnComplete(FixGameObject);
 
 			if(itemID>i)
-				LeanTween.scale(cube[itemID-(i+1)].gameObject,mVec,movingTime*4);
+				LeanTween.scale(cube[itemID-(i+1)].gameObject,mVec,movingTime*6);
 			if(cube.Length>itemID+(i+1))
-				LeanTween.scale(cube[itemID+(i+1)].gameObject,mVec,movingTime*4);
+				LeanTween.scale(cube[itemID+(i+1)].gameObject,mVec,movingTime*6);
 
 
 		}
@@ -186,7 +185,7 @@ public class Shop : MonoBehaviour {
 		for (int i=0; i<cube.Length; i++) {
 			mVecStart= shopCam.WorldToScreenPoint(cube[i].position);
 			//print(shopCam.WorldToScreenPoint(cube[1].position));
-			if(mVecStart.x>=screenWidth*0.38f&&mVecStart.x<=screenWidth*0.62f&&itemID!=i){
+			if(mVecStart.x>=Screen.width*0.38f&&mVecStart.x<=Screen.width*0.62f&&itemID!=i){
 				itemID=i;
 				//print (itemID);
 				

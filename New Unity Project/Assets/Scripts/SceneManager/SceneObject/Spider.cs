@@ -6,10 +6,11 @@ public class Spider : MonoBehaviour {
 	public float maxSpeed;
 	public float distance;
 	public Transform line;
+	public GameObjectPool pool;
 	float lineScale;
 	float speed;
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		speed = Random.Range (minSpeed, maxSpeed);
 		lineScale = 1.0f / transform.localScale.x; 
 		Move ();
@@ -31,7 +32,7 @@ public class Spider : MonoBehaviour {
 		Vector2 vec = Camera.main.WorldToScreenPoint(transform.position);
 		//print (vec.y);
 		if (vec.y > 1500) {
-			Destroy(gameObject);
+			pool.Destroy (gameObject);
 		}
 	}
 

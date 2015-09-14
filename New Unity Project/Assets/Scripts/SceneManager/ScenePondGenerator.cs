@@ -105,124 +105,138 @@ public class ScenePondGenerator : BaseGenerator {
 
 
 	IEnumerator GenerateFlow() {
-		Vector3 position;
-		// 1. generate a random coordinate
-		while (true) {
-			float xOffset = Random.Range (-flowRange, flowRange) + flowXOffset;
-			float yOffset = Random.Range (flowYOffset.x, flowYOffset.y);
-			float zOffset = Random.Range (flowZOffset.x, flowZOffset.y);
-			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
-			bool result = CheckFlowCollision(newPosition);
-			if (!result) {
-				position = newPosition;
-				break;
+		if (flowPool.numActive < maxFlowCount) {
+			Vector3 position;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-flowRange, flowRange) + flowXOffset;
+				float yOffset = Random.Range (flowYOffset.x, flowYOffset.y);
+				float zOffset = Random.Range (flowZOffset.x, flowZOffset.y);
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
 			}
+			Transform newFlow = flowPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFlow.SetParent (flows);
+			newFlow.localScale = Vector3.one;
+			newFlow.localRotation = Quaternion.Euler (0, 0, 0);
+			newFlow.localPosition = position; 
+			newFlow.GetComponent<Flow> ().pool = flowPool;
 		}
-		Transform newFlow = (Transform)GameObject.Instantiate (prefabFlow);
-		newFlow.SetParent (flows);
-		newFlow.localScale = Vector3.one;
-		newFlow.localRotation = Quaternion.Euler (0, 0, 0);
-		newFlow.localPosition = position; 
-
-		yield return new WaitForSeconds (flowInterval);
+			yield return new WaitForSeconds (flowInterval);
+		
 		yield return StartCoroutine (GenerateFlow());
 	}
 
 	IEnumerator GeneratePlant() {
-		float xOffset = Random.Range (-plantRange, plantRange) + plantXOffset;
-		float yOffset = Random.Range (plantYOffset.x, plantYOffset.y);
-		float zOffset = Random.Range (plantZOffset.x, plantZOffset.y);
-		Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-		Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
+		if (plantPool.numActive < maxPlantCount) {
+			float xOffset = Random.Range (-plantRange, plantRange) + plantXOffset;
+			float yOffset = Random.Range (plantYOffset.x, plantYOffset.y);
+			float zOffset = Random.Range (plantZOffset.x, plantZOffset.y);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 
-		Transform newPlant = (Transform)GameObject.Instantiate (prefabPlant);
-		newPlant.SetParent (plants);
-		newPlant.localScale = Vector3.one;
-		newPlant.localRotation = Quaternion.Euler (270, 0, 0);
-		newPlant.localPosition = newPosition;
-
-		yield return new WaitForSeconds (plantInterval);
+			Transform newPlant = plantPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newPlant.SetParent (plants);
+			newPlant.localScale = Vector3.one;
+			newPlant.localRotation = Quaternion.Euler (270, 0, 0);
+			newPlant.localPosition = newPosition;
+			newPlant.GetComponent<Plant> ().pool = plantPool;
+		}
+			yield return new WaitForSeconds (plantInterval);
+		
 		yield return StartCoroutine (GeneratePlant());
 	}
 	
 
 	IEnumerator GenerateFrog() {
-		float scale = Random.Range (frogScale.x, frogScale.y);
-		Vector3 position;
-		// 1. generate a random coordinate
-		while (true) {
-			float xOffset = Random.Range (-frogRange, frogRange) + frogXOffset;
-			float yOffset = Random.Range (frogYOffset.x, frogYOffset.y);
-			float zOffset = Random.Range (frogZOffset.x, frogZOffset.y);
-			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
-			bool result = CheckFlowCollision(newPosition);
-			if (!result) {
-				position = newPosition;
-				break;
+		if (frogPool.numActive < maxFrogCount) {
+			float scale = Random.Range (frogScale.x, frogScale.y);
+			Vector3 position;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-frogRange, frogRange) + frogXOffset;
+				float yOffset = Random.Range (frogYOffset.x, frogYOffset.y);
+				float zOffset = Random.Range (frogZOffset.x, frogZOffset.y);
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
 			}
+			Transform newFrog = frogPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFrog.SetParent (frog);
+			newFrog.localScale = Vector3.one * scale;
+			newFrog.localRotation = Quaternion.Euler (270, 0, 0);
+			newFrog.localPosition = position; 
+			newFrog.GetComponent<Frog> ().pool = frogPool;
 		}
-		Transform newFrog = (Transform)GameObject.Instantiate (prefabFrog);
-		newFrog.SetParent (frog);
-		newFrog.localScale = Vector3.one*scale;
-		newFrog.localRotation = Quaternion.Euler (270, 0, 0);
-		newFrog.localPosition = position; 
-
 		yield return new WaitForSeconds (frogInterval);
+		
 		yield return StartCoroutine (GenerateFrog());
 	}
 
 	IEnumerator GenerateLotus() {
-
-		Vector3 position = Vector3.zero;
-		float scale = Random.Range (lotusScale.x, lotusScale.y);
-		// 1. generate a random coordinate
-		while (true) {
-			float xOffset = Random.Range (-lotusRange, lotusRange) + lotusXOffset;
-			float yOffset = Random.Range (lotusYOffset.x, lotusYOffset.y);
-			float zOffset = Random.Range (lotusZOffset.x, lotusZOffset.y);
-			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
-			bool result = CheckFlowCollision(newPosition);
-			if (!result) {
-				position = newPosition;
-				break;
+		if (lotusPool.numActive < maxLotusCount) {
+			Vector3 position = Vector3.zero;
+			float scale = Random.Range (lotusScale.x, lotusScale.y);
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-lotusRange, lotusRange) + lotusXOffset;
+				float yOffset = Random.Range (lotusYOffset.x, lotusYOffset.y);
+				float zOffset = Random.Range (lotusZOffset.x, lotusZOffset.y);
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
 			}
+			Transform newLotus = lotusPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newLotus.SetParent (lotus);
+			newLotus.localScale = Vector3.one * scale;
+			newLotus.localRotation = Quaternion.Euler (270, 0, 0);
+			newLotus.localPosition = position; 
+			newLotus.GetComponent<Lotus> ().pool = lotusPool;
 		}
-		Transform newLotus = (Transform)GameObject.Instantiate (prefabLotus);
-		newLotus.SetParent (lotus);
-		newLotus.localScale = Vector3.one*scale;
-		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
-		newLotus.localPosition = position; 
-
-		yield return new WaitForSeconds (lotusInterval);
+			yield return new WaitForSeconds (lotusInterval);
+		
 		yield return StartCoroutine (GenerateLotus());
 	}
 
 	IEnumerator GenerateCo() {
-		Vector3 position;
-		float scale = Random.Range (coScale.x, coScale.y);
-		// 1. generate a random coordinate
-		while (true) {
-			float xOffset = Random.Range (-coRange, coRange) + coXOffset;
-			float yOffset = Random.Range (coYOffset.x, coYOffset.y);
-			float zOffset = Random.Range (coZOffset.x, coZOffset.y);
-			Vector3 randomPosition = new Vector3(xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint(generatorReference.position);
-			bool result = CheckFlowCollision(newPosition);
-			if (!result) {
-				position = newPosition;
-				break;
+		if (coPool.numActive < maxCoCount) {
+			Vector3 position;
+			float scale = Random.Range (coScale.x, coScale.y);
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-coRange, coRange) + coXOffset;
+				float yOffset = Random.Range (coYOffset.x, coYOffset.y);
+				float zOffset = Random.Range (coZOffset.x, coZOffset.y);
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
 			}
+			Transform newLotus = coPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newLotus.SetParent (Crocodiles);
+			newLotus.localScale = Vector3.one * scale;
+			newLotus.localRotation = Quaternion.Euler (270, 0, 0);
+			newLotus.localPosition = position; 
+			newLotus.GetComponent<Crocodile> ().pool = coPool;
 		}
-		Transform newLotus = (Transform)GameObject.Instantiate (prefabCrocodile);
-		newLotus.SetParent (Crocodiles);
-		newLotus.localScale = Vector3.one*scale;
-		newLotus.localRotation = Quaternion.Euler (270, 0, 0);
-		newLotus.localPosition = position; 
-
 		yield return new WaitForSeconds (coInterval);
+		
 		yield return StartCoroutine (GenerateCo());
 	}
 
