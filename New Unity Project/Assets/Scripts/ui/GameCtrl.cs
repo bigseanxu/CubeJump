@@ -21,8 +21,13 @@ public class GameCtrl : MonoBehaviour {
 	public Transform UIAudio;
 	bool shareAppear=false;
 	int a;
+	int cheat;
 	// Use this for initialization
 	void Start () {
+		cheat=0;
+		StartCoroutine(CheatCheck());
+		PlayerPrefs.SetInt ("Dinosaur", 1);
+		PlayerPrefs.SetInt ("Random", 1);
 		Loading.gameObject.SetActive (true);
 		Loading.GetComponent<Animator>().Play("loadingOut");
 		Game.ResetState ();
@@ -204,6 +209,20 @@ public class GameCtrl : MonoBehaviour {
 		Game.SetState (Game.State.Gaming);
 	}
 
-
+	public void DiamondCheat(){
+		cheat++;
+		print (cheat);
+		if(cheat>=20){
+			PlayerPrefs.SetInt ("Diamonds", 8888);
+		}
+	}
+	
+	IEnumerator CheatCheck(){
+		yield return new WaitForSeconds(5);
+		if(cheat>0){
+			cheat=0;
+		}
+		StartCoroutine(CheatCheck());
+	}
 
 }

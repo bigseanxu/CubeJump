@@ -68,9 +68,13 @@ public class CubeHero : MonoBehaviour {
 				Jump();
 		}
 		if (transform.position.y < 0) {
-			if (Game.sceneType <= 1 && waterOnce) {
+			if (Game.sceneType <= 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled) {
 				waterOnce = false;
 				UIAudio.GetComponent<AudioList> ().HeroFallInWater.Play ();
+			}
+			if (Game.sceneType > 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled) {
+				waterOnce = false;
+				UIAudio.GetComponent<AudioList> ().Fall.Play ();
 			}
 		} else {
 				waterOnce=true;
@@ -93,6 +97,9 @@ public class CubeHero : MonoBehaviour {
 				waterSpray.transform.position = transform.position;
 				waterSpray.Play();
 
+		} else if (collider.gameObject.name.StartsWith("Diamond") ) {
+			// print ("cube is in diamond");
+			UIAudio.GetComponent<AudioList> ().Diamond.Play ();
 		}
 
 	}
@@ -150,7 +157,7 @@ public class CubeHero : MonoBehaviour {
 		GetComponent<Rigidbody> ().freezeRotation = true;
 		state = CubeState.Jumping;
 		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
-
+				UIAudio.GetComponent<AudioList> ().Jump.Play ();
 	}
 
 	void LandSuccess (Transform pillar) {

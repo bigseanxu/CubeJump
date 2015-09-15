@@ -27,7 +27,7 @@ public class QuitShop : MonoBehaviour {
 		over.gameObject.SetActive (false);
 	}
 	public void ShopItemChoose(){
-		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
+		UIAudio.GetComponent<AudioList> ().ChooseHero.Play ();
 	}
 
 }
