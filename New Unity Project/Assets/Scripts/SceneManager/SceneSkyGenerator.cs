@@ -19,6 +19,10 @@ public class SceneSkyGenerator : BaseGenerator {
 	public float cloudXOffset;
 	public Vector2 cloudYOffset = new Vector2(-5f, 5f);
 	public Vector2 cloudZOffset;
+	public int beginCloudCount = 2;
+	public float beginCloudRange = 20;
+	public Vector2 beginCloudYOffset = new Vector2(12f, 12f);
+	public Vector2 beginCloudZOffset;
 
 	public uint maxPlaneCount = 10;
 	public float planeInterval = 2f;
@@ -27,6 +31,10 @@ public class SceneSkyGenerator : BaseGenerator {
 	public float planeXOffset;
 	public Vector2 planeYOffset = new Vector2(10f, 20f);
 	public Vector2 planeZOffset;
+	public int beginPlaneCount = 2;
+	public float beginPlaneRange = 20;
+	public Vector2 beginPlaneYOffset = new Vector2(12f, 12f);
+	public Vector2 beginPlaneZOffset;
 
 	public uint maxBallonCount = 10;
 	public float ballonInterval = 2f;
@@ -35,6 +43,10 @@ public class SceneSkyGenerator : BaseGenerator {
 	public float ballonXOffset;
 	public Vector2 ballonYOffset = new Vector2(10f, 20f);
 	public Vector2 ballonZOffset;
+	public int beginBallonCount = 2;
+	public float beginBallonRange = 20;
+	public Vector2 beginBallonYOffset = new Vector2(12f, 12f);
+	public Vector2 beginBallonZOffset;
 
 	public GameObjectPool planePool; 
 	public GameObjectPool [] cloudPools = new GameObjectPool[6]; 

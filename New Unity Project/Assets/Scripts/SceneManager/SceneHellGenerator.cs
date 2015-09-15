@@ -20,6 +20,11 @@ public class SceneHellGenerator : BaseGenerator {
 	public float spiderXOffset;
 	public Vector2 spiderYOffset;
 	public Vector2 spiderZOffset;
+	public int beginSpiderCount = 2;
+	public float beginSpiderRange = 20;
+	public Vector2 beginSpiderYOffset = new Vector2(12f, 12f);
+	public Vector2 beginSpiderZOffset;
+
 
 	public uint maxBatCount = 10;
 	public float batInterval = 2f;
@@ -28,6 +33,10 @@ public class SceneHellGenerator : BaseGenerator {
 	public float barXOffset;
 	public Vector2 batYOffset;
 	public Vector2 batZOffset;
+	public int beginBatCount = 2;
+	public float beginBatRange = 20;
+	public Vector2 beginBatYOffset = new Vector2(12f, 12f);
+	public Vector2 beginBatZOffset;
 
 	public uint maxGhostCount = 10;
 	public float ghostInterval = 2f;
@@ -36,6 +45,10 @@ public class SceneHellGenerator : BaseGenerator {
 	public float ghostXOffset;
 	public Vector2 ghostYOffset;
 	public Vector2 ghostZOffset;
+	public int beginGhostCount = 2;
+	public float beginGhostRange = 20;
+	public Vector2 beginGhostYOffset = new Vector2(12f, 12f);
+	public Vector2 beginGhostZOffset;
 
 	GameObjectPool spiderPool; 
 	GameObjectPool batPool;

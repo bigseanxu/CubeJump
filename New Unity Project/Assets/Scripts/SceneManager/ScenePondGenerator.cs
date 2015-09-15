@@ -25,6 +25,10 @@ public class ScenePondGenerator : BaseGenerator {
 	public float flowXOffset;
 	public Vector2 flowYOffset;
 	public Vector2 flowZOffset;
+	public int beginFlowCount = 2;
+	public float beginFlowRange = 20;
+	public Vector2 beginFlowYOffset = new Vector2(12f, 12f);
+	public Vector2 beginFlowZOffset;
 
 	public uint maxPlantCount = 10;
 	public float plantInterval = 2f;
@@ -32,6 +36,10 @@ public class ScenePondGenerator : BaseGenerator {
 	public float plantXOffset;
 	public Vector2 plantYOffset;
 	public Vector2 plantZOffset;
+	public int beginPlantCount = 2;
+	public float beginPlantRange = 20;
+	public Vector2 beginPlantYOffset = new Vector2(12f, 12f);
+	public Vector2 beginPlantZOffset;
 
 	public uint maxFrogCount = 10;
 	public float frogInterval = 2f;
@@ -40,6 +48,10 @@ public class ScenePondGenerator : BaseGenerator {
 	public float frogXOffset;
 	public Vector2 frogYOffset;
 	public Vector2 frogZOffset;
+	public int beginFrogCount = 2;
+	public float beginFrogRange = 20;
+	public Vector2 beginFrogYOffset = new Vector2(12f, 12f);
+	public Vector2 beginFrogZOffset;
 
 	public uint maxLotusCount = 10;
 	public float lotusInterval = 2f;
@@ -48,6 +60,10 @@ public class ScenePondGenerator : BaseGenerator {
 	public float lotusXOffset;
 	public Vector2 lotusYOffset;
 	public Vector2 lotusZOffset;
+	public int beginLotusCount = 2;
+	public float beginLotusRange = 20;
+	public Vector2 beginLotusYOffset = new Vector2(12f, 12f);
+	public Vector2 beginLotusZOffset;
 
 	public uint maxCoCount = 10;
 	public float coInterval = 2f;
@@ -56,6 +72,10 @@ public class ScenePondGenerator : BaseGenerator {
 	public float coXOffset;
 	public Vector2 coYOffset;
 	public Vector2 coZOffset;
+	public int beginCoCount = 2;
+	public float beginCoRange = 20;
+	public Vector2 beginCoYOffset = new Vector2(12f, 12f);
+	public Vector2 beginCoZOffset;
 
 	GameObjectPool flowPool; 
 	GameObjectPool plantPool;

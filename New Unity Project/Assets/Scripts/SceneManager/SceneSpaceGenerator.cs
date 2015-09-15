@@ -19,6 +19,11 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Vector2 horizontalLineZOffset = new Vector2(-5f, 5f);
 	public float horizontalLineXRange = 20;
 	public Vector2 horizontalLineYOffset = new Vector2 (0, 0);
+	public int beginHorizontalCount = 2;
+	public float beginHorizontalRange = 20;
+	public Vector2 beginHorizontalYOffset = new Vector2(12f, 12f);
+	public Vector2 beginHorizontalZOffset;
+
 
 	public uint maxVerticalLineCount = 10;
 	public float verticalLineInterval = 2f;
@@ -27,6 +32,10 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Vector2 verticalLineZOffset = new Vector2(-5f, 5f);
 	public float verticalLineYRange = 20;
 	public Vector2 verticalLineXOffset = new Vector2 (0, 0);
+	public int beginVerticalCount = 2;
+	public float beginVerticalRange = 20;
+	public Vector2 beginVerticalYOffset = new Vector2(12f, 12f);
+	public Vector2 beginVerticalZOffset;
 
 
 	GameObjectPool horizontalLinePool; 

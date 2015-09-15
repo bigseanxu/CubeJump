@@ -21,12 +21,20 @@ public class SceneForestGenerator : BaseGenerator {
 	public float butterflyRange = 20;
 	public Vector2 butterflyYOffset = new Vector2(12f, 12f);
 	public Vector2 butterflyZOffset;
+	public int beginButterflyCount = 2;
+	public float beginButterflyRange = 20;
+	public Vector2 beginButterflyYOffset = new Vector2(12f, 12f);
+	public Vector2 beginButterflyZOffset;
 
 	public uint maxCloudCount = 10;
 	public float cloudInterval = 2f;
 	public float cloudRange = 20;
 	public Vector2 cloudYOffset = new Vector2(-5f, 5f);
 	public Vector2 cloudZOffset;
+	public int beginCloudCount = 2;
+	public float beginCloudRange = 20;
+	public Vector2 beginCloudYOffset = new Vector2(12f, 12f);
+	public Vector2 beginCloudZOffset;
 
 	public uint maxDragonCount = 10;
 	public float dragonflyInterval = 2f;
@@ -34,7 +42,10 @@ public class SceneForestGenerator : BaseGenerator {
 	public float dragonflyRange = 20;
 	public Vector2 dragonflyYOffset = new Vector2(-5f, 5f);
 	public Vector2 dragonflyZOffset;
-
+	public int beginDragonflyCount = 2;
+	public float beginDragonflyRange = 20;
+	public Vector2 beginDragonflyYOffset = new Vector2(12f, 12f);
+	public Vector2 beginDragonflyZOffset;
 
 	GameObjectPool butterflyPool; 
 	GameObjectPool [] cloudPools = new GameObjectPool[6]; 

@@ -18,6 +18,10 @@ public class SceneWaterGenerator : BaseGenerator {
 	public float flowXOffset;
 	public Vector2 flowYOffset;
 	public Vector2 flowZOffset;
+	public int beginFlowCount = 2;
+	public float beginFlowRange = 20;
+	public Vector2 beginFlowYOffset = new Vector2(12f, 12f);
+	public Vector2 beginFlowZOffset;
 
 	public uint maxPlantCount = 1;
 	public float plantInterval = 2f;
@@ -25,6 +29,11 @@ public class SceneWaterGenerator : BaseGenerator {
 	public float plantXOffset;
 	public Vector2 plantYOffset;
 	public Vector2 plantZOffset;
+	public int beginPlantCount = 2;
+	public float beginPlantRange = 20;
+	public Vector2 beginPlantYOffset = new Vector2(12f, 12f);
+	public Vector2 beginPlantZOffset;
+
 
 	public uint maxFishCount = 10;
 	public float fishInterval = 2f;
@@ -33,6 +42,11 @@ public class SceneWaterGenerator : BaseGenerator {
 	public float fishXOffset;
 	public Vector2 fishYOffset = new Vector2(-10f, -5f);
 	public Vector2 fishZOffset;
+	public int beginFishCount = 2;
+	public float beginFishRange = 20;
+	public Vector2 beginFishYOffset = new Vector2(12f, 12f);
+	public Vector2 beginFishZOffset;
+
 
 	GameObjectPool flowPool; 
 	GameObjectPool plantPool;
