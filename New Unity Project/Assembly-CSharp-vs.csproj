@@ -134,6 +134,7 @@
      <Compile Include="Assets\Scripts\Water.cs" />
      <Compile Include="Assets\Scripts\tools\GameObjectPool.cs" />
      <Compile Include="Assets\Scripts\ui\Background.cs" />
+     <Compile Include="Assets\Scripts\ui\CheckCanBuy.cs" />
      <Compile Include="Assets\Scripts\ui\GameBestScore.cs" />
      <Compile Include="Assets\Scripts\ui\GameCtrl.cs" />
      <Compile Include="Assets\Scripts\ui\GameDiamond.cs" />

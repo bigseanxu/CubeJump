@@ -123,7 +123,7 @@ public class SceneSkyGenerator : BaseGenerator {
 
 	IEnumerator GeneratePlane() {
 		if (planePool.numActive < maxPlaneCount) {
-			print (planePool.numActive);
+//			print (planePool.numActive);
 			float xOffset = Random.Range (-planeRange, planeRange) + planeXOffset;
 			float yOffset = Random.Range (planeYOffset.x, planeYOffset.y);
 			float zOffset = Random.Range (planeZOffset.x, planeZOffset.y);
