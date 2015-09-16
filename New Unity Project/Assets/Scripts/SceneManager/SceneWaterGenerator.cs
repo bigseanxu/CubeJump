@@ -30,6 +30,7 @@ public class SceneWaterGenerator : BaseGenerator {
 	public Vector2 plantYOffset;
 	public Vector2 plantZOffset;
 	public int beginPlantCount = 2;
+	public float beginPlantXOffset;
 	public float beginPlantRange = 20;
 	public Vector2 beginPlantYOffset = new Vector2(12f, 12f);
 	public Vector2 beginPlantZOffset;
@@ -81,8 +82,9 @@ public class SceneWaterGenerator : BaseGenerator {
 		StartCoroutine(GenerateFlow());
 		StartCoroutine(GenerateFish());
 		StartCoroutine(GeneratePlant());
-	
-
+		GenerateFlowBeforGame ();
+		GenerateFishBeforeGame ();
+		GeneratePlantBeforeGame ();
 	}
 
 	IEnumerator GenerateFlow() {
@@ -114,6 +116,31 @@ public class SceneWaterGenerator : BaseGenerator {
 		yield return StartCoroutine (GenerateFlow());
 	}
 
+	void GenerateFlowBeforGame() {
+		for (int i = 0; i < beginFlowCount; i++) {
+			Vector3 position;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-beginFlowRange, beginFlowRange) + flowXOffset;
+				float yOffset = Random.Range (beginFlowYOffset.x, beginFlowYOffset.y);
+				float zOffset = Random.Range (beginFlowZOffset.x, beginFlowZOffset.y);
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
+			Transform newFlow = flowPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFlow.SetParent (flows);
+			newFlow.localScale = Vector3.one;
+			newFlow.localRotation = Quaternion.Euler (0, 0, 0);
+			newFlow.localPosition = position; 
+			newFlow.GetComponent<Flow> ().pool = flowPool;
+		}
+	}
+
 	IEnumerator GeneratePlant() {
 		if (plantPool.numActive < maxPlantCount) {
 			float xOffset = Random.Range (-plantRange, plantRange) + plantXOffset;
@@ -134,6 +161,23 @@ public class SceneWaterGenerator : BaseGenerator {
 		yield return new WaitForSeconds (plantInterval);
 		
 		yield return StartCoroutine (GeneratePlant());
+	}
+
+	void GeneratePlantBeforeGame() {
+		for (int i = 0; i < beginPlantCount; i++){
+			float xOffset = Random.Range (-beginPlantRange, beginPlantRange) + beginPlantXOffset;
+			float yOffset = Random.Range (beginPlantYOffset.x, beginPlantYOffset.y);
+			float zOffset = Random.Range (beginPlantZOffset.x, beginPlantZOffset.y);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			
+			Transform newPlant = plantPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newPlant.SetParent (plants);
+			newPlant.localScale = Vector3.one;
+			newPlant.localRotation = Quaternion.Euler (270, 0, 0);
+			newPlant.localPosition = newPosition;
+			newPlant.GetComponent<Plant> ().pool = plantPool;
+		}
 	}
 
 	bool CheckFlowCollision(Vector3 pos) {
@@ -170,5 +214,25 @@ public class SceneWaterGenerator : BaseGenerator {
 		yield return new WaitForSeconds (fishInterval);
 		
 		yield return StartCoroutine (GenerateFish());
+	}
+
+	void GenerateFishBeforeGame() {
+		for (int i = 0; i < beginFishCount; i++) {
+			float xOffset = Random.Range (-beginFishRange, beginFishRange) + fishXOffset;
+			float yOffset = Random.Range (beginFishYOffset.x, beginFishYOffset.y);
+			float zOffset = Random.Range (beginFishZOffset.x, beginFishZOffset.y);
+			
+			float scale = Random.Range (fishScale.x, fishScale.y);
+			
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			
+			Transform newFish = fishPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (fish);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (0, 0, 0);
+			newFish.localPosition = newPosition; 
+			newFish.GetComponent<Fish> ().pool = fishPool;
+		}
 	}
 }

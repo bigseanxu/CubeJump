@@ -28,7 +28,7 @@ public class CameraReference : MonoBehaviour {
 		} else {
 			ret = (hero.currentPillar.transform.position + hero.currentPillar.GetComponent<Pillar> ().NextPillar.transform.position) / 2.0f;
 		}
-
+		ret.y = 0;
 		return ret;
 	}
 }

@@ -74,6 +74,7 @@ public class Shop : MonoBehaviour {
 			HeroesForShow.localPosition=mVecPosStart;
 			mVecPos=mVecPosStart;
 		}
+		transform.parent.parent.gameObject.SetActive(false);
 	}
 
 	//要修改输入条件
@@ -311,6 +312,18 @@ public class Shop : MonoBehaviour {
 		}
 
 	}
+
+	public bool CheckCanBuy(){
+		for(int i=0;i<cube.Length;i++){
+			if(!cube [i].GetComponent<ShopItem> ().isbought){
+				if(PlayerPrefs.GetInt ("Diamonds")>=cube [i].GetComponent<ShopItem> ().price){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 
 	public void OnBuyBtnClick(){
 		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();

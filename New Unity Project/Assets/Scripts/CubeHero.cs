@@ -67,12 +67,12 @@ public class CubeHero : MonoBehaviour {
 			if(Game.state == Game.State.Gaming)
 				Jump();
 		}
-		if (transform.position.y < 0) {
-			if (Game.sceneType <= 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled) {
+		if (transform.position.y < -5) {
+			if (Game.sceneType <= 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled && !Game.replay) {
 				waterOnce = false;
 				UIAudio.GetComponent<AudioList> ().HeroFallInWater.Play ();
 			}
-			if (Game.sceneType > 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled) {
+			if (Game.sceneType > 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled &&  !Game.replay) {
 				waterOnce = false;
 				UIAudio.GetComponent<AudioList> ().Fall.Play ();
 			}
@@ -157,7 +157,11 @@ public class CubeHero : MonoBehaviour {
 		GetComponent<Rigidbody> ().freezeRotation = true;
 		state = CubeState.Jumping;
 		currentPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().NextPillar.GetComponent<Pillar> ().Show ();
-				UIAudio.GetComponent<AudioList> ().Jump.Play ();
+		if(currentPillar.GetComponent<Pillar> ().LastPillar!=null){
+			if(currentPillar.GetComponent<Pillar> ().LastPillar.GetComponent<Pillar> ().LastPillar!=null)
+				currentPillar.GetComponent<Pillar> ().LastPillar.GetComponent<Pillar> ().LastPillar.GetComponent<Pillar> ().Disappear();
+		}
+		UIAudio.GetComponent<AudioList> ().Jump.Play ();
 	}
 
 	void LandSuccess (Transform pillar) {

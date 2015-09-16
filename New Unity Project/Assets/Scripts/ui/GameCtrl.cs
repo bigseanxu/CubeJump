@@ -18,12 +18,14 @@ public class GameCtrl : MonoBehaviour {
 	public Transform SoundBtn2;
 	public Transform camareOnlyHero;
 	public Camera MainCamera;
+	public Transform BG;
 	public Transform UIAudio;
 	bool shareAppear=false;
 	int a;
 	int cheat;
 	// Use this for initialization
 	void Start () {
+
 		cheat=0;
 		StartCoroutine(CheatCheck());
 		PlayerPrefs.SetInt ("Dinosaur", 1);
@@ -154,6 +156,9 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void OnRestartButtonPress() {
+		if(Shop.gameObject.activeSelf){
+			return;
+		}
 		UIAudio.GetComponent<AudioList> ().TapToStart.Play ();
 		Time.timeScale = 1;
 	//	GameOver.GetComponent<Animator> ().Play ("Game over disappear");
@@ -206,6 +211,7 @@ public class GameCtrl : MonoBehaviour {
 	}
 
 	public void StartGame() {
+		BG.gameObject.SetActive(false);
 		Game.SetState (Game.State.Gaming);
 	}
 

@@ -92,7 +92,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.gameObject.SetActive (false);
 		newPillar.GetComponent<Rigidbody> ().isKinematic = true;
 		pillars.Add (newPillar);
-		UIAudio.GetComponent<AudioList> ().PillarAppear.Play ();
+
 		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
 		diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
 //		PlaySprayParticle ();
