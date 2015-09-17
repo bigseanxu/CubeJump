@@ -20,6 +20,12 @@ public class SceneHellGenerator : BaseGenerator {
 	public float spiderXOffset;
 	public Vector2 spiderYOffset;
 	public Vector2 spiderZOffset;
+	public int beginSpiderCount = 2;
+	public float beginSpiderXOffset;
+	public float beginSpiderRange = 20;
+	public Vector2 beginSpiderYOffset = new Vector2(12f, 12f);
+	public Vector2 beginSpiderZOffset;
+
 
 	public uint maxBatCount = 10;
 	public float batInterval = 2f;
@@ -28,6 +34,10 @@ public class SceneHellGenerator : BaseGenerator {
 	public float barXOffset;
 	public Vector2 batYOffset;
 	public Vector2 batZOffset;
+	public int beginBatCount = 2;
+	public float beginBatRange = 20;
+	public Vector2 beginBatYOffset = new Vector2(12f, 12f);
+	public Vector2 beginBatZOffset;
 
 	public uint maxGhostCount = 10;
 	public float ghostInterval = 2f;
@@ -36,6 +46,10 @@ public class SceneHellGenerator : BaseGenerator {
 	public float ghostXOffset;
 	public Vector2 ghostYOffset;
 	public Vector2 ghostZOffset;
+	public int beginGhostCount = 2;
+	public float beginGhostRange = 20;
+	public Vector2 beginGhostYOffset = new Vector2(12f, 12f);
+	public Vector2 beginGhostZOffset;
 
 	GameObjectPool spiderPool; 
 	GameObjectPool batPool;
@@ -70,7 +84,9 @@ public class SceneHellGenerator : BaseGenerator {
 		StartCoroutine(GenerateSpider ());
 		StartCoroutine(GenerateBat ());
 		StartCoroutine(GenerateGhost ());
-
+		GenerateBatBeforeGame ();
+		GenerateGhostBeforeGame ();
+		GenerateSpiderBeforeGame ();
 	}
 	
 
@@ -94,6 +110,24 @@ public class SceneHellGenerator : BaseGenerator {
 		yield return StartCoroutine (GenerateBat());
 	}
 
+	void GenerateBatBeforeGame() {
+		for (int i = 0; i < beginBatCount; i++) {
+		
+			float scale = Random.Range (batScale.x, batScale.y);
+			Vector3 position = Vector3.zero;
+			
+			Vector3 randomPosition = new Vector3 (Random.Range (-beginBatRange, beginBatRange), Random.Range (beginBatYOffset.x, beginBatYOffset.y), Random.Range (beginBatZOffset.x, beginBatZOffset.y));
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			
+			Transform newFish = batPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (Bats);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (270, 0, 0);
+			newFish.localPosition = newPosition; 
+			newFish.GetComponent<Bat> ().pool = batPool;
+		}
+	}
+
 	IEnumerator GenerateSpider() {
 		if (spiderPool.numActive < maxSpiderCount) {
 			float xOffset = Random.Range (-spiderRange, spiderRange) + spiderXOffset;
@@ -113,6 +147,24 @@ public class SceneHellGenerator : BaseGenerator {
 		yield return new WaitForSeconds (spiderInterval);
 
 		yield return StartCoroutine (GenerateSpider());
+	}
+
+	void  GenerateSpiderBeforeGame() {
+		for (int i = 0; i < beginSpiderCount; i++) {
+			float xOffset = Random.Range (-beginSpiderRange, beginSpiderRange) + beginSpiderXOffset;
+			float yOffset = Random.Range (beginSpiderYOffset.x, beginSpiderYOffset.y);
+			float zOffset = Random.Range (beginSpiderZOffset.x, beginSpiderZOffset.y);
+			float scale = Random.Range (spiderScale.x, spiderScale.y);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			
+			Transform newPlant = spiderPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newPlant.SetParent (Spiders);
+			newPlant.localScale = Vector3.one * scale;
+			newPlant.localRotation = Quaternion.Euler (0, 0, 0);
+			newPlant.localPosition = newPosition;
+			newPlant.GetComponent<Spider> ().pool = spiderPool;
+		}
 	}
 
 	IEnumerator GenerateGhost() {
@@ -135,6 +187,25 @@ public class SceneHellGenerator : BaseGenerator {
 		yield return new WaitForSeconds (ghostInterval);
 	
 		yield return StartCoroutine (GenerateGhost());
+	}
+
+	void GenerateGhostBeforeGame() {
+		for (int i = 0; i < beginGhostCount; i++) {
+			float xOffset = Random.Range (-beginGhostRange, beginGhostRange) + ghostXOffset;
+			float yOffset = Random.Range (beginGhostYOffset.x, beginGhostYOffset.y);
+			float zOffset = Random.Range (beginGhostZOffset.x, beginGhostZOffset.y);
+			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			
+			float scale = Random.Range (ghostScale.x, ghostScale.y);
+			
+			Transform newFish = ghostPool.Spawn (Vector3.zero, Quaternion.identity).transform;
+			newFish.SetParent (Ghosts);
+			newFish.localScale = Vector3.one * scale;
+			newFish.localRotation = Quaternion.Euler (270, 0, 0);
+			newFish.localPosition = newPosition; 
+			newFish.GetComponent<Ghost> ().pool = ghostPool;
+		}
 	}
 
 }

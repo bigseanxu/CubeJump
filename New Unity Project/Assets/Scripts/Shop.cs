@@ -366,7 +366,6 @@ public class Shop : MonoBehaviour {
 		gameScreen.GetComponent<Animator> ().Play ("GameAppear");
 		ShopPage.GetComponent<Animator> ().Play ("shopOut");
 		if (Game.state == Game.State.GameOver) {
-
 			ctrl.GetComponent<GameCtrl> ().ReLoad ();
 			Game.replay=true;
 		} else {

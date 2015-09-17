@@ -8,18 +8,21 @@ public class CameraController : MonoBehaviour {
 
 	Vector3 lastReferencePosition;
 	Vector3 newPosition;
+	Vector3 cameraToReference;
 	// Use this for initialization
 	void Start () {
 		lastReferencePosition = cameraReference.GetComponent<CameraReference> ().GetReferencePosition ();
 		newPosition = transform.position;
+		cameraToReference = transform.position - lastReferencePosition;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate() {
 		Vector3 newReferencePosition = cameraReference.GetComponent<CameraReference> ().GetReferencePosition ();
 		if (newReferencePosition != lastReferencePosition) {
-			Vector3 deltaPosition = newReferencePosition - lastReferencePosition;
-			newPosition = transform.position + deltaPosition;
+//			Vector3 deltaPosition = newReferencePosition - lastReferencePosition;
+//			newPosition = transform.position + deltaPosition;
+			newPosition = cameraToReference + newReferencePosition;
 			lastReferencePosition = newReferencePosition;
 		}
 	}

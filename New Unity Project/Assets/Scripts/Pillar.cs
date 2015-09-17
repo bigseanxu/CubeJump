@@ -9,10 +9,11 @@ public class Pillar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		HingeJoint hinge = GetComponent<HingeJoint> ();
 		JointSpring spring = hinge.spring;
 		spring.spring = 20;
-		spring.damper = 10;
+		spring.damper = 12;
 		spring.targetPosition = -180;
 
 		hinge.spring = spring;
@@ -27,17 +28,9 @@ public class Pillar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	//	CheckOutOfCamera();
-	}
-	/*
-	void CheckOutOfCamera(){
-		Vector2 vec = Camera.main.WorldToScreenPoint(transform.position);
-
-		if (vec.y >300) {
-			Disappear();
-		}
-	}*/
 	
+	}
+
 	public void AnimationCallback() {
 //		HingeJoint hinge = GetComponent<HingeJoint> ();
 //		hinge.useMotor = true;
@@ -71,14 +64,21 @@ public class Pillar : MonoBehaviour {
 	public void Show () {
 		gameObject.SetActive (true);
 		GetComponent<Animator> ().Play ("Show");
-		Transform UIAudio=GameObject.FindGameObjectWithTag("Audio").transform;
+		Transform UIAudio = GameObject.FindGameObjectWithTag ("Audio").transform;
 		UIAudio.GetComponent<AudioList> ().PillarAppear.Play ();
 		if (Game.sceneType <= 1) {
 			PlaySprayParticle ();
 		}
 	}
 
+
 	public void Disappear(){
+		LeanTween.rotate(gameObject,new Vector3(transform.rotation.eulerAngles.x,transform.rotation.eulerAngles.y,180),0.2f).setOnComplete(DisappearMethod);
+		//GetComponent<Animator> ().enabled=true;
+		//GetComponent<Animator> ().Play ("Disappear");
+	}
+	void DisappearMethod(){
+	//	LeanTween.rotate(gameObject,Quaternion.Euler(0,0,180),0.2f).setOnComplete();
 		GetComponent<Animator> ().enabled=true;
 		GetComponent<Animator> ().Play ("Disappear");
 	}

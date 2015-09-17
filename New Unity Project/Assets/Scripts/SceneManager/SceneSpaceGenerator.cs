@@ -19,6 +19,11 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Vector2 horizontalLineZOffset = new Vector2(-5f, 5f);
 	public float horizontalLineXRange = 20;
 	public Vector2 horizontalLineYOffset = new Vector2 (0, 0);
+	public int beginHorizontalCount = 2;
+	public float beginHorizontalRange = 20;
+	public Vector2 beginHorizontalYOffset = new Vector2(12f, 12f);
+	public Vector2 beginHorizontalZOffset;
+
 
 	public uint maxVerticalLineCount = 10;
 	public float verticalLineInterval = 2f;
@@ -27,6 +32,10 @@ public class SceneSpaceGenerator : BaseGenerator {
 	public Vector2 verticalLineZOffset = new Vector2(-5f, 5f);
 	public float verticalLineYRange = 20;
 	public Vector2 verticalLineXOffset = new Vector2 (0, 0);
+	public int beginVerticalCount = 2;
+	public float beginVerticalYRange = 20;
+	public Vector2 beginVerticalZOffset = new Vector2(12f, 12f);
+	public Vector2 beginVerticalXOffset;
 
 
 	GameObjectPool horizontalLinePool; 
@@ -58,8 +67,8 @@ public class SceneSpaceGenerator : BaseGenerator {
 		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(GenerateHorizontalLine());
 		StartCoroutine(GenerateVerticalLineLeft());
-
-
+		GenerateHorizontalLineBeforeGame ();
+		GenerateVerticalLineLeftBeforeGame ();
 	}
 
 
@@ -90,6 +99,33 @@ public class SceneSpaceGenerator : BaseGenerator {
 			yield return new WaitForSeconds (horizontalLineInterval);
 
 		yield return StartCoroutine (GenerateHorizontalLine());
+	}
+
+	void GenerateHorizontalLineBeforeGame() {
+		for (int i = 0; i < beginHorizontalCount; i++) {
+			Vector3 scale = new Vector3 (Random.Range (horizontalLineScaleA.x, horizontalLineScaleB.x),
+			                             Random.Range (horizontalLineScaleA.y, horizontalLineScaleB.y),
+			                             Random.Range (horizontalLineScaleA.z, horizontalLineScaleB.z));
+			Vector3 position = Vector3.zero;
+			// 1. generate a random coordinate
+			while (true) {
+				Vector3 randomPosition = new Vector3 (Random.Range (- beginHorizontalRange, beginHorizontalRange), Random.Range (beginHorizontalYOffset.x, beginHorizontalYOffset.y), Random.Range (beginHorizontalZOffset.x, beginHorizontalZOffset.y));
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = false; // CheckFlowCollision(newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
+			if (horizontalLinePool.numActive < maxHorizontalLineCount) {
+				Transform newFlow = horizontalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
+				newFlow.SetParent (horizontalLines);
+				newFlow.localScale = scale;
+				newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+				newFlow.localPosition = position; 
+				newFlow.GetComponent<LineX> ().pool = horizontalLinePool;
+			}
+		}
 	}
 
 	IEnumerator GenerateVerticalLineLeft() {
@@ -123,6 +159,35 @@ public class SceneSpaceGenerator : BaseGenerator {
 		yield return StartCoroutine (GenerateVerticalLineLeft());
 	}
 
+	
+	void GenerateVerticalLineLeftBeforeGame() {
+		for (int i = 0; i < beginVerticalCount; i++) { 
+			Vector3 scale = new Vector3 (Random.Range (verticalLineScaleA.x, verticalLineScaleB.x),
+			                             Random.Range (verticalLineScaleA.y, verticalLineScaleB.y),
+			                             Random.Range (verticalLineScaleA.z, verticalLineScaleB.z));
+			
+			Vector3 position = Vector3.zero;
+			// 1. generate a random coordinate
+			while (true) {
+				Vector3 randomPosition = new Vector3 (Random.Range (beginVerticalXOffset.x, beginVerticalXOffset.y), Random.Range (-beginVerticalYRange, beginVerticalYRange), Random.Range (beginVerticalZOffset.x, beginVerticalZOffset.y));
+				
+				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = false; // CheckFlowCollision(newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
+			if (verticalLinePool.numActive < maxVerticalLineCount) {
+				Transform newFlow = verticalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
+				newFlow.SetParent (verticalLines);
+				newFlow.localScale = scale;
+				newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+				newFlow.localPosition = position; 
+				newFlow.GetComponent<LineZ> ().pool = verticalLinePool;
+			}
+		}
+	}
 
 	bool CheckFlowCollision(Vector3 pos) {
 		bool ret = false;
