@@ -14,6 +14,7 @@ public class CubeHero : MonoBehaviour {
 	bool isFaceLeft = true;
 	bool live=true;
 	bool waterOnce=true;
+	bool isFall=true;
 	public float fForceUp = 1500;
 	public float fForceForward = 300;
 	public Transform UIAudio;
@@ -66,6 +67,7 @@ public class CubeHero : MonoBehaviour {
 #endif
 			if(Game.state == Game.State.Gaming)
 				Jump();
+				isFall=true;
 		}
 		if (transform.position.y < -5) {
 			if (Game.sceneType <= 1 && waterOnce &&transform.GetChild (0).GetComponent<MeshRenderer> ().enabled && !Game.replay) {
@@ -89,7 +91,10 @@ public class CubeHero : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if (collider.gameObject.name == "ColliderBox") {
+				print("curr"+currentPillar.position.x);
+				print("hero"+transform.position.x);
+		if (collider.gameObject.name == "ColliderBox" && state==CubeState.Jumping) {
+			isFall=false;
 			collider.gameObject.SetActive(false);
 			LandSuccess (collider.transform.parent);
 		} else if (collider.gameObject.name == "water") {
@@ -100,9 +105,42 @@ public class CubeHero : MonoBehaviour {
 		} else if (collider.gameObject.name.StartsWith("Diamond") ) {
 			// print ("cube is in diamond");
 			UIAudio.GetComponent<AudioList> ().Diamond.Play ();
+
+		}else if(collider.gameObject.name == "ColliderFall" && state== CubeState.Jumping){
+				collider.gameObject.SetActive(false);
+				//StartCoroutine(FallDown());
+				//GetComponent<Rigidbody>().isKinematic=true;
+					
+				//GetComponent<Rigidbody>().isKinematic=false;
+					
+				Rigidbody rigid = GetComponent<Rigidbody> ();
+				rigid.freezeRotation = false;
+				if(isFaceLeft) {
+
+						if(currentPillar.GetComponent<Pillar> ().NextPillar.position.z>transform.position.z){
+							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.back)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
+						}else{
+							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.forward)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
+						}
+						//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
+				}else{
+						if(currentPillar.GetComponent<Pillar> ().NextPillar.position.x<transform.position.x){
+						
+							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.right)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
+						//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
+						}else{
+							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.left)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
+						}
+				}
+					state=CubeState.Dead;
 		}
 
 	}
+
+	
+	
+
+
 
 	void OnCollisionEnter(Collision collision){
 		int a = transform.GetChild (0).childCount;
