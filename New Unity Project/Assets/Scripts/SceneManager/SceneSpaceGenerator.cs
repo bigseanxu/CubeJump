@@ -81,7 +81,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 		// 1. generate a random coordinate
 		while (true) {
 			Vector3 randomPosition = new Vector3 (Random.Range (- horizontalLineXRange, horizontalLineXRange), Random.Range (horizontalLineYOffset.x, horizontalLineYOffset.y), Random.Range (horizontalLineZOffset.x, horizontalLineZOffset.y));
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			bool result = false; // CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
@@ -92,7 +92,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 			Transform newFlow = horizontalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFlow.SetParent (horizontalLines);
 			newFlow.localScale = scale;
-			newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+			newFlow.localRotation = Quaternion.Euler (0, 0, 0);
 			newFlow.localPosition = position; 
 			newFlow.GetComponent<LineX> ().pool = horizontalLinePool;
 		}
@@ -110,7 +110,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 			// 1. generate a random coordinate
 			while (true) {
 				Vector3 randomPosition = new Vector3 (Random.Range (- beginHorizontalRange, beginHorizontalRange), Random.Range (beginHorizontalYOffset.x, beginHorizontalYOffset.y), Random.Range (beginHorizontalZOffset.x, beginHorizontalZOffset.y));
-				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 				bool result = false; // CheckFlowCollision(newPosition);
 				if (!result) {
 					position = newPosition;
@@ -121,7 +121,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 				Transform newFlow = horizontalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
 				newFlow.SetParent (horizontalLines);
 				newFlow.localScale = scale;
-				newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+				newFlow.localRotation = Quaternion.Euler (0, 0, 0);
 				newFlow.localPosition = position; 
 				newFlow.GetComponent<LineX> ().pool = horizontalLinePool;
 			}
@@ -139,7 +139,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 		while (true) {
 			Vector3 randomPosition = new Vector3 (Random.Range (verticalLineXOffset.x, verticalLineXOffset.y), Random.Range (-verticalLineYRange, verticalLineYRange), Random.Range (verticalLineZOffset.x, verticalLineZOffset.y));
 
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			bool result = false; // CheckFlowCollision(newPosition);
 			if (!result) {
 				position = newPosition;
@@ -150,7 +150,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 			Transform newFlow = verticalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFlow.SetParent (verticalLines);
 			newFlow.localScale = scale;
-			newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+			newFlow.localRotation = Quaternion.Euler (0, 0, 0);
 			newFlow.localPosition = position; 
 			newFlow.GetComponent<LineZ> ().pool = verticalLinePool;
 		}
@@ -171,7 +171,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 			while (true) {
 				Vector3 randomPosition = new Vector3 (Random.Range (beginVerticalXOffset.x, beginVerticalXOffset.y), Random.Range (-beginVerticalYRange, beginVerticalYRange), Random.Range (beginVerticalZOffset.x, beginVerticalZOffset.y));
 				
-				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 				bool result = false; // CheckFlowCollision(newPosition);
 				if (!result) {
 					position = newPosition;
@@ -182,7 +182,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 				Transform newFlow = verticalLinePool.Spawn (Vector3.zero, Quaternion.identity).transform;
 				newFlow.SetParent (verticalLines);
 				newFlow.localScale = scale;
-				newFlow.localRotation = Quaternion.Euler (-90, 0, 0);
+				newFlow.localRotation = Quaternion.Euler (0, 0, 0);
 				newFlow.localPosition = position; 
 				newFlow.GetComponent<LineZ> ().pool = verticalLinePool;
 			}

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 1.5
   maxSpeed: 1.5
-  distance: 60
+  distance: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

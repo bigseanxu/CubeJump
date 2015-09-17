@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 5
   maxSpeed: 10
-  distance: 100
+  distance: 60
   lightMaps:
   - {fileID: 2800000, guid: 0c81e8bd3f7723c48a3a7d1ce4ec3b58, type: 3}
   - {fileID: 2800000, guid: 680a3d903879acd4f8528b296f826c2f, type: 3}

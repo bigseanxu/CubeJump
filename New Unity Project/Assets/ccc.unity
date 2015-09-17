@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34762528}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 9.20001221, y: .705031157, z: -4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 171670267}
@@ -1576,7 +1576,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 107559631}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 966976257}
@@ -3840,35 +3840,35 @@ MonoBehaviour:
   prefabBalloon: {fileID: 449922, guid: c99d1834568b830449ab6cb30cee335e, type: 2}
   Balloons: {fileID: 1592611712}
   generatorReference: {fileID: 1435580553}
-  maxCloudCount: 40
+  maxCloudCount: 5
   cloudInterval: 3.5
   cloudRange: 20
   cloudXOffset: 7
-  cloudYOffset: {x: -5, y: 2.5}
-  cloudZOffset: {x: -35, y: -25}
-  beginCloudCount: 10
+  cloudYOffset: {x: 25, y: 30}
+  cloudZOffset: {x: -5, y: 2.5}
+  beginCloudCount: 2
   beginCloudRange: 20
-  beginCloudYOffset: {x: -5, y: 2.5}
-  beginCloudZOffset: {x: -25, y: 5}
-  maxPlaneCount: 15
-  planeInterval: 8
+  beginCloudYOffset: {x: -10, y: 10}
+  beginCloudZOffset: {x: -5, y: 2.5}
+  maxPlaneCount: 3
+  planeInterval: 10
   planeScale: {x: 13, y: 15}
   planeRange: 20
   planeXOffset: 0
-  planeYOffset: {x: -5, y: 3}
-  planeZOffset: {x: -20, y: -25}
-  beginPlaneCount: 2
+  planeYOffset: {x: 20, y: 25}
+  planeZOffset: {x: -5, y: 3}
+  beginPlaneCount: 1
   beginPlaneRange: 20
-  beginPlaneYOffset: {x: -5, y: 3}
-  beginPlaneZOffset: {x: -20, y: 5}
-  maxBallonCount: 70
-  ballonInterval: 3
+  beginPlaneYOffset: {x: -10, y: 10}
+  beginPlaneZOffset: {x: -5, y: 3}
+  maxBallonCount: 6
+  ballonInterval: 6
   ballonScale: {x: 14, y: 16}
   ballonRange: 15
   ballonXOffset: -2
   ballonYOffset: {x: -5, y: 20}
   ballonZOffset: {x: -30, y: -20}
-  beginBallonCount: 6
+  beginBallonCount: 1
   beginBallonRange: 20
   beginBallonYOffset: {x: -5, y: 20}
   beginBallonZOffset: {x: -10, y: 10}
@@ -3968,38 +3968,38 @@ MonoBehaviour:
   plants: {fileID: 962365336}
   fish: {fileID: 1204996279}
   generatorReference: {fileID: 1435580553}
-  maxFlowCount: 25
-  flowInterval: 1
+  maxFlowCount: 20
+  flowInterval: 2
   flowRange: 20
-  flowXOffset: 0
-  flowYOffset: {x: 25, y: 30}
-  flowZOffset: {x: 7.5, y: 7.5}
-  beginFlowCount: 10
+  flowXOffset: 5
+  flowYOffset: {x: 20, y: 25}
+  flowZOffset: {x: .200000003, y: .200000003}
+  beginFlowCount: 5
   beginFlowRange: 20
   beginFlowYOffset: {x: -5, y: 20}
-  beginFlowZOffset: {x: 7.5, y: 7.5}
-  maxPlantCount: 1
-  plantInterval: 2
+  beginFlowZOffset: {x: .200000003, y: .200000003}
+  maxPlantCount: 60
+  plantInterval: 9.99999975e-05
   plantRange: 20
-  plantXOffset: 20
-  plantYOffset: {x: 0, y: 0}
-  plantZOffset: {x: -15, y: 15}
-  beginPlantCount: 2
+  plantXOffset: -30
+  plantYOffset: {x: -30, y: 0}
+  plantZOffset: {x: 0, y: 0}
+  beginPlantCount: 30
   beginPlantXOffset: 0
   beginPlantRange: 20
-  beginPlantYOffset: {x: 12, y: 12}
+  beginPlantYOffset: {x: -15, y: 15}
   beginPlantZOffset: {x: 0, y: 0}
-  maxFishCount: 15
+  maxFishCount: 8
   fishInterval: 5
   fishScale: {x: .600000024, y: 1}
   fishRange: 20
   fishXOffset: 0
-  fishYOffset: {x: 25, y: 35}
-  fishZOffset: {x: 4, y: 7}
-  beginFishCount: 5
-  beginFishRange: 15
-  beginFishYOffset: {x: 0, y: 20}
-  beginFishZOffset: {x: 4, y: 7}
+  fishYOffset: {x: 25, y: 30}
+  fishZOffset: {x: -3, y: -1}
+  beginFishCount: 2
+  beginFishRange: 20
+  beginFishYOffset: {x: 0, y: 25}
+  beginFishZOffset: {x: -3, y: -1}
   sceneType: 0
 --- !u!1 &280814921
 GameObject:
@@ -4022,7 +4022,7 @@ Transform:
   m_PrefabParentObject: {fileID: 432446, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 280814921}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4270,8 +4270,8 @@ Transform:
   m_PrefabParentObject: {fileID: 495384, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 308112861}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.83000004, y: 0, z: -11.04}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1162735234}
@@ -4298,7 +4298,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 327780551}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380170473}
@@ -4620,8 +4620,8 @@ Transform:
   m_PrefabParentObject: {fileID: 474720, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484105015}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1484574541}
@@ -4647,7 +4647,7 @@ Transform:
   m_PrefabParentObject: {fileID: 461172, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 496880172}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4716,7 +4716,7 @@ Transform:
   m_PrefabParentObject: {fileID: 435748, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 582645141}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4876,27 +4876,27 @@ MonoBehaviour:
   horizontalLines: {fileID: 1243711989}
   prefabLineLeft: {fileID: 426014, guid: 35361e63442e0c545b30367f1414c45a, type: 2}
   generatorReference: {fileID: 1435580553}
-  maxHorizontalLineCount: 200
+  maxHorizontalLineCount: 35
   horizontalLineInterval: .150000006
   horizontalLineScaleA: {x: 1.70000005, y: 1, z: 1.20000005}
   horizontalLineScaleB: {x: 3, y: 1.70000005, z: 1.20000005}
-  horizontalLineZOffset: {x: -25, y: -20}
+  horizontalLineZOffset: {x: -5, y: 3}
   horizontalLineXRange: 40
-  horizontalLineYOffset: {x: -5, y: 3}
-  beginHorizontalCount: 30
+  horizontalLineYOffset: {x: 20, y: 30}
+  beginHorizontalCount: 15
   beginHorizontalRange: 20
-  beginHorizontalYOffset: {x: -5, y: 3}
-  beginHorizontalZOffset: {x: -15, y: 10}
-  maxVerticalLineCount: 200
+  beginHorizontalYOffset: {x: -15, y: 10}
+  beginHorizontalZOffset: {x: -5, y: 3}
+  maxVerticalLineCount: 35
   verticalLineInterval: .150000006
   verticalLineScaleA: {x: 1, y: 1.70000005, z: 1.20000005}
   verticalLineScaleB: {x: 1.70000005, y: 3, z: 1.20000005}
-  verticalLineZOffset: {x: -15, y: 15}
-  verticalLineYRange: 5
-  verticalLineXOffset: {x: -25, y: -20}
-  beginVerticalCount: 30
+  verticalLineZOffset: {x: -7, y: 5}
+  verticalLineYRange: 8
+  verticalLineXOffset: {x: -30, y: -25}
+  beginVerticalCount: 15
   beginVerticalYRange: 20
-  beginVerticalZOffset: {x: -15, y: 15}
+  beginVerticalZOffset: {x: -7, y: 5}
   beginVerticalXOffset: {x: -15, y: 10}
   sceneType: 0
 --- !u!1 &646548416
@@ -4922,7 +4922,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 646548416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.20001221, y: -.705031157, z: 4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1240306217}
@@ -5031,7 +5031,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 707586497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.2000122, y: -5.29496861, z: -14.3001318}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380170473}
@@ -7477,8 +7477,8 @@ Transform:
   m_PrefabParentObject: {fileID: 450950, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 814128355}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380170473}
@@ -7791,7 +7791,7 @@ Transform:
   m_PrefabParentObject: {fileID: 446692, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 876828076}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7818,8 +7818,8 @@ Transform:
   m_PrefabParentObject: {fileID: 450008, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 880319686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.83000004, y: 0, z: -11.04}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1162735234}
@@ -9050,8 +9050,8 @@ Transform:
   m_PrefabParentObject: {fileID: 417434, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 958448551}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.86999989, y: 0, z: -8.52999973}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1162735234}
@@ -9078,7 +9078,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 961989296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.20001221, y: .705031157, z: -4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 646548417}
@@ -9139,7 +9139,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 966976256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.20001221, y: -.705031157, z: 4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 837335126}
@@ -12789,7 +12789,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1162735233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.20001221, y: -.705031157, z: 4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 377010831}
@@ -12926,7 +12926,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1200900152}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 646548417}
@@ -13107,7 +13107,7 @@ Transform:
   m_PrefabParentObject: {fileID: 420308, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1243711988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -14513,7 +14513,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1380170472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.20001221, y: -.705031157, z: 4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 784644688}
@@ -14619,7 +14619,7 @@ Transform:
   m_PrefabParentObject: {fileID: 432862, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1394836674}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -14699,7 +14699,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1484574540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.20001221, y: -.705031157, z: 4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1083119845}
@@ -15019,7 +15019,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1497829536}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1162735234}
@@ -15061,8 +15061,8 @@ Transform:
   m_PrefabParentObject: {fileID: 486122, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1516295975}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 966976257}
@@ -15117,7 +15117,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1536363764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.20001221, y: -.705031157, z: 4.60013199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1243711989}
@@ -15526,8 +15526,8 @@ Transform:
   m_PrefabParentObject: {fileID: 486362, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1553539364}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1484574541}
@@ -15554,7 +15554,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1592611711}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 3.73000002, y: 0, z: -4.21000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380170473}
@@ -15920,35 +15920,35 @@ MonoBehaviour:
   prefabButterfly: {fileID: 439590, guid: 05b175660b605464d913b14976a820bb, type: 2}
   Butterflies: {fileID: 876828077}
   generatorReference: {fileID: 1435580553}
-  maxButterflyCount: 15
+  maxButterflyCount: 3
   butterflyInterval: 8
   butterflyScale: {x: 10, y: 12}
   butterflyRange: 20
-  butterflyYOffset: {x: -5, y: 3}
-  butterflyZOffset: {x: -30, y: -20}
-  beginButterflyCount: 5
+  butterflyYOffset: {x: 20, y: 25}
+  butterflyZOffset: {x: -5, y: 3}
+  beginButterflyCount: 1
   beginButterflyRange: 20
-  beginButterflyYOffset: {x: -5, y: 3}
-  beginButterflyZOffset: {x: -15, y: 15}
-  maxCloudCount: 40
+  beginButterflyYOffset: {x: -15, y: 15}
+  beginButterflyZOffset: {x: -5, y: 3}
+  maxCloudCount: 5
   cloudInterval: 3
   cloudRange: 20
-  cloudYOffset: {x: -5, y: 2.5}
-  cloudZOffset: {x: -30, y: -20}
-  beginCloudCount: 10
+  cloudYOffset: {x: 25, y: 30}
+  cloudZOffset: {x: -5, y: 2.5}
+  beginCloudCount: 2
   beginCloudRange: 20
-  beginCloudYOffset: {x: -5, y: 2.5}
-  beginCloudZOffset: {x: -25, y: 10}
-  maxDragonCount: 10
+  beginCloudYOffset: {x: -10, y: 20}
+  beginCloudZOffset: {x: -5, y: 2.5}
+  maxDragonCount: 3
   dragonflyInterval: 5
   dragonflyScale: {x: 8, y: 12}
   dragonflyRange: 20
-  dragonflyYOffset: {x: -5, y: 3}
-  dragonflyZOffset: {x: -30, y: -20}
-  beginDragonflyCount: 2
+  dragonflyYOffset: {x: 20, y: 30}
+  dragonflyZOffset: {x: -5, y: 3}
+  beginDragonflyCount: 1
   beginDragonflyRange: 20
-  beginDragonflyYOffset: {x: -5, y: 3}
-  beginDragonflyZOffset: {x: -15, y: 15}
+  beginDragonflyYOffset: {x: -15, y: 15}
+  beginDragonflyZOffset: {x: -5, y: 3}
   sceneType: 0
 --- !u!1 &1764114597
 GameObject:
@@ -15971,7 +15971,7 @@ Transform:
   m_PrefabParentObject: {fileID: 476606, guid: 80ccc83bcf258ec49aeefe4c39a0bf01, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764114597}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -16107,60 +16107,60 @@ MonoBehaviour:
   frog: {fileID: 308112862}
   lotus: {fileID: 958448552}
   generatorReference: {fileID: 1435580553}
-  maxFlowCount: 25
+  maxFlowCount: 7
   flowInterval: 1
   flowRange: 20
   flowXOffset: 0
-  flowYOffset: {x: 25, y: 35}
-  flowZOffset: {x: 7.5, y: 7.5}
-  beginFlowCount: 10
+  flowYOffset: {x: 20, y: 25}
+  flowZOffset: {x: .100000001, y: .100000001}
+  beginFlowCount: 3
   beginFlowRange: 20
   beginFlowYOffset: {x: -5, y: 20}
-  beginFlowZOffset: {x: 7.5, y: 7.5}
-  maxPlantCount: 10
-  plantInterval: 2
+  beginFlowZOffset: {x: .100000001, y: .100000001}
+  maxPlantCount: 60
+  plantInterval: 9.99999975e-05
   plantRange: 20
-  plantXOffset: 0
-  plantYOffset: {x: 0, y: 0}
-  plantZOffset: {x: -15, y: 15}
-  beginPlantCount: 2
+  plantXOffset: -30
+  plantYOffset: {x: -30, y: 0}
+  plantZOffset: {x: 0, y: 0}
+  beginPlantCount: 30
   beginPlantXOffset: 0
   beginPlantRange: 20
-  beginPlantYOffset: {x: 12, y: 12}
+  beginPlantYOffset: {x: -15, y: 15}
   beginPlantZOffset: {x: 0, y: 0}
-  maxFrogCount: 10
+  maxFrogCount: 4
   frogInterval: 6
   frogScale: {x: 10, y: 12}
   frogRange: 20
   frogXOffset: 0
-  frogYOffset: {x: 0, y: 0}
-  frogZOffset: {x: -35, y: -25}
-  beginFrogCount: 5
+  frogYOffset: {x: 25, y: 30}
+  frogZOffset: {x: 0, y: 0}
+  beginFrogCount: 2
   beginFrogRange: 20
-  beginFrogYOffset: {x: 0, y: 0}
-  beginFrogZOffset: {x: -15, y: 15}
-  maxLotusCount: 15
+  beginFrogYOffset: {x: -15, y: 15}
+  beginFrogZOffset: {x: 0, y: 0}
+  maxLotusCount: 3
   lotusInterval: 8
   lotusScale: {x: 11, y: 13}
   lotusRange: 20
   lotusXOffset: 0
-  lotusYOffset: {x: 0, y: 0}
-  lotusZOffset: {x: -35, y: -25}
+  lotusYOffset: {x: 25, y: 30}
+  lotusZOffset: {x: 0, y: 0}
   beginLotusCount: 2
   beginLotusRange: 20
-  beginLotusYOffset: {x: 0, y: 0}
-  beginLotusZOffset: {x: -15, y: 15}
-  maxCoCount: 10
+  beginLotusYOffset: {x: -15, y: 15}
+  beginLotusZOffset: {x: 0, y: 0}
+  maxCoCount: 3
   coInterval: 10
   coScale: {x: 8, y: 12}
   coRange: 20
   coXOffset: 0
-  coYOffset: {x: -.400000006, y: -1}
-  coZOffset: {x: -25, y: -35}
-  beginCoCount: 4
+  coYOffset: {x: 25, y: 30}
+  coZOffset: {x: -1, y: -.400000006}
+  beginCoCount: 2
   beginCoRange: 20
-  beginCoYOffset: {x: -.400000006, y: -1}
-  beginCoZOffset: {x: -15, y: 15}
+  beginCoYOffset: {x: -10, y: 10}
+  beginCoZOffset: {x: -1, y: -.400000006}
   sceneType: 0
 --- !u!224 &1886714212 stripped
 RectTransform:
@@ -16215,40 +16215,40 @@ MonoBehaviour:
   prefabGhost: {fileID: 457096, guid: 3cacd2b07d1a8534fad13e4391386f21, type: 2}
   Ghosts: {fileID: 484105016}
   generatorReference: {fileID: 1435580553}
-  maxSpiderCount: 10
-  spiderInterval: 10
-  spiderScale: {x: .300000012, y: .5}
-  spiderRange: 20
-  spiderXOffset: 0
-  spiderYOffset: {x: 0, y: 0}
-  spiderZOffset: {x: 0, y: 0}
+  maxSpiderCount: 5
+  spiderInterval: 9.99999975e-05
+  spiderScale: {x: .200000003, y: .400000006}
+  spiderRange: 6
+  spiderXOffset: -15
+  spiderYOffset: {x: -19, y: 2}
+  spiderZOffset: {x: 2, y: 4}
   beginSpiderCount: 2
-  beginSpiderXOffset: 0
-  beginSpiderRange: 20
-  beginSpiderYOffset: {x: 12, y: 12}
-  beginSpiderZOffset: {x: 0, y: 0}
-  maxBatCount: 15
-  batInterval: 4
+  beginSpiderXOffset: 3
+  beginSpiderRange: 7
+  beginSpiderYOffset: {x: -7, y: 10}
+  beginSpiderZOffset: {x: 2, y: 4}
+  maxBatCount: 7
+  batInterval: 6
   batScale: {x: 10, y: 12}
   batRange: 20
   barXOffset: 0
-  batYOffset: {x: -5, y: 3}
-  batZOffset: {x: -20, y: -15}
-  beginBatCount: 5
+  batYOffset: {x: 15, y: 20}
+  batZOffset: {x: -5, y: 3}
+  beginBatCount: 2
   beginBatRange: 20
-  beginBatYOffset: {x: -5, y: 3}
-  beginBatZOffset: {x: -15, y: 15}
-  maxGhostCount: 15
+  beginBatYOffset: {x: -15, y: 15}
+  beginBatZOffset: {x: -5, y: 3}
+  maxGhostCount: 8
   ghostInterval: 4
   ghostScale: {x: 13, y: 15}
   ghostRange: 20
   ghostXOffset: 0
-  ghostYOffset: {x: -5, y: 3}
-  ghostZOffset: {x: -25, y: -20}
-  beginGhostCount: 6
+  ghostYOffset: {x: 20, y: 25}
+  ghostZOffset: {x: -5, y: 3}
+  beginGhostCount: 3
   beginGhostRange: 20
-  beginGhostYOffset: {x: -5, y: 3}
-  beginGhostZOffset: {x: -15, y: 15}
+  beginGhostYOffset: {x: -15, y: 15}
+  beginGhostZOffset: {x: -5, y: 3}
   sceneType: 0
 --- !u!1 &1983489326
 GameObject:
@@ -17761,7 +17761,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2108585101}
   m_LocalRotation: {x: .118899748, y: .878080845, z: -.28727591, w: .363743663}
-  m_LocalPosition: {x: -26.5, y: 42.0999985, z: 27.7000008}
+  m_LocalPosition: {x: -8.60000038, y: 23.5, z: 9.80000019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 614923020}

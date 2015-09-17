@@ -70,7 +70,7 @@ public class SceneWaterGenerator : BaseGenerator {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public override void StartGenerate() {
@@ -96,7 +96,8 @@ public class SceneWaterGenerator : BaseGenerator {
 				float yOffset = Random.Range (flowYOffset.x, flowYOffset.y);
 				float zOffset = Random.Range (flowZOffset.x, flowZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				print ("GenerateFlow " + randomPosition);
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 				bool result = CheckFlowCollision (newPosition);
 				if (!result) {
 					position = newPosition;
@@ -125,7 +126,7 @@ public class SceneWaterGenerator : BaseGenerator {
 				float yOffset = Random.Range (beginFlowYOffset.x, beginFlowYOffset.y);
 				float zOffset = Random.Range (beginFlowZOffset.x, beginFlowZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-				Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 				bool result = CheckFlowCollision (newPosition);
 				if (!result) {
 					position = newPosition;
@@ -147,7 +148,7 @@ public class SceneWaterGenerator : BaseGenerator {
 			float yOffset = Random.Range (plantYOffset.x, plantYOffset.y);
 			float zOffset = Random.Range (plantZOffset.x, plantZOffset.y);
 			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 		
 			Transform newPlant = plantPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newPlant.SetParent (plants);
@@ -155,8 +156,8 @@ public class SceneWaterGenerator : BaseGenerator {
 			newPlant.localRotation = Quaternion.Euler (0, 0, 0);
 			newPlant.localPosition = newPosition;
 			newPlant.GetComponent<Plant> ().pool = plantPool;
-			print ("new position = " + newPosition);
-			print ("localPosition = " + newPlant.localPosition);
+//			print ("new position = " + newPosition);
+//			print ("ref pos = " + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position));
 		}
 		yield return new WaitForSeconds (plantInterval);
 		
@@ -169,12 +170,12 @@ public class SceneWaterGenerator : BaseGenerator {
 			float yOffset = Random.Range (beginPlantYOffset.x, beginPlantYOffset.y);
 			float zOffset = Random.Range (beginPlantZOffset.x, beginPlantZOffset.y);
 			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-			
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+
 			Transform newPlant = plantPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newPlant.SetParent (plants);
 			newPlant.localScale = Vector3.one;
-			newPlant.localRotation = Quaternion.Euler (270, 0, 0);
+			newPlant.localRotation = Quaternion.Euler (0, 0, 0);
 			newPlant.localPosition = newPosition;
 			newPlant.GetComponent<Plant> ().pool = plantPool;
 		}
@@ -202,7 +203,7 @@ public class SceneWaterGenerator : BaseGenerator {
 			float scale = Random.Range (fishScale.x, fishScale.y);
 	
 			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 
 			Transform newFish = fishPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (fish);
@@ -225,7 +226,7 @@ public class SceneWaterGenerator : BaseGenerator {
 			float scale = Random.Range (fishScale.x, fishScale.y);
 			
 			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+            Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			
 			Transform newFish = fishPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (fish);
