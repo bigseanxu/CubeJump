@@ -93,10 +93,11 @@ public class CubeHero : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 				print("curr"+currentPillar.position.x);
 				print("hero"+transform.position.x);
-		if (collider.gameObject.name == "ColliderBox" && state==CubeState.Jumping) {
+		if (collider.gameObject.name == "ColliderBox") {
 			isFall=false;
 			collider.gameObject.SetActive(false);
 			LandSuccess (collider.transform.parent);
+			print ( " land success ");
 		} else if (collider.gameObject.name == "water") {
 				print("cube is in water");
 				waterSpray.transform.position = transform.position;
@@ -115,24 +116,25 @@ public class CubeHero : MonoBehaviour {
 					
 				Rigidbody rigid = GetComponent<Rigidbody> ();
 				rigid.freezeRotation = false;
+				float force = 200;
 				if(isFaceLeft) {
-
-						if(currentPillar.GetComponent<Pillar> ().NextPillar.position.z>transform.position.z){
-							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.back)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
-						}else{
-							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.forward)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
-						}
-						//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
+					if(currentPillar.GetComponent<Pillar> ().NextPillar.position.z>transform.position.z){
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.back)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
+					}else{
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.forward)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
+					}
+					//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
 				}else{
-						if(currentPillar.GetComponent<Pillar> ().NextPillar.position.x<transform.position.x){
-						
-							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.right)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
-						//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
-						}else{
-							gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.left)*400,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
-						}
+					if(currentPillar.GetComponent<Pillar> ().NextPillar.position.x<transform.position.x){
+					
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.right)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
+					//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
+					}else{
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.left)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
+					}
 				}
-					state=CubeState.Dead;
+				state=CubeState.Dead;
+				print ( " land not success");
 		}
 
 	}
@@ -227,6 +229,7 @@ public class CubeHero : MonoBehaviour {
 
 	IEnumerator TurnAround() {
 		Vector3 forceUp = new Vector3 (0, 500, 0);
+		gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;	
 		gameObject.GetComponent<Rigidbody> ().AddForce (forceUp);
 		if (isFaceLeft) {
 			LeanTween.rotate (gameObject, new Vector3(-90, 0, 0), 0.2f);

@@ -21,7 +21,7 @@ public class DiamondGenerator : MonoBehaviour {
 		if (r < chance) {
 			Vector3 pillar = pillarGenerator.GetLastPillar().position;
 			Vector3 pillar2 = pillarGenerator.GetLastPillar().GetComponent<Pillar>().LastPillar.position;
-			Vector3 position = (pillar + pillar2) / 2.0f + Vector3.up * 8; 
+			Vector3 position = (pillar + pillar2) / 2.0f + Vector3.up * 12; 
 //			print ("new diamond position = " + position + "   pillar " + pillar + "pillar2 = " + pillar2);
 
 			Transform newDiamond = (Transform)GameObject.Instantiate (prefabDiamond);

@@ -1123,7 +1123,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102796}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 966d967725e5aed40884e4c76db62bbe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1457,6 +1457,7 @@ MonoBehaviour:
   isLeft: 0
   sceneGenerator: {fileID: 0}
   sprayParticles: {fileID: 0}
+  sprayParticles2: {fileID: 0}
 --- !u!114 &11437938
 MonoBehaviour:
   m_ObjectHideFlags: 1

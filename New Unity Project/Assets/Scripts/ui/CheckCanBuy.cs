@@ -6,8 +6,9 @@ public class CheckCanBuy : MonoBehaviour {
 	public Transform shopping;
 	// Use this for initialization
 	void OnEnable () {
+#if UNITY_EDITOR
 		PlayerPrefs.SetInt("Diamonds",90);
-
+#endif
 
 		StartCoroutine(Checking ());
 	}

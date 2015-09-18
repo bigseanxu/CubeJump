@@ -39,9 +39,11 @@ public class GameCenter : MonoBehaviour {
 			Debug.Log("PlayGamesPlatform.Activate()");
 		}
 		#endif
+#if !UNITY_EDITOR
 		Social.localUser.Authenticate (ProcessAuthentication);
 
 		GA.StartWithAppKeyAndChannelId (appKey, channelId);
+#endif
 	}
 	
 	// Update is called once per frame

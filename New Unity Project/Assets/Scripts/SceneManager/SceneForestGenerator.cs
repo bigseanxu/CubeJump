@@ -73,7 +73,7 @@ public class SceneForestGenerator : BaseGenerator {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public override void StartGenerate() {
@@ -82,7 +82,7 @@ public class SceneForestGenerator : BaseGenerator {
 	}
 	
 	IEnumerator Generate() {
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.01f);
 		GenerateButterflyBeforeGame ();
 		GenerateCloudBeforeGame ();
 		GenerateFlyBeforeGame ();

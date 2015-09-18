@@ -19,6 +19,7 @@ public class PillarGenerator : MonoBehaviour {
 	public Transform startPillar;
 	public Transform startPillar2;
 	public SprayParticles sprayParticles;
+	public SprayParticles sprayParticles2;
 	public Vector3 gravity = new Vector3 (0, - 50, 0);
 
 
@@ -89,6 +90,7 @@ public class PillarGenerator : MonoBehaviour {
 			newPillar.GetComponent<Pillar> ().LastPillar = startPillar2;
 		}
 		newPillar.GetComponent<Pillar> ().sprayParticles = sprayParticles;
+		newPillar.GetComponent<Pillar> ().sprayParticles2 = sprayParticles2;
 		newPillar.gameObject.SetActive (false);
 		newPillar.GetComponent<Rigidbody> ().isKinematic = true;
 		pillars.Add (newPillar);

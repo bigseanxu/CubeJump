@@ -342,7 +342,7 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnPlayBtnClick(){
-		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
+		SwitchHeroAudio ();
 
 		if (Hero.childCount > 0) {
 			for(int i=0;i<Hero.childCount;i++){

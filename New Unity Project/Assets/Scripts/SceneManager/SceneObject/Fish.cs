@@ -32,7 +32,7 @@ public class Fish : MonoBehaviour {
 	void CheckOutOfCamera(){
 		Vector2 vec = Camera.main.WorldToScreenPoint(transform.position);
 		//print (vec.y);
-		if (vec.y > 550) {
+		if (vec.y > Screen.height) {
 			if (tween != null) {
 				tween.cancel();
 			}
