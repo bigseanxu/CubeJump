@@ -25,6 +25,7 @@ public class Spider : MonoBehaviour {
 		lineScale = 1.0f / transform.localScale.x; 
 		StartCoroutine(Move ());
 		line.localScale = new Vector3 (lineScale, lineScale, lineScale);
+		line.gameObject.SetActive (true);
 	}
 
 	// Update is called once per frame

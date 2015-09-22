@@ -12,11 +12,11 @@ PlayerSettings:
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: cooee
-  productName: cubeadventure
+  productName: Cube's Adventure
   cloudProjectId: 
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_ShowUnitySplashScreen: 1
+  m_ShowUnitySplashScreen: 0
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
@@ -102,16 +102,25 @@ PlayerSettings:
   uIStatusBarHidden: 1
   uIExitOnSuspend: 0
   uIStatusBarStyle: 0
-  iPhoneSplashScreen: {fileID: 0}
-  iPhoneHighResSplashScreen: {fileID: 0}
-  iPhoneTallHighResSplashScreen: {fileID: 0}
-  iPhone47inSplashScreen: {fileID: 0}
-  iPhone55inPortraitSplashScreen: {fileID: 0}
-  iPhone55inLandscapeSplashScreen: {fileID: 0}
-  iPadPortraitSplashScreen: {fileID: 0}
-  iPadHighResPortraitSplashScreen: {fileID: 0}
-  iPadLandscapeSplashScreen: {fileID: 0}
-  iPadHighResLandscapeSplashScreen: {fileID: 0}
+  iPhoneSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d, type: 3}
+  iPhoneHighResSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPhoneTallHighResSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPhone47inSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPhone55inPortraitSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPhone55inLandscapeSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPadPortraitSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPadHighResPortraitSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPadLandscapeSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
+  iPadHighResLandscapeSplashScreen: {fileID: 2800000, guid: 59bc4cca6de1a45aaa47996a25b5471d,
+    type: 3}
   iOSLaunchScreenType: 0
   iOSLaunchScreenPortrait: {fileID: 0}
   iOSLaunchScreenLandscape: {fileID: 0}
@@ -401,7 +410,7 @@ PlayerSettings:
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 0
   WebGL::memorySize: 256
-  iOS::Architecture: 0
+  iOS::Architecture: 2
   iOS::ScriptingBackend: 1
   boolPropertyNames:
   - WebGL::dataCaching

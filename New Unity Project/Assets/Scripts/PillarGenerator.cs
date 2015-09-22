@@ -34,7 +34,7 @@ public class PillarGenerator : MonoBehaviour {
 		Physics.gravity = gravity;
 		pillars.Add (startPillar);
 		pillars.Add (startPillar2);
-		Transform pillar3 = GeneratePillar (pillarPrefabs[1]);
+		Transform pillar3 = GeneratePillar (pillarPrefabs[2]);
 		GeneratePillar ();
 		GeneratePillar ();
 		startPillar.GetComponent<Pillar> ().NextPillar = startPillar2;
@@ -66,7 +66,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.rotation = Quaternion.identity;
 
 
-		float distance = Random.Range(0f, 1f) < 0.5f ? Random.Range(minDistance, minDistanceB) : Random.Range(maxDistance, maxDistanceB);
+		float distance = Random.Range(0f, 1f) < 0.5f ? Random.Range(minDistance, maxDistance) : Random.Range(minDistanceB, maxDistanceB);
 		if (lastPillarLeft) {
 			newPillar.transform.position = lastPillarPosition + new Vector3 (- distance, 0, 0);
 			newPillar.GetComponent<HingeJoint>().connectedAnchor = newPillar.transform.position;

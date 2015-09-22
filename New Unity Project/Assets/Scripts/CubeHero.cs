@@ -48,12 +48,26 @@ public class CubeHero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyUp ("k")) {
+			Game.diamond += 1;
+		} else if (Input.GetKeyUp ("l")) {
+			Game.diamond += 10;
+		} else if (Input.GetKeyUp (";")) {
+			Game.diamond += 100;
+		} else if (Input.GetKeyUp ("i")) {
+			Game.diamond -= 1;
+		} else if (Input.GetKeyUp ("o")) {
+			Game.diamond -= 10;
+		} else if (Input.GetKeyUp ("p")){
+			Game.diamond -= 100;
+		}
 
 		if (Game.state == Game.State.BeforeGame) {
+
 #if UNITY_EDITOR
-			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
+			if (Input.GetMouseButtonUp (0) && (EventSystem.current.currentSelectedGameObject == null && !EventSystem.current.IsPointerOverGameObject ())) {
 #else
-			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (0)) {
+			if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId) && EventSystem.current.currentSelectedGameObject == null) {
 #endif
 				Game.SetState(Game.State.Gaming);
 				
@@ -63,7 +77,7 @@ public class CubeHero : MonoBehaviour {
 #if UNITY_EDITOR
 		if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject ()) {
 #else
-		if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (0)) {
+		if (Input.GetMouseButtonUp (0) && !EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
 #endif
 			if(Game.state == Game.State.Gaming)
 				Jump();
@@ -93,7 +107,7 @@ public class CubeHero : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 				print("curr"+currentPillar.position.x);
 				print("hero"+transform.position.x);
-		if (collider.gameObject.name == "ColliderBox") {
+		if (collider.gameObject.name == "ColliderBox" && state== CubeState.Jumping) {
 			isFall=false;
 			collider.gameObject.SetActive(false);
 			LandSuccess (collider.transform.parent);
@@ -119,18 +133,18 @@ public class CubeHero : MonoBehaviour {
 				float force = 200;
 				if(isFaceLeft) {
 					if(currentPillar.GetComponent<Pillar> ().NextPillar.position.z>transform.position.z){
-						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.back)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.back * 3)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
 					}else{
-						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.forward)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.forward * 3)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
 					}
 					//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
 				}else{
 					if(currentPillar.GetComponent<Pillar> ().NextPillar.position.x<transform.position.x){
 					
-						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.right)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.right * 3)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,2,0)));
 					//gameObject.GetComponent<Rigidbody> ().AddForce(Vector3.up*600);
 					}else{
-						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.left)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
+						gameObject.GetComponent<Rigidbody> ().AddForceAtPosition((Vector3.down+Vector3.left * 3)*force,transform.localToWorldMatrix.MultiplyPoint(new Vector3(0,-2,0)));
 					}
 				}
 				state=CubeState.Dead;

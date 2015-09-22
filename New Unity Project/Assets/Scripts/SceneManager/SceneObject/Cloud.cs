@@ -8,6 +8,7 @@ public class Cloud : MonoBehaviour {
 	public GameObjectPool pool;
 	float speed;
 	LTDescr tween;
+	public bool isTweening = true;
 	// Use this for initialization
 	void OnEnable () {
 		speed = Random.Range (minSpeed, maxSpeed);
@@ -24,9 +25,11 @@ public class Cloud : MonoBehaviour {
 		Vector3 position = transform.position;
 		position.z += distance;
 		tween = LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
+		isTweening = true;
 	}
 	void Des(){
 		pool.Destroy (gameObject);
+		isTweening = false;
 	}
 
 	void CheckOutOfCamera(){
@@ -37,6 +40,7 @@ public class Cloud : MonoBehaviour {
 				tween.cancel();
 			}
 			pool.Destroy (gameObject);
+			isTweening = false;
         }
     }
 }

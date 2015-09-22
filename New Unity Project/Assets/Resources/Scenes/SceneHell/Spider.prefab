@@ -33,7 +33,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &477950
 Transform:
   m_ObjectHideFlags: 1
@@ -107,7 +107,7 @@ MonoBehaviour:
   distance: 2
   line: {fileID: 487924}
   lineSize: 0
-  startY: 0
+  startZ: 0
 --- !u!120 &12026238
 LineRenderer:
   m_ObjectHideFlags: 1

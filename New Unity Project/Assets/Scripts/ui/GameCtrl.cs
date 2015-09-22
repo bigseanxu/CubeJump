@@ -20,6 +20,7 @@ public class GameCtrl : MonoBehaviour {
 	public Camera MainCamera;
 	public Transform BG;
 	public Transform UIAudio;
+	public Transform Scenes;
 	bool shareAppear=false;
 	int a;
 	int cheat;
@@ -43,7 +44,8 @@ public class GameCtrl : MonoBehaviour {
 			Game.StartGame ();
 			Game.replay=false;
 		}
-		MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
+		//MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
+		OnSoundButton1Press();
 	}
 	
 	// Update is called once per frame
@@ -88,14 +90,22 @@ public class GameCtrl : MonoBehaviour {
 		PlayerPrefs.SetInt ("Sound", SoundBtn1.GetComponent<Toggle> ().isOn ? 0 : 1);
 		a=PlayerPrefs.GetInt("Sound");
 		SoundBtn2.GetComponent<Toggle> ().isOn =(a==0)? true:false;
-		MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
+		//MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
+		UIAudio.gameObject.SetActive(a==0?false:true);
+		for(int i=0;i<Scenes.childCount;i++){
+			Scenes.GetChild(i).GetComponent<AudioSource>().enabled=(a==0)? false:true;
+		}
 	}
 	public void OnSoundButton2Press() {
 		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
 		PlayerPrefs.SetInt ("Sound", SoundBtn2.GetComponent<Toggle> ().isOn ? 0 : 1);
 		a=PlayerPrefs.GetInt("Sound");
 		SoundBtn1.GetComponent<Toggle> ().isOn =(a==0)? true:false;
-		MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
+		//MainCamera.GetComponent<AudioListener>().enabled=(a==0)? false:true;
+		UIAudio.gameObject.SetActive(a==0?false:true);
+		for(int i=0;i<Scenes.childCount;i++){
+			Scenes.GetChild(i).GetComponent<AudioSource>().enabled=(a==0)? false:true;
+		}
 	}
 
 	public void OnPauseButtonPress() {

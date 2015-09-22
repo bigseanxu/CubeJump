@@ -101,6 +101,12 @@ public class ScenePondGenerator : BaseGenerator {
 		                                (gameObject) => {}, false);
 		coPool = new GameObjectPool(prefabCrocodile.gameObject, maxCoCount,
 		                               (gameObject) => {}, false);
+
+		GenerateFlowBeforGame ();
+		GeneratePlantBeforeGame ();
+		GenerateFrogBeforeGame ();
+		GenerateLotusBeforeGame ();
+		GenerateCoBeforeGame ();
 	}
 	
 	// Update is called once per frame
@@ -119,11 +125,7 @@ public class ScenePondGenerator : BaseGenerator {
 		StartCoroutine(GenerateFrog());
         StartCoroutine(GenerateLotus());
         StartCoroutine(GenerateCo());
-		GenerateFlowBeforGame ();
-		GeneratePlantBeforeGame ();
-		GenerateFrogBeforeGame ();
-		GenerateLotusBeforeGame ();
-		GenerateCoBeforeGame ();
+
 	}
 
 
@@ -138,7 +140,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (flowZOffset.x, flowZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -166,7 +168,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (beginFlowZOffset.x, beginFlowZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -196,7 +198,7 @@ public class ScenePondGenerator : BaseGenerator {
 			newPlant.localPosition = newPosition;
 			newPlant.GetComponent<Plant> ().pool = plantPool;
 		}
-			yield return new WaitForSeconds (plantInterval);
+		yield return new WaitForSeconds (plantInterval);
 		
 		yield return StartCoroutine (GeneratePlant());
 	}
@@ -230,7 +232,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (frogZOffset.x, frogZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -259,7 +261,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (beginFrogZOffset.x, beginFrogZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -285,7 +287,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (lotusZOffset.x, lotusZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -314,7 +316,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (beginLotusZOffset.x, beginLotusZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -340,7 +342,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (coZOffset.x, coZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -369,7 +371,7 @@ public class ScenePondGenerator : BaseGenerator {
 				float zOffset = Random.Range (beginCoZOffset.x, beginCoZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;

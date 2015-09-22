@@ -96,6 +96,7 @@ public class GameGoogle : MonoBehaviour {
 
 	public void ShowInterstitial()
 	{
+#if !UNITY_EDITOR
 		if (interstitial.IsLoaded())
 		{
 			//print (time+" "+interval+" "+Game.status);
@@ -108,5 +109,6 @@ public class GameGoogle : MonoBehaviour {
 		{
 			print("Interstitial is not ready yet.");
 		}
+#endif
 	}
 }

@@ -66,6 +66,10 @@ public class SceneWaterGenerator : BaseGenerator {
 		                               (gameObject) => {}, false);
 		fishPool = new GameObjectPool(prefabFish.gameObject, maxFishCount,
 		                              (gameObject) => {}, false);
+
+		GenerateFlowBeforGame ();
+		GenerateFishBeforeGame ();
+		GeneratePlantBeforeGame ();
 	}
 	
 	// Update is called once per frame
@@ -82,9 +86,7 @@ public class SceneWaterGenerator : BaseGenerator {
 		StartCoroutine(GenerateFlow());
 		StartCoroutine(GenerateFish());
 		StartCoroutine(GeneratePlant());
-		GenerateFlowBeforGame ();
-		GenerateFishBeforeGame ();
-		GeneratePlantBeforeGame ();
+
 	}
 
 	IEnumerator GenerateFlow() {
@@ -98,7 +100,7 @@ public class SceneWaterGenerator : BaseGenerator {
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				print ("GenerateFlow " + randomPosition);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -127,7 +129,7 @@ public class SceneWaterGenerator : BaseGenerator {
 				float zOffset = Random.Range (beginFlowZOffset.x, beginFlowZOffset.y);
 				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
 				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-				bool result = CheckFlowCollision (newPosition);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
 				if (!result) {
 					position = newPosition;
 					break;
@@ -196,20 +198,30 @@ public class SceneWaterGenerator : BaseGenerator {
 
 	IEnumerator GenerateFish() {
 		if (fishPool.numActive < maxFishCount) {
-			float xOffset = Random.Range (-fishRange, fishRange) + fishXOffset;
-			float yOffset = Random.Range (fishYOffset.x, fishYOffset.y);
-			float zOffset = Random.Range (fishZOffset.x, fishZOffset.y);
+			Vector3 position;
+			float scale;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-fishRange, fishRange) + fishXOffset;
+				float yOffset = Random.Range (fishYOffset.x, fishYOffset.y);
+				float zOffset = Random.Range (fishZOffset.x, fishZOffset.y);
 
-			float scale = Random.Range (fishScale.x, fishScale.y);
-	
-			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				scale = Random.Range (fishScale.x, fishScale.y);
+		
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
 			Transform newFish = fishPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (fish);
 			newFish.localScale = Vector3.one * scale;
 			newFish.localRotation = Quaternion.Euler (0, 0, 0);
-			newFish.localPosition = newPosition; 
+			newFish.localPosition = position; 
 			newFish.GetComponent<Fish> ().pool = fishPool;
 		}
 		yield return new WaitForSeconds (fishInterval);
@@ -219,20 +231,32 @@ public class SceneWaterGenerator : BaseGenerator {
 
 	void GenerateFishBeforeGame() {
 		for (int i = 0; i < beginFishCount; i++) {
-			float xOffset = Random.Range (-beginFishRange, beginFishRange) + fishXOffset;
-			float yOffset = Random.Range (beginFishYOffset.x, beginFishYOffset.y);
-			float zOffset = Random.Range (beginFishZOffset.x, beginFishZOffset.y);
-			
-			float scale = Random.Range (fishScale.x, fishScale.y);
-			
-			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-            Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-			
+			Vector3 position;
+			float scale;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-beginFishRange, beginFishRange) + fishXOffset;
+				float yOffset = Random.Range (beginFishYOffset.x, beginFishYOffset.y);
+				float zOffset = Random.Range (beginFishZOffset.x, beginFishZOffset.y);
+				
+				scale = Random.Range (fishScale.x, fishScale.y);
+				
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+	            Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+
+				
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
+
 			Transform newFish = fishPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (fish);
 			newFish.localScale = Vector3.one * scale;
 			newFish.localRotation = Quaternion.Euler (0, 0, 0);
-			newFish.localPosition = newPosition; 
+			newFish.localPosition = position; 
 			newFish.GetComponent<Fish> ().pool = fishPool;
 		}
 	}

@@ -52,6 +52,9 @@ public class SceneSpaceGenerator : BaseGenerator {
 		                              (gameObject) => {}, false);
 		verticalLinePool = new GameObjectPool(prefabLineLeft.gameObject, maxVerticalLineCount,
 		                               (gameObject) => {}, false);
+
+		GenerateHorizontalLineBeforeGame ();
+		GenerateVerticalLineLeftBeforeGame ();
 	}
 	
 	// Update is called once per frame
@@ -67,8 +70,7 @@ public class SceneSpaceGenerator : BaseGenerator {
 		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(GenerateHorizontalLine());
 		StartCoroutine(GenerateVerticalLineLeft());
-		GenerateHorizontalLineBeforeGame ();
-		GenerateVerticalLineLeftBeforeGame ();
+
 	}
 
 

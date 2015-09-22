@@ -69,6 +69,10 @@ public class SceneForestGenerator : BaseGenerator {
 
 		dragonflyPool = new GameObjectPool(prefabFly.gameObject, maxDragonCount,
 		                                   (gameObject) => {}, false);
+
+		GenerateButterflyBeforeGame ();
+		GenerateCloudBeforeGame ();
+		GenerateFlyBeforeGame ();
 	}
 	
 	// Update is called once per frame
@@ -83,9 +87,7 @@ public class SceneForestGenerator : BaseGenerator {
 	
 	IEnumerator Generate() {
 		yield return new WaitForSeconds(0.01f);
-		GenerateButterflyBeforeGame ();
-		GenerateCloudBeforeGame ();
-		GenerateFlyBeforeGame ();
+
         StartCoroutine(GenerateCloud());
 		StartCoroutine(GenerateFly());
 		StartCoroutine(GenerateButterfly());
@@ -140,19 +142,27 @@ public class SceneForestGenerator : BaseGenerator {
 
 	IEnumerator GenerateFly() {
 		if (dragonflyPool.numActive < maxDragonCount) {
-			float xOffset = 20;
-			float zOffset = 20;
-			float scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
-			Vector3 position = Vector3.zero;
-		
-			Vector3 randomPosition = new Vector3 (Random.Range (-dragonflyRange, dragonflyRange), Random.Range (dragonflyYOffset.x, dragonflyYOffset.y), Random.Range (dragonflyZOffset.x, dragonflyZOffset.y));
-			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-		
+			Vector3 position;
+			float scale ;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = 20;
+				float zOffset = 20;
+				scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
+			
+				Vector3 randomPosition = new Vector3 (Random.Range (-dragonflyRange, dragonflyRange), Random.Range (dragonflyYOffset.x, dragonflyYOffset.y), Random.Range (dragonflyZOffset.x, dragonflyZOffset.y));
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
 			Transform newFish = dragonflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (Flys);
 			newFish.localScale = Vector3.one * scale;
 			newFish.localRotation = Quaternion.Euler (0, 0, 0);
-			newFish.localPosition = newPosition; 
+			newFish.localPosition = position; 
 			newFish.GetComponent<DragonFly> ().pool = dragonflyPool;
 		}
 		yield return new WaitForSeconds (dragonflyInterval);
@@ -162,19 +172,27 @@ public class SceneForestGenerator : BaseGenerator {
 
 	void GenerateFlyBeforeGame() {
 		for (int j = 0; j < beginDragonflyCount; j++) {
-			float xOffset = 20;
-			float zOffset = 20;
-			float scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
-			Vector3 position = Vector3.zero;
-			
-			Vector3 randomPosition = new Vector3 (Random.Range (-beginDragonflyRange, beginDragonflyRange), Random.Range (beginDragonflyYOffset.x, beginDragonflyYOffset.y), Random.Range (beginDragonflyZOffset.x, beginDragonflyZOffset.y));
-			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-			
+			Vector3 position;
+			float scale ;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = 20;
+				float zOffset = 20;
+				scale = Random.Range (dragonflyScale.x, dragonflyScale.y);
+				
+				Vector3 randomPosition = new Vector3 (Random.Range (-beginDragonflyRange, beginDragonflyRange), Random.Range (beginDragonflyYOffset.x, beginDragonflyYOffset.y), Random.Range (beginDragonflyZOffset.x, beginDragonflyZOffset.y));
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
 			Transform newFish = dragonflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (Flys);
 			newFish.localScale = Vector3.one * scale;
 			newFish.localRotation = Quaternion.Euler (0, 0, 0);
-			newFish.localPosition = newPosition; 
+			newFish.localPosition = position; 
 			newFish.GetComponent<DragonFly> ().pool = dragonflyPool;
 		}
 
@@ -182,18 +200,25 @@ public class SceneForestGenerator : BaseGenerator {
 
 	IEnumerator GenerateButterfly() {
 		if (butterflyPool.numActive < maxButterflyCount) {
-			float scale = Random.Range (butterflyScale.x, butterflyScale.y);
-			float yOffset = Random.Range (butterflyYOffset.x, butterflyYOffset.y);
-			Vector3 position = Vector3.zero;
-		
-			Vector3 randomPosition = new Vector3 (Random.Range (-butterflyRange, butterflyRange), yOffset, Random.Range (butterflyZOffset.x, butterflyZOffset.y));
-			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-		
+			Vector3 position;
+			float scale ;
+			// 1. generate a random coordinate
+			while (true) {
+				scale = Random.Range (butterflyScale.x, butterflyScale.y);
+				float yOffset = Random.Range (butterflyYOffset.x, butterflyYOffset.y);
+				Vector3 randomPosition = new Vector3 (Random.Range (-butterflyRange, butterflyRange), yOffset, Random.Range (butterflyZOffset.x, butterflyZOffset.y));
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
 			Transform newButterfly = butterflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newButterfly.SetParent (Butterflies);
 			newButterfly.localScale = Vector3.one * scale;
 			newButterfly.localRotation = Quaternion.Euler (0, 15, 0);
-			newButterfly.localPosition = newPosition; 
+			newButterfly.localPosition = position; 
 			newButterfly.GetComponent<Butterfly> ().pool = butterflyPool;
 		}
 		yield return new WaitForSeconds (butterflyInterval);
@@ -203,18 +228,27 @@ public class SceneForestGenerator : BaseGenerator {
 
 	void GenerateButterflyBeforeGame() {
 		for (int j = 0; j < beginButterflyCount; j++) {
-			float scale = Random.Range (butterflyScale.x, butterflyScale.y);
-			float yOffset = Random.Range (butterflyYOffset.x, butterflyYOffset.y);
-			Vector3 position = Vector3.zero;
-			
-			Vector3 randomPosition = new Vector3 (Random.Range (-beginButterflyRange, beginButterflyRange), yOffset, Random.Range (beginButterflyZOffset.x, beginButterflyZOffset.y));
-			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-			
+			Vector3 position;
+			float scale ;
+			// 1. generate a random coordinate
+			while (true) {
+				scale = Random.Range (butterflyScale.x, butterflyScale.y);
+				float yOffset = Random.Range (butterflyYOffset.x, butterflyYOffset.y);
+				
+				Vector3 randomPosition = new Vector3 (Random.Range (-beginButterflyRange, beginButterflyRange), yOffset, Random.Range (beginButterflyZOffset.x, beginButterflyZOffset.y));
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}
+
 			Transform newButterfly = butterflyPool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newButterfly.SetParent (Butterflies);
 			newButterfly.localScale = Vector3.one * scale;
 			newButterfly.localRotation = Quaternion.Euler (0, 15, 0);
-			newButterfly.localPosition = newPosition; 
+			newButterfly.localPosition = position; 
 			newButterfly.GetComponent<Butterfly> ().pool = butterflyPool;
         }
     }
