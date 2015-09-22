@@ -153,6 +153,10 @@ public class HeroesHome : MonoBehaviour {
 		hero.transform.localRotation = Quaternion.identity;
 		hero.transform.localPosition = Vector3.zero;
 
+		if (name == HeroName.Cartoon || name == HeroName.Fish) {
+			hero.transform.localPosition = new Vector3(0, 0, -0.41f);
+		}
+
 		return hero;
 	}
 }

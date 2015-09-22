@@ -316,11 +316,14 @@ public class Shop : MonoBehaviour {
 	public bool CheckCanBuy(){
 		for(int i=0;i<cube.Length;i++){
 			if(!cube [i].GetComponent<ShopItem> ().isbought){
-				if(PlayerPrefs.GetInt ("Diamonds")>=cube [i].GetComponent<ShopItem> ().price){
+				if(Game.diamond>=cube [i].GetComponent<ShopItem> ().price){
 					return true;
 				}
+				continue;
 			}
+			continue;
 		}
+		print (cube.Length);
 		return false;
 	}
 
@@ -342,7 +345,7 @@ public class Shop : MonoBehaviour {
 	}
 
 	public void OnPlayBtnClick(){
-		UIAudio.GetComponent<AudioList> ().NormalButton.Play ();
+		SwitchHeroAudio ();
 
 		if (Hero.childCount > 0) {
 			for(int i=0;i<Hero.childCount;i++){

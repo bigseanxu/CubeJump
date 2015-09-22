@@ -68,6 +68,11 @@ public class SceneSkyGenerator : BaseGenerator {
 		
 		ballonPool = new GameObjectPool(prefabBalloon.gameObject, maxBallonCount,
 		                                   (gameObject) => {}, false);	
+
+		GenerateCloudBeforeGame ();
+		GeneratePlaneBeforeGame ();
+		GenerateBallonBeforeGame ();
+
 	}
 	
 	// Update is called once per frame
@@ -84,9 +89,6 @@ public class SceneSkyGenerator : BaseGenerator {
 		StartCoroutine(GenerateCloud());
 		StartCoroutine(GeneratePlane());
 		StartCoroutine(GenerateBallon());
-		GenerateCloudBeforeGame ();
-		GeneratePlaneBeforeGame ();
-		GenerateBallonBeforeGame ();
 
 	}
 
@@ -99,13 +101,13 @@ public class SceneSkyGenerator : BaseGenerator {
 			Vector3 position = Vector3.zero;
 			
 			Vector3 randomPosition = new Vector3 (Random.Range (-cloudRange, cloudRange), Random.Range (cloudYOffset.x, cloudYOffset.y), Random.Range (cloudZOffset.x, cloudZOffset.y));
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			
 			Transform newFish = cloudPools [i].Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (Clouds);
 			newFish.localScale = Vector3.one * scale;
 			newFish.localRotation = Quaternion.Euler (0, 0, 0);
-			newFish.position = newPosition; 
+			newFish.localPosition = newPosition; 
 			newFish.GetComponent<Cloud> ().pool = cloudPools [i];
 		}
 		yield return new WaitForSeconds (cloudInterval);
@@ -123,13 +125,13 @@ public class SceneSkyGenerator : BaseGenerator {
 			Vector3 position = Vector3.zero;
 			
 			Vector3 randomPosition = new Vector3 (Random.Range (-beginCloudRange, beginCloudRange), Random.Range (beginCloudYOffset.x, beginCloudYOffset.y), Random.Range (beginCloudZOffset.x, beginCloudZOffset.y));
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			
 			Transform newFish = cloudPools [i].Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (Clouds);
 			newFish.localScale = Vector3.one * scale;
 			newFish.localRotation = Quaternion.Euler (0, 0, 0);
-			newFish.position = newPosition; 
+			newFish.localPosition = newPosition; 
 			newFish.GetComponent<Cloud> ().pool = cloudPools [i];
 		}
 	}
@@ -140,7 +142,7 @@ public class SceneSkyGenerator : BaseGenerator {
 			float yOffset = Random.Range (ballonYOffset.x, ballonYOffset.y);
 			float zOffset = Random.Range (cloudZOffset.x, ballonZOffset.y);
 			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 
 
 			float scale = Random.Range (ballonScale.x, ballonScale.y);
@@ -162,7 +164,7 @@ public class SceneSkyGenerator : BaseGenerator {
 			float yOffset = Random.Range (beginBallonYOffset.x, beginBallonYOffset.y);
 			float zOffset = Random.Range (beginBallonZOffset.x, beginBallonZOffset.y);
 			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+			Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
 			
 			
 			float scale = Random.Range (ballonScale.x, ballonScale.y);
@@ -177,48 +179,77 @@ public class SceneSkyGenerator : BaseGenerator {
 
 	IEnumerator GeneratePlane() {
 		if (planePool.numActive < maxPlaneCount) {
-			print (planePool.numActive);
-			float xOffset = Random.Range (-planeRange, planeRange) + planeXOffset;
-			float yOffset = Random.Range (planeYOffset.x, planeYOffset.y);
-			float zOffset = Random.Range (planeZOffset.x, planeZOffset.y);
-			float scale = Random.Range (planeScale.x, planeScale.y);
-			Vector3 position = Vector3.zero;
-		
-			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-		
+//			print (planePool.numActive);
+			Vector3 position;
+			float scale;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-planeRange, planeRange) + planeXOffset;
+				float yOffset = Random.Range (planeYOffset.x, planeYOffset.y);
+				float zOffset = Random.Range (planeZOffset.x, planeZOffset.y);
+				scale = Random.Range (planeScale.x, planeScale.y);
+			
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}		
+
 			Transform newFish = planePool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (Planes);
 			newFish.localScale = Vector3.one * scale;
-			newFish.localRotation = Quaternion.Euler (270, 0, 0);
-			newFish.localPosition = newPosition; 
+			newFish.localRotation = Quaternion.Euler (0, 0, 0);
+			newFish.localPosition = position; 
 			newFish.GetComponent<AirPlane> ().pool = planePool;
 		}
-			yield return new WaitForSeconds (planeInterval);
-		
+
+		yield return new WaitForSeconds (planeInterval);
 		yield return StartCoroutine (GeneratePlane ());
 
 	}
 
 	void GeneratePlaneBeforeGame() {
 		for (int i = 0; i < beginPlaneCount; i++) {
-			print (planePool.numActive);
-			float xOffset = Random.Range (-beginPlaneRange, beginPlaneRange) + planeXOffset;
-			float yOffset = Random.Range (beginPlaneYOffset.x, beginPlaneYOffset.y);
-			float zOffset = Random.Range (beginPlaneZOffset.x, beginPlaneZOffset.y);
-			float scale = Random.Range (planeScale.x, planeScale.y);
-			Vector3 position = Vector3.zero;
-			
-			Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
-			Vector3 newPosition = randomPosition + transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
-			
+			Vector3 position;
+			float scale;
+			// 1. generate a random coordinate
+			while (true) {
+				float xOffset = Random.Range (-beginPlaneRange, beginPlaneRange) + planeXOffset;
+				float yOffset = Random.Range (beginPlaneYOffset.x, beginPlaneYOffset.y);
+				float zOffset = Random.Range (beginPlaneZOffset.x, beginPlaneZOffset.y);
+				scale = Random.Range (planeScale.x, planeScale.y);
+				
+				Vector3 randomPosition = new Vector3 (xOffset, yOffset, zOffset);
+				Vector3 newPosition = randomPosition + Quaternion.Euler(- 270, 0, 0) * transform.worldToLocalMatrix.MultiplyPoint (generatorReference.position);
+				bool result = CheckFlowCollision (transform.localToWorldMatrix * newPosition);
+				if (!result) {
+					position = newPosition;
+					break;
+				}
+			}		
 			Transform newFish = planePool.Spawn (Vector3.zero, Quaternion.identity).transform;
 			newFish.SetParent (Planes);
 			newFish.localScale = Vector3.one * scale;
-			newFish.localRotation = Quaternion.Euler (270, 0, 0);
-			newFish.localPosition = newPosition; 
+			newFish.localRotation = Quaternion.Euler (0, 0, 0);
+			newFish.localPosition = position; 
 			newFish.GetComponent<AirPlane> ().pool = planePool;
 		}	
+	}
+	
+	bool CheckFlowCollision(Vector3 pos) {
+		bool ret = false;
+		List<Transform> pillars = pillarGenerator.GetComponent<PillarGenerator> ().GetPillars ();
+		for (int i = 0; i < pillars.Count; i++) {
+			if (Mathf.Abs (pillars [i].position.x - pos.x) < 2) {
+				ret = true;
+				break;
+			}
+		}
+		
+		return ret;
 	}
 
 }

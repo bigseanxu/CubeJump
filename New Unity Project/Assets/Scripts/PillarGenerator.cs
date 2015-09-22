@@ -19,25 +19,28 @@ public class PillarGenerator : MonoBehaviour {
 	public Transform startPillar;
 	public Transform startPillar2;
 	public SprayParticles sprayParticles;
+	public SprayParticles sprayParticles2;
 	public Vector3 gravity = new Vector3 (0, - 50, 0);
 
 
 	List<Transform> pillars = new List<Transform> ();
-	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -3.8f);
+	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -4.1f);
 	bool lastPillarLeft = true;
-
+	bool isStart;
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () { 
+		isStart=true;
 		Physics.gravity = gravity;
 		pillars.Add (startPillar);
 		pillars.Add (startPillar2);
-		Transform pillar3 = GeneratePillar (pillarPrefabs[1]);
+		Transform pillar3 = GeneratePillar (pillarPrefabs[2]);
 		GeneratePillar ();
 		GeneratePillar ();
 		startPillar.GetComponent<Pillar> ().NextPillar = startPillar2;
 		startPillar2.GetComponent<Pillar> ().NextPillar = pillar3;
+		isStart=false;
 	}
 	
 	// Update is called once per frame 
@@ -54,7 +57,10 @@ public class PillarGenerator : MonoBehaviour {
 //			rangeA = 1;
 //		}
 		Transform prefab;
+
+
 		if (pillarPrefab == null) {
+
 			prefab = pillarPrefabs [Random.Range (0, pillarPrefabs.Length)];
 		} else {
 			prefab = pillarPrefab;
@@ -65,7 +71,7 @@ public class PillarGenerator : MonoBehaviour {
 		newPillar.rotation = Quaternion.identity;
 
 
-		float distance = Random.Range(0f, 1f) < 0.5f ? Random.Range(minDistance, minDistanceB) : Random.Range(maxDistance, maxDistanceB);
+		float distance = Random.Range(0f, 1f) < 0.5f ? Random.Range(minDistance, maxDistance) : Random.Range(minDistanceB, maxDistanceB);
 		if (lastPillarLeft) {
 			newPillar.transform.position = lastPillarPosition + new Vector3 (- distance, 0, 0);
 			newPillar.GetComponent<HingeJoint>().connectedAnchor = newPillar.transform.position;
@@ -89,12 +95,15 @@ public class PillarGenerator : MonoBehaviour {
 			newPillar.GetComponent<Pillar> ().LastPillar = startPillar2;
 		}
 		newPillar.GetComponent<Pillar> ().sprayParticles = sprayParticles;
+		newPillar.GetComponent<Pillar> ().sprayParticles2 = sprayParticles2;
 		newPillar.gameObject.SetActive (false);
 		newPillar.GetComponent<Rigidbody> ().isKinematic = true;
 		pillars.Add (newPillar);
 
 		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
-		diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
+		if(!isStart){
+			diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
+		}
 //		PlaySprayParticle ();
 		return newPillar;
 	}

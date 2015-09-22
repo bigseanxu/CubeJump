@@ -6,7 +6,7 @@ public class AirPlane : MonoBehaviour {
 	public float maxSpeed;
 	public float distance;
 	public GameObjectPool pool;
-
+	LTDescr tween;
 	float speed;
 	// Use this for initialization
 	void Start () {
@@ -20,17 +20,28 @@ public class AirPlane : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		CheckOutOfCamera ();
 	}
 
 	IEnumerator Move() {
 		yield return new WaitForSeconds (0.01f);
 		Vector3 position = transform.position;
 		position.z += distance;
-		LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
+		tween = LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
 
 	}
 	void Des(){
 		pool.Destroy (gameObject);
+	}
+
+	void CheckOutOfCamera(){
+		Vector2 vec = Camera.main.WorldToScreenPoint(transform.position);
+		//print (vec.y);
+		if (vec.y > Screen.height) {
+			if (tween != null) {
+				tween.cancel();
+			}
+			pool.Destroy (gameObject);
+		}
 	}
 }

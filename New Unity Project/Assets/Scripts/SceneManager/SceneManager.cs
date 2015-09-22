@@ -31,6 +31,7 @@ public class SceneManager : MonoBehaviour {
 		background.GetComponent<Background> ().SetBackground (type);
 		lights.GetComponent<SceneLights> ().SetLights (type);
 		scenes [type].gameObject.SetActive (true);
+		sceneGenerators [type].gameObject.SetActive (true);
 		Game.sceneType = type;
 		sceneType = (SceneType)type;
 		Generate ();
@@ -47,9 +48,11 @@ public class SceneManager : MonoBehaviour {
 
 	public void ChangeScene(SceneType type) {
 		scenes [(int)currSceneType].gameObject.SetActive (false);
+		sceneGenerators [(int)currSceneType].gameObject.SetActive (false);
 		currSceneType = type;
 		Game.sceneType = (int)currSceneType;
 		scenes [(int)type].gameObject.SetActive (true);
+		sceneGenerators [(int)currSceneType].gameObject.SetActive (true);
 		background.GetComponent<Background> ().SetBackground ((int)type);
 		lights.GetComponent<SceneLights> ().SetLights ((int)type);
 		Generate ();

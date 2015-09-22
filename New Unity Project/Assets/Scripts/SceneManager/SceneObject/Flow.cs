@@ -16,7 +16,7 @@ public class Flow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		CheckOutOfCamera ();
 	}
 
 	IEnumerator Move() {
@@ -25,8 +25,20 @@ public class Flow : MonoBehaviour {
 		position.z += distance;
 		tween = LeanTween.move (gameObject, position, distance / speed).setOnComplete(Des);
 	}
+
 	void Des(){
 		tween.cancel ();
 		pool.Destroy (gameObject);
+	}
+
+	void CheckOutOfCamera(){
+		Vector2 vec = Camera.main.WorldToScreenPoint(transform.position);
+		//print (vec.y);
+		if (vec.y > Screen.height) {
+			if (tween != null) {
+				tween.cancel();
+			}
+			pool.Destroy (gameObject);
+		}
 	}
 }

@@ -10,7 +10,8 @@ public class ShowNumberInCanvas : MonoBehaviour {
 	int num;
 	public Transform position;
 	public float gap = 10;
-	
+	public bool isAutoScale = false;
+	Vector3 originScale;
 	int numberCount;
 	string numberString;
 
@@ -30,13 +31,18 @@ public class ShowNumberInCanvas : MonoBehaviour {
 	}
 
 	void Start () {
-
+		originScale = transform.localScale;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (numberInsp != num) {
 			SetNumber(numberInsp);
+		}
+		if (isAutoScale) {
+			if (numberCount > 2) {
+				transform.localScale = originScale * (1.0f - (numberCount - 2) * 0.1f);
+			}
 		}
 	}
 

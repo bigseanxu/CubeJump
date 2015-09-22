@@ -33,7 +33,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &477950
 Transform:
   m_ObjectHideFlags: 1
@@ -101,10 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3625b728b4679741a077c20ed193e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineSizeRange: {x: 5, y: 10}
   minSpeed: .100000001
   maxSpeed: .300000012
   distance: 2
   line: {fileID: 487924}
+  lineSize: 0
+  startZ: 0
 --- !u!120 &12026238
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -133,8 +136,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 15, z: 0}
   m_Parameters:
-    startWidth: .00999999978
-    endWidth: .00999999978
+    startWidth: .0299999993
+    endWidth: .0299999993
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295

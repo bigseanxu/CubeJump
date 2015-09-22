@@ -8,7 +8,7 @@ public class ShopItem : MonoBehaviour {
 	public Sprite nameSprite;
 	public string name;
 	public int price;
-	public bool isbought;
+	public  bool isbought;
 	public bool isRandom;
 	public Transform Lock;
 	Transform l;
@@ -27,6 +27,7 @@ public class ShopItem : MonoBehaviour {
 	void Start(){
 		transform.localScale = new Vector3 (0, 0, 0);
 		name = gameObject.name;
+		//PlayerPrefs.SetInt (name, 1) ;
 		isbought = PlayerPrefs.GetInt (name, 0) == 1 ? true : false;
 		//PlayerPrefs.SetInt ("Fish", 0);
 		LockGenerator ();

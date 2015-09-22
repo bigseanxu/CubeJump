@@ -17,7 +17,7 @@ namespace GoogleMobileAds.Common
 
         public void LoadAd(AdRequest request)
         {
-            Debug.Log("Dummy LoadAd");
+//            Debug.Log("Dummy LoadAd");
         }
 
         public void ShowBannerView()

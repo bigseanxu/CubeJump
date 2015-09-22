@@ -89,6 +89,7 @@
      <Compile Include="Assets\ParticleFollowCameraReference.cs" />
      <Compile Include="Assets\PillarMaterial.cs" />
      <Compile Include="Assets\RainParticle.cs" />
+     <Compile Include="Assets\SameAlphaAsParent.cs" />
      <Compile Include="Assets\SceneLights.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraReference.cs" />

@@ -6,12 +6,13 @@ public class CheckCanBuy : MonoBehaviour {
 	public Transform shopping;
 	// Use this for initialization
 	void OnEnable () {
-		PlayerPrefs.SetInt("Diamonds",90);
-
+#if UNITY_EDITOR
+	//PlayerPrefs.SetInt("Diamonds",0999);
+#endif
 
 		StartCoroutine(Checking ());
 	}
-	
+
 	// Update is called once per frame
 	IEnumerator Checking () {
 		yield return new WaitForSeconds(0.1f);

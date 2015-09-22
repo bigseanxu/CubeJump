@@ -14,7 +14,6 @@ public class Plant : MonoBehaviour {
 		speed = Random.Range (minSpeed, maxSpeed);
 		StartCoroutine (Move());
 		Move ();
-		print (transform.localPosition);
 	}
 	
 	// Update is called once per frame
@@ -35,8 +34,10 @@ public class Plant : MonoBehaviour {
 	void CheckOutOfCamera(){
 		Vector2 vec = Camera.main.WorldToScreenPoint(transform.position);
 		//print (vec.y);
-		if (vec.y >1500) {
-			tween.cancel();
+		if (vec.y > Screen.height) {
+			if (tween != null) {
+				tween.cancel();
+			}
 			pool.Destroy (gameObject);
 		}
 	}

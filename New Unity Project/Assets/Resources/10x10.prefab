@@ -1023,7 +1023,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174346}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 966d967725e5aed40884e4c76db62bbe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1273,10 +1273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19aec7709c93e54db05983adfb97772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tall: 0
+  tall: 10
   isLeft: 0
   sceneGenerator: {fileID: 0}
   sprayParticles: {fileID: 0}
+  sprayParticles2: {fileID: 0}
 --- !u!114 &11448740
 MonoBehaviour:
   m_ObjectHideFlags: 1

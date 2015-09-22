@@ -6,6 +6,7 @@ public class Pillar : MonoBehaviour {
 	public bool isLeft;
 	public Transform sceneGenerator;
 	public SprayParticles sprayParticles;
+	public SprayParticles sprayParticles2;
 
 	// Use this for initialization
 	void Start () {
@@ -85,18 +86,18 @@ public class Pillar : MonoBehaviour {
 
 
 	void PlaySprayParticle() {
-		sprayParticles.Stop ();
-		float duration = 1.5f;
-//		if (gameObject.name == "8x8(Clone)") {
-//			duration = 0.8f;
-//		} else if (gameObject.name == "10x10(Clone)") {
-//			duration = 1.6f;
-//		} else if (gameObject.name == "12x12(Clone)") {
-//			duration = 2.4f;
-//		} else {
-//			print ("error pillar PlaySprayParticle");
-//		}
-		sprayParticles.SetPositon (transform.position);
-		sprayParticles.Play ();
+		if (isLeft) {
+			sprayParticles.Stop ();
+			float duration = 1.5f;
+			
+			sprayParticles.SetPositon (transform.position);
+			sprayParticles.Play ();
+		} else {
+			sprayParticles2.Stop ();
+			float duration = 1.5f;
+			
+			sprayParticles2.SetPositon (transform.position);
+			sprayParticles2.Play ();
+		}
 	}
 }
