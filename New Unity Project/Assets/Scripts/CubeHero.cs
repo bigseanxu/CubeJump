@@ -98,6 +98,7 @@ public class CubeHero : MonoBehaviour {
 		if (transform.position.y < -40) {
 			if(live){
 				UIAudio.GetComponent<AudioList> ().GameOver.Play ();
+				UIAudio.GetComponent<AudioList> ().Theme.Stop();
 				ctrl.GetComponent<GameCtrl> ().LoadGameOver ();
 				live=false;
 			}
