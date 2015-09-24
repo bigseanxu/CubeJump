@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AudioList : MonoBehaviour {
-
+	public AudioSource Bgm;
 	public AudioSource NormalButton;
 	public AudioSource ShareButton;
 	public AudioSource TapToStart;
