@@ -123,7 +123,7 @@ public class GameCtrl : MonoBehaviour {
 		UIAudio.GetComponent<AudioList> ().CountDown.Play ();
 		StopPage.GetComponent<Animator> ().Play ("Stop disappear");
 		CountDown.gameObject.SetActive (true);
-		CountDown.GetComponent<Animator> ().Play ("CountDown");
+		CountDown.GetComponent<Animator> ().Play ("CountDown", -1, 0);
 		//StopBtn.gameObject.SetActive (true);
 		//Time.timeScale = 1;
 		//StartCoroutine (PauseFlag ());
