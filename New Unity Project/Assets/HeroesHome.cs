@@ -151,7 +151,7 @@ public class HeroesHome : MonoBehaviour {
 		hero = Instantiate (heroPrefab);
 		hero.transform.SetParent (cubeHero);
 		hero.transform.localRotation = Quaternion.identity;
-		hero.transform.localPosition = Vector3.zero;
+		hero.transform.localPosition = heroPrefab.transform.localPosition;
 
 		if (name == HeroName.Cartoon || name == HeroName.Fish) {
 			hero.transform.localPosition = new Vector3(0, 0, -0.41f);

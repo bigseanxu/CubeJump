@@ -7,12 +7,12 @@ public class CheckCanBuy : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable () {
 #if UNITY_EDITOR
-		PlayerPrefs.SetInt("Diamonds",90);
+	//PlayerPrefs.SetInt("Diamonds",0999);
 #endif
 
 		StartCoroutine(Checking ());
 	}
-	
+
 	// Update is called once per frame
 	IEnumerator Checking () {
 		yield return new WaitForSeconds(0.1f);

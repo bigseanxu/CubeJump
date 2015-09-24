@@ -10,7 +10,6 @@ public class AudioList : MonoBehaviour {
 	public AudioSource HeroBroken;
 	public AudioSource HeroFallInWater;
 	public AudioSource HeroAlive;
-	public AudioSource GameOver;
 	public AudioSource CountDown;
 	public AudioSource PillarAppear;
 	public AudioSource Diamond;
@@ -38,5 +37,5 @@ public class AudioList : MonoBehaviour {
 	public AudioSource Spider;
 	public AudioSource Unicorn;
 	public AudioSource Whale;
-
+	public AudioSource Theme;
 }

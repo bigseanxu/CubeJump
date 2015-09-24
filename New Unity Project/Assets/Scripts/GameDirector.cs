@@ -10,13 +10,13 @@ public class GameDirector : MonoBehaviour {
 	public Transform shopLights;
 	public Transform shopScreen;
 
-	public Transform AudioList;
+//	public Transform AudioList;
 	// Use this for initialization
 	void Start () {
 		if (Game.gameDirector == null) {
 			Game.gameDirector = this;
 		}
-		AudioList.GetComponent<AudioList> ().Bgm.Play ();
+//		AudioList.GetComponent<AudioList> ().Bgm.Play ();
 	}
 	
 	// Update is called once per frame

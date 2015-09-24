@@ -24,13 +24,14 @@ public class PillarGenerator : MonoBehaviour {
 
 
 	List<Transform> pillars = new List<Transform> ();
-	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -3.8f);
+	Vector3 lastPillarPosition = new Vector3(9.2f, 0, -4.1f);
 	bool lastPillarLeft = true;
-
+	bool isStart;
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () { 
+		isStart=true;
 		Physics.gravity = gravity;
 		pillars.Add (startPillar);
 		pillars.Add (startPillar2);
@@ -39,6 +40,7 @@ public class PillarGenerator : MonoBehaviour {
 		GeneratePillar ();
 		startPillar.GetComponent<Pillar> ().NextPillar = startPillar2;
 		startPillar2.GetComponent<Pillar> ().NextPillar = pillar3;
+		isStart=false;
 	}
 	
 	// Update is called once per frame 
@@ -96,7 +98,9 @@ public class PillarGenerator : MonoBehaviour {
 		pillars.Add (newPillar);
 
 		//sceneGenerator.GetComponent<SceneGenerator> ().Generate (newPillar);
-		diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
+		if(!isStart){
+			diamondGenerator.GetComponent<DiamondGenerator> ().Generate ();
+		}
 //		PlaySprayParticle ();
 		return newPillar;
 	}
